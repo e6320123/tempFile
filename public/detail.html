@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CDN -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- jquery -->
+    <script src="jquery.js"></script>
+    <style>
+        h2 {
+            background-color: blanchedalmond;
+        }
+        #btn{
+            left:30px;
+            font-size: 28px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>訂購明細</h2>
+    <div id='detail'>
+        <p>電影名稱:{{movieName}}</p>
+        <p>影城:{{theater}}影城</p>
+        <p>日期:{{day}}</p>
+        <p>場次:{{time}}</p>
+        <p>{{ticket}}</p>
+        <p>座位:{{seat}}</p>
+        <p>{{hall}}</p>
+
+        <form action="http://127.0.0.0.1/php/saveSQL.php" method='post' class="form-horizontal">
+            
+            <h2>個人明細({{guestORmember}})</h2>
+            <!-- Text input -->
+            <div class="form-group">
+              <label class="col-md-1 control-label" for="memberName">姓名</label>  
+              <div class="col-md-2">
+                <input id="memberName" name="memberName" :value="memberName" type="text" class="form-control input-md">
+              </div> 
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-1 control-label" for="email">信箱</label>  
+              <div class="col-md-2">
+                <input id="email" name="email" :value="email" type="text" class="form-control input-md">
+              </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-1 control-label" for="telephone">電話</label>  
+              <div class="col-md-2">
+                <input id="telephone" name="telephone" v-bind:value="phone" type="text" class="form-control input-md">
+              </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-1 control-label" for="creditCard">信用卡</label>  
+              <div class="col-md-2">
+                <input id="creditCard" name="creditCard" value="" type="text" class="form-control input-md">
+              </div>
+            </div>
+            <!-- </fieldset> -->
+            <div id="btn" class="col-md-4">
+                <button type='submit' name='btn' value='確認送出' class="btn btn-sm btn-primary"><span
+                    class="glyphicon glyphicon-ok"></span> 確認訂購</button>
+                <button type='submit' name='btn' value='取消訂購' class="btn btn-sm btn-danger"><span
+                    class="glyphicon glyphicon-remove"></span> 取消訂購</button>
+            </div>
+            <!-- ----------------------------hidden----------------------------------- -->
+            <input type="hidden" name='movieName' v-bind:value='movieName'>
+            <input type="hidden" name='theater' v-bind:value='theater'>
+            <input type="hidden" name='day' v-bind:value='day'>
+            <input type="hidden" name='time' v-bind:value='time'>
+            <input type="hidden" name='ticket' v-bind:value='ticket'>
+            <input type="hidden" name='seat' v-bind:value='seat'>
+            <input type="hidden" name='hall' v-bind:value='hall'>
+        </form>
+    </div>
+    <script>
+        var orderData = {
+            movieName: '返校Detention',
+            theater: 'taichung',
+            day: '9/25',
+            time: '14:00',
+            ticket: '全票280',
+            seat: 'b3',
+            hall: '第10廳',
+            memberName:'ben',
+            email:'123@gmail.com',
+            phone:'09123456789'
+        };
+        localStorage.setItem('dataList', JSON.stringify(orderData));
+        var app1 = new Vue({
+            el: "#detail",
+            data: {
+              movieName: '',
+              theater: '',
+              day: '',
+              time: '',
+              ticket: '',
+              seat: '',
+              hall: '',
+              memberName:'',
+              email:'',
+              phone:'',
+              guestORmember:'member'
+            },
+            methods:{
+               getData: function(){
+                   this.movieName=JSON.parse(localStorage.getItem('dataList')).movieName; 
+                   this.theater=JSON.parse(localStorage.getItem('dataList')).theater; 
+                   this.day=JSON.parse(localStorage.getItem('dataList')).day; 
+                   this.time=JSON.parse(localStorage.getItem('dataList')).time; 
+                   this.ticket=JSON.parse(localStorage.getItem('dataList')).ticket; 
+                   this.seat=JSON.parse(localStorage.getItem('dataList')).seat; 
+                   this.hall=JSON.parse(localStorage.getItem('dataList')).hall; 
+                   this.memberName=JSON.parse(localStorage.getItem('dataList')).memberName; 
+                   this.email=JSON.parse(localStorage.getItem('dataList')).email; 
+                   this.phone=JSON.parse(localStorage.getItem('dataList')).phone; 
+               }
+            }
+        });
+        app1.getData();
+        
+        
+    </script>
+    <!-- bootstrap  3.3.7 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
