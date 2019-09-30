@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CDN -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        td{
+            width:60px;
+            height:60px;
+        }
+        table{
+            position: relative;
+            left:30%;
+            top:110px;
+        }
+        .red{
+            color:red;
+            border:1px solid red;
+            width:100%;
+            height:100%
+        }
+    </style>
+</head>
+<body>
+    
+    
+    <div id="app">
+        <table  border="1">
+            <tr>
+                <td><div :class="{red:tab[1]}">1</div></td>
+                <td><div :class="{red:tab[2]}">2</div></td>
+                <td><div :class="{red:tab[3]}">3</div></td>
+                <td><div :class="{red:tab[4]}">4</div></td>
+            </tr>
+            <tr>
+                <td><div :class="{red:tab[0]}">0</div></td>
+                <td :class="" colspan="2" rowspan="2">
+                    <button @click="turn">turn</button>
+                    <button @click="off">off</button>
+                </td>
+                <td><div :class="{red:tab[5]}">5</div></td> 
+            </tr>
+            <tr>
+                <td><div :class="{red:tab[11]}">11</div></td> 
+                <td><div :class="{red:tab[6]}">6</div></td>
+            </tr>
+            <tr>
+                <td><div :class="{red:tab[10]}">10</div></td>
+                <td><div :class="{red:tab[9]}">9</div></td>
+                <td><div :class="{red:tab[8]}">8</div></td>
+                <td><div :class="{red:tab[7]}">7</div></td>
+            </tr>
+        </table>
+    </div>
+
+
+<script>
+    // document.getElementById("t1").className = "red"
+var app = new Vue({
+    el:"#app",
+    data:{
+        flag:"abx",
+        count:-1,
+        flag2:"abx",
+        speed:500,
+        delay:1001 ,
+        tab:{
+            "0":0,
+            "1":0,
+            "2":0,
+            "3":0,
+            "4":0,
+            "5":0,
+            "6":0,
+            "7":0,
+            "8":0,
+            "9":0,
+            "10":0,
+            "11":0
+        },
+        s:1
+    },
+    methods:{
+        turn:function(){
+                // this.delay = this.speed+100;
+                // this.flag = setInterval(() => {
+                //     console.log("aa");
+                //     this.speed-=30;
+                //     clearInterval(this.flag);
+                //     this.condition=1;
+                // // }, this.speed);
+                // this.tab[6]=0;
+                // this.tab[7]=1;
+                
+                this.tab[0]=0;
+                this.tab[this.count%12]=0;
+                this.count=-1;
+                   this.flag = setInterval(() => {
+                    this.count++ ;
+                    if(this.count%12==0){
+                        this.tab[11]=0;
+                        this.tab[0]=1;
+                    }else{
+                        this.tab[(this.count%12)-1]=0;
+                        this.tab[this.count%12]=1;
+                    }
+                    // if(this.delay>=100)
+                    // this.delay-=100;
+                    // console.log(this.delay);
+
+                    if(this.delay<100 || this.count>=100)
+                    clearInterval(this.flag);
+                    
+                   }, 30);
+                //         var past = new Date();
+                // while(new Date()-past<=this.delay){} //停在這1秒
+        },
+        off:function(){
+            clearInterval(this.flag);
+            this.tab[0]=0;
+            this.tab[this.count%12]=0;
+        }
+    }
+});
+</script>
+<!-- bootstrap  3.3.7 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+</script>
+</body>
+</html>
