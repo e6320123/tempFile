@@ -25,8 +25,8 @@
             top:110px;
         }
         .red{
-            color:red;
-            border:1px solid red;
+            color:rgb(56, 148, 223);
+            border:1px solid rgb(255, 97, 5);
             width:100%;
             height:100%
         }
@@ -70,10 +70,11 @@
 var app = new Vue({
     el:"#app",
     data:{
+        ran:1,
         flag:"abx",
-        count:-1,
+        count:0,
         flag2:"abx",
-        speed:500,
+        speed:701,
         delay:1001 ,
         tab:{
             "0":0,
@@ -92,44 +93,51 @@ var app = new Vue({
         s:1
     },
     methods:{
-        turn:function(){
-                // this.delay = this.speed+100;
-                // this.flag = setInterval(() => {
-                //     console.log("aa");
-                //     this.speed-=30;
-                //     clearInterval(this.flag);
-                //     this.condition=1;
-                // // }, this.speed);
-                // this.tab[6]=0;
-                // this.tab[7]=1;
-                
-                this.tab[0]=0;
-                this.tab[this.count%12]=0;
-                this.count=-1;
-                   this.flag = setInterval(() => {
+        fn:function(){ 
+                    console.log(this.speed);
                     this.count++ ;
-                    if(this.count%12==0){
+                    if(this.count%12==0){ 
                         this.tab[11]=0;
                         this.tab[0]=1;
                     }else{
                         this.tab[(this.count%12)-1]=0;
                         this.tab[this.count%12]=1;
-                    }
-                    // if(this.delay>=100)
-                    // this.delay-=100;
-                    // console.log(this.delay);
+                    } 
 
-                    if(this.delay<100 || this.count>=100)
+                    this.ran = Math.floor(Math.random()*12);
+                    if(this.count<= this.ran+120){
+                        if(this.count%2==0){ 
+                            if (this.speed > 300)
+                                this.speed-=100;
+                                if(this.speed < 300 && this.speed>100 && this.count%4==0){
+                                    this.speed-=50;
+                                }
+                        }
+                    }else{
+                        if(this.speed < 300 && this.count%4==0){
+                            this.speed+=50;
+                        }else if(this.speed > 300 && this.count%2==0){
+                            this.speed+=100; 
+                        }
+                    }
                     clearInterval(this.flag);
-                    
-                   }, 30);
-                //         var past = new Date();
-                // while(new Date()-past<=this.delay){} //停在這1秒
+                    if (this.speed > 0 && this.speed < 901) {
+                        this.flag = setInterval(this.fn, this.speed);
+                    }
+        },
+        turn:function(){  
+                this.speed=701;
+                this.tab[0]=0;
+                this.tab[this.count%12]=0;
+                this.count=0;  
+                this.flag = setInterval(this.fn, this.speed);     
         },
         off:function(){
             clearInterval(this.flag);
             this.tab[0]=0;
             this.tab[this.count%12]=0;
+            this.count=0;
+            this.speed=701;
         }
     }
 });
