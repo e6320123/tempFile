@@ -1,0 +1,21 @@
+會員修改姓名 信箱 電話
+
+產生訂單編號
+
+ok.html 顯示訂單列表
+
+detail頁面 註冊 會員? 
+
+信用卡 正規表示 
+
+Navbar.vue
+
+// 帳號正確 -> 檢查密碼是否正確
+        if (accIsExist.password == logPassword) {
+          this.isLogin = true;
+          localStorage.setItem("status", "login");
+          localStorage.setItem("logName", accIsExist.name);
+          this.name = localStorage.getItem('logName');
+          //刷新Detail.vue頁面
+          if(window.location.hash == "#/detail")
+            history.go(0);
