@@ -10,12 +10,12 @@ detail頁面 註冊 會員?
 
 Navbar.vue
 
-// 帳號正確 -> 檢查密碼是否正確
-        if (accIsExist.password == logPassword) {
-          this.isLogin = true;
-          localStorage.setItem("status", "login");
-          localStorage.setItem("logName", accIsExist.name);
-          this.name = localStorage.getItem('logName');
-          //刷新Detail.vue頁面
-          if(window.location.hash == "#/detail")
-            history.go(0);
+	} else {
+              _this.$toasted.success("會員登入成功", {
+                theme: 'bubble',
+                duration: 3000
+              });
+              //刷新Detail.vue頁面 
+              if(window.location.hash == "#/order/detail") 
+              history.go(0); 
+              // 在登入狀態 紀錄登入狀態 與帳號 姓名
