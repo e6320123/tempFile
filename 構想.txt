@@ -15,9 +15,7 @@ Navbar.vue
                 theme: 'bubble',
                 duration: 3000
               });
--------->     //刷新Detail.vue頁面 
--------->     if(window.location.hash == "#/order/detail") 
--------->     history.go(0); 
+
               // 在登入狀態 紀錄登入狀態 與帳號 姓名
 		_this.isLogin = true;
               _this.name = temp.name;
@@ -26,6 +24,9 @@ Navbar.vue
               localStorage.setItem("nowName", temp.name); 
 -------->     localStorage.setItem("email", temp.email);
 -------->     localStorage.setItem("phone", temp.phone);
+-------->     //刷新Detail.vue頁面 
+-------->     if(window.location.hash == "#/order/Detail") 
+-------->     history.go(0); 
 
 members.php
 --------------------------------------------------
