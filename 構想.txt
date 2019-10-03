@@ -9,13 +9,34 @@ detail頁面 註冊 會員?
 信用卡 正規表示 
 
 Navbar.vue
-
+--------------------------------------------------
 	} else {
               _this.$toasted.success("會員登入成功", {
                 theme: 'bubble',
                 duration: 3000
               });
-              //刷新Detail.vue頁面 
-              if(window.location.hash == "#/order/detail") 
-              history.go(0); 
+-------->     //刷新Detail.vue頁面 
+-------->     if(window.location.hash == "#/order/detail") 
+-------->     history.go(0); 
               // 在登入狀態 紀錄登入狀態 與帳號 姓名
+		_this.isLogin = true;
+              _this.name = temp.name;
+              localStorage.setItem("status", "login");
+              localStorage.setItem("nowAcc", temp.account);
+              localStorage.setItem("nowName", temp.name); 
+-------->     localStorage.setItem("email", temp.email);
+-------->     localStorage.setItem("phone", temp.phone);
+
+members.php
+--------------------------------------------------
+
+	function checkLogin() {
+			.
+			.
+			.
+			.
+		if ($pwdIsExist == 1) {
+            // 帳密正確 檢查是否為管理員登入
+-------->   $sql = "SELECT name,account,email,phone FROM members WHERE account = '{$account}' AND password = '{$password}'";
+            // $sql = "SELECT name,account FROM members WHERE account = 'sdsdwww' AND password = 'sdsdasd'";
+            $result = $conn->query($sql);
