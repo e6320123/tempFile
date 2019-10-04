@@ -1,18 +1,19 @@
 
-²£¥Í­q³æ½s¸¹
- 
+ç”¢ç”Ÿè¨‚å–®ç·¨è™Ÿ 
 
-«H¥Î¥d ¥¿³Wªí¥Ü 
+ç¢ºèªè¨‚è³¼ --> è·³å‡ºç¢ºå®šå°è©±ç›’ --> åˆ¤æ–·è¼¸å…¥
+
+ä¿¡ç”¨å¡ æ­£è¦è¡¨ç¤º 
 
 Navbar.vue
 --------------------------------------------------
 	} else {
-              _this.$toasted.success("·|­ûµn¤J¦¨¥\", {
+              _this.$toasted.success("æœƒå“¡ç™»å…¥æˆåŠŸ", {
                 theme: 'bubble',
                 duration: 3000
               });
 
-              // ¦bµn¤Jª¬ºA ¬ö¿ýµn¤Jª¬ºA »P±b¸¹ ©m¦W
+              // åœ¨ç™»å…¥ç‹€æ…‹ ç´€éŒ„ç™»å…¥ç‹€æ…‹ èˆ‡å¸³è™Ÿ å§“å
 		_this.isLogin = true;
               _this.name = temp.name;
               localStorage.setItem("status", "login");
@@ -20,7 +21,7 @@ Navbar.vue
               localStorage.setItem("nowName", temp.name); 
 -------->     localStorage.setItem("email", temp.email);
 -------->     localStorage.setItem("phone", temp.phone);
--------->     //¨ê·sDetail.vue­¶­± 
+-------->     //åˆ·æ–°Detail.vueé é¢ 
 -------->     if(window.location.hash == "#/order/Detail") 
 -------->     history.go(0); 
 
@@ -33,7 +34,7 @@ members.php
 			.
 			.
 		if ($pwdIsExist == 1) {
-            // ±b±K¥¿½T ÀË¬d¬O§_¬°ºÞ²z­ûµn¤J
+            // å¸³å¯†æ­£ç¢º æª¢æŸ¥æ˜¯å¦ç‚ºç®¡ç†å“¡ç™»å…¥
 -------->   $sql = "SELECT name,account,email,phone FROM members WHERE account = '{$account}' AND password = '{$password}'";
             // $sql = "SELECT name,account FROM members WHERE account = 'sdsdwww' AND password = 'sdsdasd'";
             $result = $conn->query($sql);
