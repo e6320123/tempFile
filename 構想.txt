@@ -10,11 +10,13 @@
 規劃新頁面finishdetail
 
 
+if(window.location.hash == "#/order/detail"||window.location.hash == "#/order/Detail")
+
 -----------------------------------------------
+ticketsNum		{"0"	 :1,"1"	    :1}
 ticketsNameNum		{"一般票":1,"愛心票":1}
 day_index		0
-mealsNum		{"0":1,"1":1,"2":1,"3":1}
+mealsNum		{"0"	  :1,"1"	:1,"2"	    :1,"3"	  :1}
 mealsNameNum		{"可樂 大":1,"爆米花 大":1,"可樂 中":1,"爆米花 中":1}
-ticketsNum		{"0":1,"1":1}
 totalTicketsNum		2
 movie_index		21 
