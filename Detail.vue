@@ -403,18 +403,21 @@ export default {
                 if(mealsNum["0"] >=1 ){
                     this.list.food["2"] = "可樂 (大) "; 
                     this.list.foodNum["2"] = "x"+ mealsNum["0"] + "  ";
-                }else if(mealsNum["1"] >=1 ){
+                }
+                if(mealsNum["1"] >=1 ){
                     this.list.food["0"] = "爆米花 (大) "; 
                     this.list.foodNum["0"] = "x"+ mealsNum["1"] + "  ";
-                }else if(mealsNum["2"] >=1 ){
+                }
+                if(mealsNum["2"] >=1 ){
                     this.list.food["3"] = "可樂 (中) "; 
                     this.list.foodNum["3"] = "x"+ mealsNum["2"] + "  ";
-                }else if(mealsNum["3"] >=1 ){
+                }
+                if(mealsNum["3"] >=1 ){
                     this.list.food["1"] = "爆米花 (中) ";
                     this.list.foodNum["1"] = "x"+ mealsNum["3"] + "  ";
-                }else{
-                   this.list.food["0"]  = "無";
-                }
+                } 
+                if(mealsNum["0"]+mealsNum["1"]+mealsNum["2"]+mealsNum["3"] == 0)
+                    this.list.food["0"] = "無";
             } 
             //若上排無食物
             if(!(this.list.foodNum["0"] || this.list.foodNum["1"])){
