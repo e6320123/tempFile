@@ -7,4 +7,14 @@
 
 可樂 v-if
 
-規劃新頁面finishdetail 
+規劃新頁面finishdetail
+
+
+-----------------------------------------------
+ticketsNameNum		{"一般票":1,"愛心票":1}
+day_index		0
+mealsNum		{"0":1,"1":1,"2":1,"3":1}
+mealsNameNum		{"可樂 大":1,"爆米花 大":1,"可樂 中":1,"爆米花 中":1}
+ticketsNum		{"0":1,"1":1}
+totalTicketsNum		2
+movie_index		21 
