@@ -1,6 +1,7 @@
 <template>
 
 <div class="container"> 
+  <h1 class="text-center my-5">完成訂購</h1>
   <div class="row">
     <div class="col-md-12">
         <div class="tab finishDetail">
@@ -72,7 +73,8 @@ export default {
         getData:function(){
             var FinishPageData = JSON.parse(sessionStorage.getItem('FinishPageData'));
             this.list = FinishPageData;
-            // console.log(this.list);
+            sessionStorage.removeItem('FinishPageData');
+            console.log(this.list);
         }
     }
 }
@@ -131,6 +133,14 @@ export default {
             table{ 
                 tr{ 
                     border-bottom: 2px solid rgb(190,190,190); 
+                    td:first-child{
+                        width:25%;
+                        padding:5px 0px ; 
+                    }
+                    td:last-child{
+                        width:75%;
+                        padding:5px 0px ; 
+                    }
                 } 
             }
         }

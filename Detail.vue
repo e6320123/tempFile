@@ -9,28 +9,36 @@
             <div> 
                 <table>
                     <tr>
-                        <td>&emsp;名&emsp;&emsp;稱&emsp;&emsp;&emsp;{{list.movieName}}</td>
+                        <td>&emsp;名&emsp;&emsp;稱&ensp;:</td>
+                        <td>{{list.movieName}}</td>
                     </tr>
                     <tr>
-                        <td>&emsp;上映地點&emsp;&emsp;&emsp;中佑戲院{{list.theater}}影城</td>
+                        <td>&emsp;上映地點&ensp;:</td>
+                        <td>中佑戲院{{list.theater}}影城</td>
                     </tr>
                     <tr>
-                        <td>&emsp;放映場次&emsp;&emsp;&emsp;{{list.day}} {{list.time}}</td>
+                        <td>&emsp;放映場次&ensp;:</td>
+                        <td>{{list.day}}&ensp;{{list.time}}</td>
                     </tr>
                     <tr>
-                        <td>&emsp;座&emsp;&emsp;位&emsp;&emsp;&emsp;{{list.seat}}</td>
+                        <td>&emsp;座&emsp;&emsp;位&ensp;:</td>
+                        <td>{{list.seat}}</td>
                     </tr>
                     <tr>
-                        <td>&emsp;票&emsp;&emsp;種&emsp;&emsp;&emsp;{{list.ticket}}</td>
+                        <td>&emsp;票&emsp;&emsp;種&ensp;:</td>
+                        <td>{{list.ticket}}</td>
                     </tr>
                     <tr>
-                        <td>&emsp;餐&emsp;&emsp;點&emsp;&emsp;&emsp;{{list.food_popcorn}}{{list.num_popcorn}}{{list.food_coke}}{{list.num_coke}}</td>
+                        <td>&emsp;餐&emsp;&emsp;點&ensp;:</td>
+                        <td>可樂[中]x1 , 可樂[中]x1 , 可樂[中]x1 , 可樂[中]x1 , 可樂[中]x1 , 可樂[中]x1 , 可樂[中]x1 ,</td>
                     </tr>
                     <tr>
-                        <td>&emsp;折&emsp;&emsp;扣&emsp;&emsp;&emsp;{{list.discount}}</td>
+                        <td>&emsp;折&emsp;&emsp;扣&ensp;:</td>
+                        <td>{{list.discount}}</td>
                     </tr> 
                     <tr>
-                        <td>&emsp;總金額&emsp;&emsp;&emsp;&emsp;{{list.total}} x {{list.discount}} = {{list.real}}</td>
+                        <td>&emsp;總金額&emsp;&ensp;:</td>
+                        <td>{{list.total}} x {{list.discount}} = {{list.real}}</td>
                     </tr> 
                 </table>
              </div>
@@ -44,7 +52,7 @@
         <div class="tab2">
             <h6>購買者資訊</h6>   
             <!--input-->
-            <div v-if="!list.isMember" class="editInputGrounp1 input-group input-group-sm mb-1">  
+            <div v-if="!list.buyerBar" class="editInputGrounp1 input-group input-group-sm mb-3">  
                 <span> 真實姓名 &emsp; </span>
                 <input v-model="list.memberName" @change="checkInput" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 <div class="input-group-append">
@@ -56,11 +64,11 @@
                 <i v-if="chkInputRight" class="tick fa fa-check fa-lg" aria-hidden="true"></i>
                 <i v-if="chkInputWrong" class="cross fa fa-times fa-lg" aria-hidden="true"></i>
             </div>  
-            <span v-if="!list.isMember" :class="{'greenColor':green,'redColor':red}">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <!--<span v-if="!list.buyerBar" :class="{'greenColor':green,'redColor':red}">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                     {{chkInput}}
-            </span> 
+            </span> -->
             <!--input-->
-            <div v-if="!list.isMember" class="editInputGrounp input-group input-group-sm mb-1"> 
+            <div v-if="!list.buyerBar" class="editInputGrounp input-group input-group-sm mb-3"> 
                 <span> 
                     電子信箱 &emsp; 
                 </span>
@@ -74,11 +82,11 @@
                     <i v-if="chkInputRight2" class="tick fa fa-check fa-lg" aria-hidden="true"></i>
                     <i v-if="chkInputWrong2" class="cross fa fa-times fa-lg" aria-hidden="true"></i>
             </div> 
-            <span v-if="!list.isMember" :class="{'greenColor':green2,'redColor':red2}">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <!--<span v-if="!list.buyerBar" :class="{'greenColor':green2,'redColor':red2}">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                     {{chkInput2}}
-            </span> 
+            </span> -->
             <!--input-->
-            <div v-if="!list.isMember" class="editInputGrounp input-group input-group-sm mb-1"> 
+            <div v-if="!list.buyerBar" class="editInputGrounp input-group input-group-sm mb-3"> 
                 <span>
                     手機號碼 &emsp;
                 </span>
@@ -92,31 +100,28 @@
                 <i v-if="chkInputRight3" class="tick fa fa-check fa-lg" aria-hidden="true"></i>
                 <i v-if="chkInputWrong3" class="cross fa fa-times fa-lg" aria-hidden="true"></i>
             </div> 
-            <span  v-if="!list.isMember" :class="{'greenColor':green3,'redColor':red3}">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <!--<span  v-if="!list.buyerBar" :class="{'greenColor':green3,'redColor':red3}">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                     {{chkInput3}}
-            </span> 
-            <!--member only-->  
-            <!--input-->
-            <div  v-if="list.isMember" class="InfoGrounp input-group input-group-sm mb-1">  
+            </span> --> 
+            <!--member only-->  <!--
+            <div  v-if="list.buyerBar" class="InfoGrounp input-group input-group-sm mb-1">  
                 <span>
                     &emsp;真實姓名&ensp;:&ensp;{{list.memberName}} 
                 </span>
-            </div> 
-            <!--input-->
-            <div  v-if="list.isMember" class="InfoGrounp input-group input-group-sm mb-1">  
+            </div>  
+            <div  v-if="list.buyerBar" class="InfoGrounp input-group input-group-sm mb-1">  
                 <span>
                     &emsp;電子信箱&ensp;:&ensp;{{list.email}}  
                 </span>
-            </div>  
-            <!--input-->
-            <div  v-if="list.isMember" class="InfoGrounp input-group input-group-sm mb-3">  
+            </div>   
+            <div  v-if="list.buyerBar" class="InfoGrounp input-group input-group-sm mb-3">  
                 <span>
                     &emsp;手機號碼&ensp;:&ensp;{{list.phone}} 
                 </span>
-            </div>   
+            </div>   -->
         </div><!--div"tab2"-->
-        <button @click="editData" v-if="list.editBar"  type="button" class="loginBtn btn btn-outline-info">
-            更改購買者資訊</button> 
+        <button @click="editData" v-if="list.editBar"  type="button" class="cancelHover loginBtn btn btn-outline-info">
+            歡迎光臨 {{list.accout}}</button> 
         <button v-if="list.loginBar"  href data-toggle="modal" data-target="#login" type="button" 
             class="loginBtn btn btn-outline-secondary">
                 會員登入
@@ -155,15 +160,25 @@
                 </button>
               </div>
               <div class="modal-body">  
-                <p>
+               
                     按下確定即送出訂單,確定此筆訂購內容無誤嗎?
-                </p>
+                
               </div> 
               <div class="modal-body">
+              <div class="container"> 
+                     <div class="row">
+                         <div class="col-md-6">
+
                 <button @click="ok()" type="button" class="btn btn-primary" data-dismiss="modal">
                     確定</button>
+                         </div>
+                         <div class="col-md-6">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     取消</button>
+
+                         </div>
+                     </div>
+                 </div>
               </div>
             </div>
           </div>
@@ -178,10 +193,10 @@
             </div>  
         </div> 
     </div>   
-    <a href="javascrpt:void()" @click ="gue">gue</a>
+    <!--<a href="javascrpt:void()" @click ="gue">gue</a>
         &emsp;
         &emsp;
-    <a href="javascrpt:void()" @click ="mem">mem</a>
+    <a href="javascrpt:void()" @click ="mem">mem</a>-->
 </div>
 </template>
 
@@ -198,6 +213,7 @@ export default {
                 ticket: '' ,
                 food_popcorn:'爆米花',
                 food_coke:'可樂',
+                food_size:"", 
                 num_popcorn:0,
                 num_coke:0,
                 price: 0 ,
@@ -205,12 +221,13 @@ export default {
                 discount: 0.7,
                 seat: '',
                 hall: '',
+                accout: '',
                 memberName:'', 
                 email:' ',
                 phone:' ',
                 total:101,
                 real:1, 
-                isMember:false,
+                buyerBar:false,
                 loginBar:true, 
                 editBar:true,
                 cadrd1:"1231",
@@ -231,12 +248,13 @@ export default {
         }
     },
     mounted() { 
+        var mealsNameNum = sessionStorage.getItem('mealsNameNum') ;
+        console.log('登入狀態: '+sessionStorage.getItem('status')); 
         this.getData();
         this.detailCheckLogin();
-        this.countMoney();  
-        this.saveDataToFinishPage();
+        this.countMoney(); 
     },
-    methods:{
+    methods:{ 
         checkInput:function(){
             console.log(/^[\u4e00-\u9fa5]{2,4}$/.test(this.list.memberName));
             if(/^[\u4e00-\u9fa5]{2,4}$/.test(this.list.memberName)){
@@ -276,36 +294,44 @@ export default {
             }
         },
         gue:function(){ 
-            this.list.isMember = 0;
-            this.list.loginBar = 1;
+            this.list.buyerBar = 0;
+            this.list.loginBar = 1; //show登入鈕
             this.list.editBar = 0; 
         },
         mem:function(){
-            this.list.isMember = 1;
-            this.list.loginBar = 0;
+            this.list.buyerBar = 1;
+            this.list.loginBar = 0; //hide登入鈕
             this.list.editBar = 1;
         },
         saveDataToFinishPage:function() { 
             sessionStorage.setItem('FinishPageData',JSON.stringify(this.list))  
         },
-        editData:function() {
-            this.list.isMember = 0; 
-            this.list.loginBar = 0;
+        editData:function() { 
+            this.list.buyerBar = 0; //show輸入框
+            this.list.loginBar = 0; //hide登入鈕 
             //--------------------
-            this.chkInputEmpty=1;
-            this.chkInputEmpty2=1;
-            this.chkInputEmpty3=0;
+            if(this.chkInputRight == 0 && this.chkInputWrong == 0)
+                this.chkInputEmpty=1;
+            if(this.chkInputRight2 == 0 && this.chkInputWrong2 == 0)
+                this.chkInputEmpty2=1;
+            if(this.chkInputRight3 == 0 && this.chkInputWrong3 == 0)
+                this.chkInputEmpty3=1;
         },
         detailCheckLogin:function() { 
-            if (localStorage.getItem('status')) { // 檢查是否在登入狀態 
-            this.list.isMember = 1; 
-            this.list.loginBar = 0; 
-            this.list.editBar = 1;
-            this.memberGetData();
+            // 登入狀態 
+            if (sessionStorage.getItem('status')) {  
+                this.memberGetData();    //自動代入會員資料
+                this.checkInput();
+                this.checkInput2();
+                this.checkInput3();
+                // this.list.buyerBar = 1;  //關掉輸入框 
+                this.list.loginBar = 0; //hide登入鈕
+                this.list.editBar = 1;  //show歡迎光臨  
+            // 非登入狀態 
             }else{
-                this.list.isMember = 0; 
-                this.list.loginBar = 1; 
-                this.list.editBar = 0;
+                this.list.buyerBar = 0; //show輸入框
+                this.list.loginBar = 1; //show登入鈕
+                this.list.editBar = 0;  //hide歡迎光臨
             }
         }, 
         checkPersonalInfo:function(){
@@ -321,18 +347,22 @@ export default {
             return 1;
         },
         ok:function(){ 
-            if(this.list.isMember)
+            this.saveDataToFinishPage(); 
+            //沒有輸入框時
+            if(this.list.buyerBar)
             return window.location.href="./#/order/FinishDetail";
             if(this.checkPersonalInfo()){ 
-                // 資料無空白
-                
-                if(this.chkInput2 == "x") 
+                // 資料無空白 
+                if(0
+                    // this.chkInput2 == "x"
+                ) 
                     return alert("email error"); 
-                if(this.chkInput3 == "x")
+                if(0
+                    // this.chkInput3 == "x"
+                )
                     return alert("phone error"); 
                 // if(!(/\d{4}/.test(this.list.card1)))
                 //     return alert("card error"); 
-                this.saveDataToFinishPage();
                 return window.location.href="./#/order/FinishDetail";
             }
             return alert("資料尚未填完"); 
@@ -342,20 +372,21 @@ export default {
             this.list.real =Math.ceil(this.list.total*this.list.discount);
         },
         memberGetData: function(){ 
-            this.list.memberName = localStorage.getItem('nowName'); 
-            this.list.email = localStorage.getItem('email'); 
-            this.list.phone = localStorage.getItem('phone'); 
+            this.list.accout = sessionStorage.getItem('nowAcc'); 
+            this.list.memberName = sessionStorage.getItem('nowName'); 
+            this.list.email = sessionStorage.getItem('nowEmail'); 
+            this.list.phone = sessionStorage.getItem('nowPhone'); 
         },
         getData: function(){ 
             if(sessionStorage.getItem('foodDrinksNum')){
-                var foodDrinksNum = JSON.parse(sessionStorage.getItem('foodDrinksNum'));
-                this.list.num_coke = foodDrinksNum.可樂 ; 
-                this.list.num_popcorn = foodDrinksNum.爆米花;
+                // var foodDrinksNum = JSON.parse(sessionStorage.getItem('foodDrinksNum'));
+                // this.list.num_coke = foodDrinksNum.可樂 ; 
+                // this.list.num_popcorn = foodDrinksNum.爆米花;
             }
-            var movie_index = JSON.parse(sessionStorage.getItem('movie_index'));
-            var day_index = JSON.parse(sessionStorage.getItem('day_index'));
-            var time_index = JSON.parse(sessionStorage.getItem('time_index'));
-            var ticketsNum = JSON.parse(sessionStorage.getItem('ticketsNum')); 
+            this.list.movieName = sessionStorage.getItem('moviesName');
+            this.list.day = sessionStorage.getItem('moviesDay');
+            this.list.time = sessionStorage.getItem('moviesTime');
+            this.list.ticket = sessionStorage.getItem('totalTicketsNum'); 
         } 
     } 
 } 
@@ -363,17 +394,11 @@ export default {
 
 <style lang="scss" scoped> 
     .modal-body{ 
-        p{
+        // p{
             text-align:center;
             font-size:20px;
-        }
-        border-bottom:2px solid rgb(222,226,230);
-        button:first-child{ 
-            margin:0% 0% 0% 25%; 
-        }
-        button:last-child{ 
-            margin:0% 0% 0% 20%; 
-        }
+        // } 
+        border-bottom:1px solid rgb(222,226,230); 
     }
     .container{
         // margin:0;
@@ -411,7 +436,12 @@ export default {
                 width:100%;
                 tr{ 
                     border-bottom: 2px solid gray;
-                    td{
+                    td:first-child{
+                        width:25%;
+                        padding:5px 0px ; 
+                    }
+                    td:last-child{
+                        width:75%;
                         padding:5px 0px ; 
                     }
                 }
@@ -496,13 +526,17 @@ export default {
         }  
         .router-link1{ 
             margin:0% 0% 0% 1%;  
-           width:49%;
+            width:49%;
             font-size:20px; 
         } 
     }
     .loginBtn{ 
          margin:2% 0% 2% 0%;   //上下間隔 
          width:100%; 
+    }
+    .cancelHover:hover{ 
+        background-color: white;
+        color:rgb(23,162,184);
     }
      
 </style>
