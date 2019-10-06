@@ -7,6 +7,8 @@
 
 規劃新頁面finishdetail
 
+最後頁面按導覽列回首頁 沒清session
+
 
 if(window.location.hash == "#/order/detail"||window.location.hash == "#/order/Detail")
 
