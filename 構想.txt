@@ -1,40 +1,10 @@
-
+﻿
 產生訂單編號 
 
 確認訂購 --> 跳出確定對話盒 --> 判斷輸入
 
-信用卡 正規表示 
+信用卡 正規表示  
 
-Navbar.vue
---------------------------------------------------
-	} else {
-              _this.$toasted.success("會員登入成功", {
-                theme: 'bubble',
-                duration: 3000
-              });
+可樂 v-if
 
-              // 在登入狀態 紀錄登入狀態 與帳號 姓名
-		_this.isLogin = true;
-              _this.name = temp.name;
-              localStorage.setItem("status", "login");
-              localStorage.setItem("nowAcc", temp.account);
-              localStorage.setItem("nowName", temp.name); 
--------->     localStorage.setItem("email", temp.email);
--------->     localStorage.setItem("phone", temp.phone);
--------->     //刷新Detail.vue頁面 
--------->     if(window.location.hash == "#/order/Detail") 
--------->     history.go(0); 
-
-members.php
---------------------------------------------------
-
-	function checkLogin() {
-			.
-			.
-			.
-			.
-		if ($pwdIsExist == 1) {
-            // 帳密正確 檢查是否為管理員登入
--------->   $sql = "SELECT name,account,email,phone FROM members WHERE account = '{$account}' AND password = '{$password}'";
-            // $sql = "SELECT name,account FROM members WHERE account = 'sdsdwww' AND password = 'sdsdasd'";
-            $result = $conn->query($sql);
+規劃新頁面finishdetail 
