@@ -26,12 +26,21 @@
                     </tr>
                     <tr>
                         <td>&emsp;票&emsp;&emsp;種&ensp;:</td>
-                        <td>{{list.ticket}}</td>
+                        <td>
+                            {{list.ticketName["0"] + list.ticketNum["0"]}}
+                            {{list.ticketName["1"] + list.ticketNum["1"]}}
+                        </td> 
                     </tr>
                     <tr>
                         <td>&emsp;餐&emsp;&emsp;點&ensp;:</td>
-                        <td>可樂[中]x1 , 可樂[中]x1 , 可樂[中]x1 , 可樂[中]x1 , 可樂[中]x1 , 可樂[中]x1 , 可樂[中]x1 ,</td>
-                    </tr>
+                        <td>
+                            {{list.food["0"]+list.foodNum["0"]}}
+                            {{list.food["1"]+list.foodNum["1"]}}
+                            <br v-if="br">
+                            {{list.food["2"]+list.foodNum["2"]}}
+                            {{list.food["3"]+list.foodNum["3"]}} 
+                        </td>
+                    </tr>  
                     <tr>
                         <td>&emsp;折&emsp;&emsp;扣&ensp;:</td>
                         <td>{{list.discount}}</td>
@@ -187,16 +196,12 @@
                 <button  href data-toggle="modal" data-target="#confirm" type='submit' name='btn' value='確認送出' class="btn btn-outline-primary">
                     <i class="fa fa-check" aria-hidden="true"></i> 確認訂購
                 </button> 
-                <router-link to="/" class="router-link1 btn btn-outline-danger"> 
-                    <i class="fa fa-times" aria-hidden="true"></i> 取消訂購
-                </router-link> 
+                <button @click="clrSession"  href data-toggle="modal" data-target="#confirm" type='submit' name='btn' value='確認送出' class="router-link1 btn btn-outline-danger">
+                    <i class="fa fa-check" aria-hidden="true"></i> 取消訂購
+                </button> 
             </div>  
         </div> 
-    </div>   
-    <!--<a href="javascrpt:void()" @click ="gue">gue</a>
-        &emsp;
-        &emsp;
-    <a href="javascrpt:void()" @click ="mem">mem</a>-->
+    </div>  
 </div>
 </template>
 
@@ -206,27 +211,24 @@ export default {
     data(){
         return {
             list:{
-                movieName: '返校',
-                theater: '台中',
+                movieName: '',
+                theater: '',
                 day: '',
-                time: '',
-                ticket: '' ,
-                food_popcorn:'爆米花',
-                food_coke:'可樂',
-                food_size:"", 
-                num_popcorn:0,
-                num_coke:0,
-                price: 0 ,
-                num:  0,
+                time: '', 
+                food:{"0":"","1":"","2":"","3":""},
+                foodNum:{"0":"","1":"","2":"","3":""},
+                ticketName:{"0":"","1":""},
+                ticketNum:{"0":"","1":""},
+                price:{"0":190,"1":150},
                 discount: 0.7,
+                total:101,
+                real:1, 
                 seat: '',
                 hall: '',
                 accout: '',
                 memberName:'', 
                 email:' ',
                 phone:' ',
-                total:101,
-                real:1, 
                 buyerBar:false,
                 loginBar:true, 
                 editBar:true,
@@ -234,7 +236,8 @@ export default {
                 cadrd2:"1234",
                 cadrd3:"1234",
                 cadrd4:"1234"
-            }, 
+            },  
+        br:1,
         chkInputEmpty:1,
         chkInputEmpty2:1,
         chkInputEmpty3:1,
@@ -247,10 +250,12 @@ export default {
         FinishPageData:"" 
         }
     },
-    mounted() { 
-        var mealsNameNum = sessionStorage.getItem('mealsNameNum') ;
-        console.log('登入狀態: '+sessionStorage.getItem('status')); 
-        this.getData();
+    mounted() {  
+        if(!(sessionStorage.getItem('ticketsNum'))){
+            window.location.replace('./#/order');
+            history.go(0);
+        } 
+        this.getData(); 
         this.detailCheckLogin();
         this.countMoney(); 
     },
@@ -368,7 +373,10 @@ export default {
             return alert("資料尚未填完"); 
         }, 
         countMoney:function(){
-            // this.list.total=this.list.price*this.list.num;
+            // var ticketNum ={"0":0,"1":1} ; 
+            var ticketNum =JSON.parse(sessionStorage.getItem('ticketsNum')); 
+            this.list.total=this.list.price["0"]*(ticketNum["0"] >=1?ticketNum["0"]:0) +
+                            this.list.price["1"]*(ticketNum["1"] >=1?ticketNum["1"]:0);
             this.list.real =Math.ceil(this.list.total*this.list.discount);
         },
         memberGetData: function(){ 
@@ -377,17 +385,63 @@ export default {
             this.list.email = sessionStorage.getItem('nowEmail'); 
             this.list.phone = sessionStorage.getItem('nowPhone'); 
         },
-        getData: function(){ 
-            if(sessionStorage.getItem('foodDrinksNum')){
-                // var foodDrinksNum = JSON.parse(sessionStorage.getItem('foodDrinksNum'));
-                // this.list.num_coke = foodDrinksNum.可樂 ; 
-                // this.list.num_popcorn = foodDrinksNum.爆米花;
+        getData: function(){
+            // var ticketNum ={"0":2,"1":1} ; 
+            var ticketNum =JSON.parse(sessionStorage.getItem('ticketsNum')); 
+            if(ticketNum["0"] >=1 ){
+                this.list.ticketName["0"] = "一般票 "; 
+                this.list.ticketNum["0"] = "x"+ ticketNum["0"] + "  ";
             }
+            if(ticketNum["1"] >=1 ){
+                this.list.ticketName["1"] = "愛心票 "; 
+                this.list.ticketNum["1"] = "x"+ ticketNum["1"];
+            }
+
+            if(sessionStorage.getItem('mealsNum')){  
+            // var mealsNum ={"0":2,"1":1,"2":1,"3":1} ; 
+            var mealsNum =JSON.parse(sessionStorage.getItem('mealsNum')) ; 
+                if(mealsNum["0"] >=1 ){
+                    this.list.food["2"] = "可樂 (大) "; 
+                    this.list.foodNum["2"] = "x"+ mealsNum["0"] + "  ";
+                }else if(mealsNum["1"] >=1 ){
+                    this.list.food["0"] = "爆米花 (大) "; 
+                    this.list.foodNum["0"] = "x"+ mealsNum["1"] + "  ";
+                }else if(mealsNum["2"] >=1 ){
+                    this.list.food["3"] = "可樂 (中) "; 
+                    this.list.foodNum["3"] = "x"+ mealsNum["2"] + "  ";
+                }else if(mealsNum["3"] >=1 ){
+                    this.list.food["1"] = "爆米花 (中) ";
+                    this.list.foodNum["1"] = "x"+ mealsNum["3"] + "  ";
+                }else{
+                   this.list.food["0"]  = "無";
+                }
+            } 
+            //若上排無食物
+            if(!(this.list.foodNum["0"] || this.list.foodNum["1"])){
+                this.br=0;
+            }else{
+                this.br=1;
+            } 
             this.list.movieName = sessionStorage.getItem('moviesName');
             this.list.day = sessionStorage.getItem('moviesDay');
             this.list.time = sessionStorage.getItem('moviesTime');
             this.list.ticket = sessionStorage.getItem('totalTicketsNum'); 
-        } 
+        },
+        clrSession:function(){  
+            sessionStorage.removeItem('ticketsNameNum');
+            sessionStorage.removeItem('ticketsNum');
+            sessionStorage.removeItem('totalTicketsNum');
+            sessionStorage.removeItem('mealsNameNum');
+            sessionStorage.removeItem('mealsNum'); 
+            sessionStorage.removeItem('movie_index');
+            sessionStorage.removeItem('moviesName');
+            sessionStorage.removeItem('day_index');
+            sessionStorage.removeItem('moviesDay');
+            sessionStorage.removeItem('time_index'); 
+            sessionStorage.removeItem('moviesTime'); 
+            window.location.replace('./#/order');
+            history.go(0);  
+        },
     } 
 } 
 </script>
@@ -418,8 +472,8 @@ export default {
     .tab{
         width:95%;
         height:90%;
-    }
-    .tab,.tab2,.tab3{
+    } 
+    .tab,.tab2,.tab3{ 
         border-radius:5px; 
         border: 1px solid gray; 
         h6{ 
@@ -429,11 +483,13 @@ export default {
             color:white;
         }
         div{ 
-            margin:20px 20px; 
+            // border: 1px solid blue; 
+            margin:20px 20px 15% 20px; 
             font-size:16px; 
             table{  
+                // border: 1px solid red;
                 text-align:left;
-                width:100%;
+                width:100%; 
                 tr{ 
                     border-bottom: 2px solid gray;
                     td:first-child{
@@ -465,7 +521,7 @@ export default {
         color:red;
         padding:5px 0 0 5px;
     }
-    .tab2,.tab3{  
+    .tab2,.tab3{   
         button:last-child{ 
             width:100%; 
         }
