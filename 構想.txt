@@ -11,7 +11,9 @@
 
 ok 後 href = "http..." 取代history(0)
 
- 
+ok:function整理
+
+
 -----------------------------------------------
 ticketsNum		{"0"	 :1,"1"	    :1}
 ticketsNameNum		{"一般票":1,"愛心票":1}
