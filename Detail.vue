@@ -133,8 +133,7 @@
             歡迎光臨 {{list.accout}}</button> 
         <button v-if="list.loginBar"  href data-toggle="modal" data-target="#login" type="button" 
             class="loginBtn btn btn-outline-secondary">
-                會員登入
-            </button>
+            會員登入</button>
         <div class="tab3">
             <h6>信用卡資料</h6> 
             <!--input-->
@@ -168,22 +167,22 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">  
-               
-                    按下確定即送出訂單,確定此筆訂購內容無誤嗎?
-                
+              <div class="modal-body"> 
+                按下確定即送出訂單,確定此筆訂購內容無誤嗎? 
               </div> 
               <div class="modal-body">
               <div class="container"> 
                      <div class="row">
-                         <div class="col-md-6">
+                         <div class="col-md-6"> 
 
-                <button @click="ok()" type="button" class="btn btn-primary" data-dismiss="modal">
-                    確定</button>
+                         <button @click="ok()" type="button" class="btn btn-primary" data-dismiss="modal">
+                             確定</button>
+
                          </div>
                          <div class="col-md-6">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                    取消</button>
+
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                             取消</button>
 
                          </div>
                      </div>
@@ -193,16 +192,16 @@
           </div>
         </div>  
         <div class="btnGroup">  
-                <button  href data-toggle="modal" data-target="#confirm" type='submit' name='btn' value='確認送出' class="btn btn-outline-primary">
-                    <i class="fa fa-check" aria-hidden="true"></i> 確認訂購
-                </button> 
-                <button @click="clrSession"  href data-toggle="modal" data-target="#confirm" type='submit' name='btn' value='確認送出' class="router-link1 btn btn-outline-danger">
-                    <i class="fa fa-check" aria-hidden="true"></i> 取消訂購
-                </button> 
-            </div>  
-        </div> 
-    </div>  
-</div>
+            <button  href data-toggle="modal" data-target="#confirm" type='submit' name='btn' value='確認送出' class="btn btn-outline-primary">
+                <i class="fa fa-check" aria-hidden="true"></i> 確認訂購
+            </button> 
+            <button @click="clrSession"  href data-toggle="modal" data-target="#confirm" type='submit' name='btn' value='確認送出' class="router-link1 btn btn-outline-danger">
+                <i class="fa fa-check" aria-hidden="true"></i> 取消訂購
+            </button> 
+        </div>  
+    </div> <!-- col-md-6  padding2 -->
+  </div>  <!-- row -->
+</div> <!-- container -->
 </template>
 
 
@@ -275,8 +274,7 @@ export default {
         checkInput2:function(){
             if(
                /[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.com$/.test(this.list.email) ||
-               /[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.com\.[a-zA-Z0-9_]+$/.test(this.list.email)
-            // .test(this.list.email)
+               /[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.com\.[a-zA-Z0-9_]+$/.test(this.list.email) 
             ){
                 this.chkInputEmpty2=0;
                 this.chkInputRight2=1;
@@ -297,17 +295,7 @@ export default {
                 this.chkInputRight3=0;
                 this.chkInputWrong3=1; 
             }
-        },
-        gue:function(){ 
-            this.list.buyerBar = 0;
-            this.list.loginBar = 1; //show登入鈕
-            this.list.editBar = 0; 
-        },
-        mem:function(){
-            this.list.buyerBar = 1;
-            this.list.loginBar = 0; //hide登入鈕
-            this.list.editBar = 1;
-        },
+        }, 
         saveDataToFinishPage:function() { 
             sessionStorage.setItem('FinishPageData',JSON.stringify(this.list))  
         },
@@ -355,7 +343,7 @@ export default {
             this.saveDataToFinishPage(); 
             //沒有輸入框時
             if(this.list.buyerBar)
-            return window.location.href="./#/order/FinishDetail";
+                return window.location.href="./#/order/FinishDetail";
             if(this.checkPersonalInfo()){ 
                 // 資料無空白 
                 if(0

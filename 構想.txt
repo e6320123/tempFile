@@ -1,5 +1,5 @@
 ﻿
-產生訂單編號 
+訂單編號可以定案嗎? 
 
 確認訂購 --> 跳出確定對話盒 --> 判斷輸入
 
@@ -9,19 +9,17 @@
 
 最後頁面按導覽列回首頁 沒清session
 
+ok 後 href = "http..." 取代history(0)
 
-if(window.location.hash == "#/order/detail"||window.location.hash == "#/order/Detail")
-
+ 
 -----------------------------------------------
 ticketsNum		{"0"	 :1,"1"	    :1}
 ticketsNameNum		{"一般票":1,"愛心票":1}
-day_index		0
 mealsNum		{"0"	  :1,"1"	:1,"2"	    :1,"3"	  :1}
 mealsNameNum		{"可樂 大":1,"爆米花 大":1,"可樂 中":1,"爆米花 中":1}
 totalTicketsNum		2
+
+
 movie_index		21 
- 	 
-            
-            sessionStorage.removeItem('movie_index'); 
-            sessionStorage.removeItem('day_index'); 
-            sessionStorage.removeItem('time_index'); 
+day_index		0 
+time_index
