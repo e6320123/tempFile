@@ -233,7 +233,7 @@
                 <i class="fa fa-check" aria-hidden="true"></i> 確認訂購
             </button> 
             <button @click="clrSession" type='submit' name='btn' value='確認送出' class="router-link1 btn btn-outline-danger">
-                <i class="fa fa-check" aria-hidden="true"></i> 取消訂購
+                <i class="fa fa-times" aria-hidden="true"></i> 取消訂購
             </button> 
         </div>  
     </div> <!-- col-md-6  padding2 -->
