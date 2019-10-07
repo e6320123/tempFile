@@ -1,21 +1,13 @@
-﻿﻿
-訂單編號增加
-
-確認訂購 --> 跳出確定對話盒 --> 判斷輸入
-
+﻿ 
 信用卡 正規表示   
 
 規劃新頁面finishdetail
 
-最後頁面按導覽列回首頁 沒清session
-
-ok 後 href = "http..." 取代history(0)
-
-ok:function整理
+最後頁面按導覽列回首頁 沒清session 
 
 決定折扣
 
-test4
+管理員名細頁登入無check input
 -----------------------------------------------
 ticketsNum		{"0"	 :1,"1"	    :1}
 ticketsNameNum		{"一般票":1,"愛心票":1}
