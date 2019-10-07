@@ -6,57 +6,53 @@
     <div class="col-md-6 padding1"> 
     <div class="tab">
         <h6>確認內容</h6> 
-            <div> 
-                <table>
-                    <tr>
-                        <td>&emsp;名&emsp;&emsp;稱&ensp;:</td>
-                        <td>{{list.movieName}}</td>
-                    </tr>
-                    <tr>
-                        <td>&emsp;上映地點&ensp;:</td>
-                        <td>中佑戲院{{list.theater}}影城</td>
-                    </tr>
-                    <tr>
-                        <td>&emsp;放映場次&ensp;:</td>
-                        <td>{{list.day}}&ensp;{{list.time}}</td>
-                    </tr>
-                    <tr>
-                        <td>&emsp;座&emsp;&emsp;位&ensp;:</td>
-                        <td>{{list.seat}}</td>
-                    </tr>
-                    <tr>
-                        <td>&emsp;票&emsp;&emsp;種&ensp;:</td>
-                        <td>
-                            {{list.ticketName["0"] + list.ticketNum["0"]}}
-                            {{list.ticketName["1"] + list.ticketNum["1"]}}
-                        </td> 
-                    </tr>
-                    <tr>
-                        <td>&emsp;餐&emsp;&emsp;點&ensp;:</td>
-                        <td>
-                            {{list.food["0"]+list.foodNum["0"]}}
-                            {{list.food["1"]+list.foodNum["1"]}}
-                            <br v-if="list.br">
-                            {{list.food["2"]+list.foodNum["2"]}}
-                            {{list.food["3"]+list.foodNum["3"]}} 
-                        </td>
-                    </tr>  
-                    <tr>
-                        <td>&emsp;折&emsp;&emsp;扣&ensp;:</td>
-                        <td>{{list.discount}}</td>
-                    </tr> 
-                    <tr>
-                        <td>&emsp;總金額&emsp;&ensp;:</td>
-                        <td>{{list.total}} x {{list.discount}} = {{list.real}}</td>
-                    </tr> 
-                </table>
-             </div>
-            </div>
-            
-
-            
-    </div>
-    
+        <div> 
+            <table>
+                <tr>
+                    <td>&emsp;名&emsp;&emsp;稱&ensp;:</td>
+                    <td>{{list.movieName}}</td>
+                </tr>
+                <tr>
+                    <td>&emsp;上映地點&ensp;:</td>
+                    <td>中佑戲院{{list.theater}}影城</td>
+                </tr>
+                <tr>
+                    <td>&emsp;放映場次&ensp;:</td>
+                    <td>{{list.day}}&ensp;{{list.time}}</td>
+                </tr>
+                <tr>
+                    <td>&emsp;座&emsp;&emsp;位&ensp;:</td>
+                    <td>{{list.seat}}</td>
+                </tr>
+                <tr>
+                    <td>&emsp;票&emsp;&emsp;種&ensp;:</td>
+                    <td>
+                        {{list.ticketName["0"] + list.ticketNum["0"]}}
+                        {{list.ticketName["1"] + list.ticketNum["1"]}}
+                    </td> 
+                </tr>
+                <tr>
+                    <td>&emsp;餐&emsp;&emsp;點&ensp;:</td>
+                    <td>
+                        {{list.food["0"]+list.foodNum["0"]}}
+                        {{list.food["1"]+list.foodNum["1"]}}
+                        <br v-if="list.br">
+                        {{list.food["2"]+list.foodNum["2"]}}
+                        {{list.food["3"]+list.foodNum["3"]}} 
+                    </td>
+                </tr>  
+                <tr>
+                    <td>&emsp;折&emsp;&emsp;扣&ensp;:</td>
+                    <td>{{list.discount}}</td>
+                </tr> 
+                <tr>
+                    <td>&emsp;總金額&emsp;&ensp;:</td>
+                    <td>{{list.total}} x {{list.discount}} = {{list.real}}</td>
+                </tr> 
+            </table>
+         </div>
+        </div>     
+    </div> 
     <div class="col-md-6  padding2">
         <div class="tab2">
             <h6>購買者資訊</h6>   
@@ -87,9 +83,9 @@
                         <i class="fa fa-envelope-o" aria-hidden="true"></i>
                     </span>
                 </div>
-                    <i v-if="chkInputEmpty2" class="empty fa fa-check fa-lg" aria-hidden="true"></i> 
-                    <i v-if="chkInputRight2" class="tick fa fa-check fa-lg" aria-hidden="true"></i>
-                    <i v-if="chkInputWrong2" class="cross fa fa-times fa-lg" aria-hidden="true"></i>
+                <i v-if="chkInputEmpty2" class="empty fa fa-check fa-lg" aria-hidden="true"></i> 
+                <i v-if="chkInputRight2" class="tick fa fa-check fa-lg" aria-hidden="true"></i>
+                <i v-if="chkInputWrong2" class="cross fa fa-times fa-lg" aria-hidden="true"></i>
             </div> 
             <!--<span v-if="!list.buyerBar" :class="{'greenColor':green2,'redColor':red2}">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                     {{chkInput2}}
@@ -128,8 +124,10 @@
                     &emsp;手機號碼&ensp;:&ensp;{{list.phone}} 
                 </span>
             </div>   -->
+
         </div><!--div"tab2"-->
-        <button @click="editData" v-if="list.editBar"  type="button" class="cancelHover loginBtn btn btn-outline-info">
+        <button @click="editData" v-if="list.editBar"  type="button" 
+            class="cancelHover loginBtn btn btn-outline-info">
             歡迎光臨 {{list.accout}}</button> 
         <button v-if="list.loginBar"  href data-toggle="modal" data-target="#login" type="button" 
             class="loginBtn btn btn-outline-secondary">
@@ -150,7 +148,7 @@
                 <input v-model="list.cadrd4" maxlength="4" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div> 
         </div><!--div"tab3"-->
-        <!-- login -->
+ 
         <!-- confirm modal-->
         <div
           class="modal fade"
@@ -174,14 +172,11 @@
               <div class="modal-body">
               <div class="container"> 
                      <div class="row">
-                         <div class="col-md-6"> 
-
+                         <div class="col-md-6">  
                          <button @click="ok()" type="button" class="btn btn-primary" data-dismiss="modal">
-                             確定</button>
-
+                             確定</button> 
                          </div>
-                         <div class="col-md-6">
-
+                         <div class="col-md-6"> 
                          <button type="button" class="btn btn-secondary" data-dismiss="modal">
                              取消</button> 
                          </div>
@@ -191,7 +186,7 @@
             </div>
           </div>
         </div>  
-        <!-- confirm modal-->
+        <!-- confirm modal end-->
         <!-- error modal-->
         <div
           class="modal fade"
@@ -204,22 +199,20 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">error</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">資料錯誤</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body"> 
-                error
+                請確認輸入資料無誤
               </div> 
               <div class="modal-body">
               <div class="container"> 
                      <div class="row">
-                         <div class="col-md-12"> 
-
+                         <div class="col-md-12">  
                          <button type="button" class="btn btn-primary" data-dismiss="modal">
-                             確定</button>
-
+                             確定</button> 
                          </div> 
                      </div>
                  </div>
@@ -227,13 +220,15 @@
             </div>
           </div>
         </div>  
-        <!-- error modal-->
+        <!-- error modal end-->
         <div class="btnGroup">  
             <button  href data-toggle="modal" :data-target="target" type='submit' name='btn' value='確認送出' class="btn btn-outline-primary">
-                <i class="fa fa-check" aria-hidden="true"></i> 確認訂購
+                <i class="fa fa-check" aria-hidden="true"></i> 
+                確認訂購
             </button> 
             <button @click="clrSession" type='submit' name='btn' value='確認送出' class="router-link1 btn btn-outline-danger">
-                <i class="fa fa-times" aria-hidden="true"></i> 取消訂購
+                <i class="fa fa-times" aria-hidden="true"></i> 
+                取消訂購
             </button> 
         </div>  
     </div> <!-- col-md-6  padding2 -->
@@ -259,8 +254,8 @@ export default {
                 //Price {"0":一般票,"1":愛心票
                 //"2":可樂 大,"3":爆米花 大,"4":可樂 中,"5":爆米花 中}
                 discount: 0.7,
-                total:101,
-                real:1, 
+                total:0,
+                real:0, 
                 seat: '',
                 hall: '',
                 accout: '',
@@ -290,10 +285,8 @@ export default {
         }
     },
     mounted() {
-        if(!(sessionStorage.getItem('ticketsNum'))){
-            window.location.replace('./#/order');
-            history.go(0);
-        }  
+        if(!(sessionStorage.getItem('ticketsNum'))) 
+            window.location.href="./#/order"; 
         this.getData(); 
         this.detailCheckLogin();
         this.countMoney();  
@@ -310,7 +303,7 @@ export default {
                 this.chkInputRight=0; 
                 this.chkInputWrong=1; 
             }  
-            this.checkPersonalInfo();
+            this.checkAllForOkButton();
         },
         checkInput2:function(){
             if(
@@ -325,10 +318,10 @@ export default {
                 this.chkInputRight2=0; 
                 this.chkInputWrong2=1; 
             }  
-            this.checkPersonalInfo();
+            this.checkAllForOkButton();
         },
         checkInput3:function(){
-            if(/^09\d{8}$/.test(this.list.phone)){
+            if(/^09[0-9]{8}$/.test(this.list.phone)){
                 this.chkInputEmpty3=0;
                 this.chkInputRight3=1;
                 this.chkInputWrong3=0; 
@@ -337,7 +330,7 @@ export default {
                 this.chkInputRight3=0;
                 this.chkInputWrong3=1; 
             } 
-            this.checkPersonalInfo();
+            this.checkAllForOkButton();
         }, 
         saveDataToFinishPage:function() { 
             sessionStorage.setItem('FinishPageData',JSON.stringify(this.list))  
@@ -372,24 +365,21 @@ export default {
                 this.target = "#error";
             }
         }, 
-        checkPersonalInfo:function(){
-            if(
-                !(this.list.memberName.trim()==""| 
+        checkAllForOkButton:function(){
+            if( 
+                (!(this.list.memberName.trim()==""| //資料無空白
                 this.list.email.trim()==""|
                 this.list.phone.trim()==""|
                 this.list.cadrd1.trim()==""|
                 this.list.cadrd2.trim()==""|
                 this.list.cadrd3.trim()==""|
-                this.list.cadrd4.trim()=="") 
-            ){//資料無空白
-                if(
-                    this.chkInputRight &&
-                    this.chkInputRight2 &&
-                    this.chkInputRight3 
-                ){//三欄都打勾 
-                    return this.target = "#confirm";
-                }
-            }
+                this.list.cadrd4.trim()=="")) && 
+                this.chkInputRight &&               //三欄都打勾
+                this.chkInputRight2 &&
+                this.chkInputRight3 
+            )  
+                return this.target = "#confirm";
+             
             this.target = "#error";
         },
         ok:function(){ 

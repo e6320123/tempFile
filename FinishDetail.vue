@@ -60,21 +60,15 @@
   </div>
   <div class="row">
     <div class="col-md-12"> 
-         
- 
-     
-        <button @click="clrSession" class="finishBtn btn btn-outline-success">
-    回到首頁
-
-    </button>
-       
+        <button @click="postAndclrSession" class="finishBtn btn btn-outline-success">
+            回到首頁 
+        </button> 
      </div>
   </div>
 </div> 
 </template>
 
-<script>
-import detail from '@/views/frontEnd/Detail.vue'
+<script> 
 export default {
     data(){
         return {
@@ -85,12 +79,25 @@ export default {
             hideFinishDetail:0
         }
     },
-    mounted() {  
-        this.log();
+    mounted() { 
         this.getData();
         this.getOrderNumber(); 
     },
     methods:{
+        postAndclrSession:function(){  
+            var objData = JSON.stringify({"0":1,"1":2});
+            var postData = new FormData();
+            postData.append('objDataKey', objData); 
+            this.axios.post('http://192.168.1.102/php/test1.php', postData) 
+            .then(function (response) { 
+                console.log(response.data);
+            }).catch(function (error) { 
+                console.log(error); 
+            });
+            
+
+            // this.clrSession();
+        },
         clrSession:function(){  
             sessionStorage.removeItem('FinishPageData'); 
             sessionStorage.removeItem('ticketsNameNum');
@@ -105,12 +112,9 @@ export default {
             sessionStorage.removeItem('time_index'); 
             sessionStorage.removeItem('moviesTime'); 
             window.location.replace('./#');
-            history.go(0); 
+            history.go(0);  
             this.hideFinishDetail = 1;
-        },
-        log:function(){
-            var FinishPageData = JSON.parse(sessionStorage.getItem('FinishPageData')); 
-        },
+        }, 
         getData:function(){
             var FinishPageData = JSON.parse(sessionStorage.getItem('FinishPageData'));
             this.list = FinishPageData; 
