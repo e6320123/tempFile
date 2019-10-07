@@ -36,7 +36,7 @@
                         <td>
                             {{list.food["0"]+list.foodNum["0"]}}
                             {{list.food["1"]+list.foodNum["1"]}}
-                            <br v-if="br">
+                            <br v-if="list.br">
                             {{list.food["2"]+list.foodNum["2"]}}
                             {{list.food["3"]+list.foodNum["3"]}} 
                         </td>
@@ -151,6 +151,7 @@
             </div> 
         </div><!--div"tab3"-->
         <!-- login -->
+        <!-- confirm modal-->
         <div
           class="modal fade"
           id="confirm"
@@ -182,8 +183,7 @@
                          <div class="col-md-6">
 
                          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                             取消</button>
-
+                             取消</button> 
                          </div>
                      </div>
                  </div>
@@ -191,11 +191,48 @@
             </div>
           </div>
         </div>  
+        <!-- confirm modal-->
+        <!-- error modal-->
+        <div
+          class="modal fade"
+          id="error"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="login"
+          aria-hidden="true"
+        > 
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body"> 
+                error
+              </div> 
+              <div class="modal-body">
+              <div class="container"> 
+                     <div class="row">
+                         <div class="col-md-12"> 
+
+                         <button type="button" class="btn btn-primary" data-dismiss="modal">
+                             確定</button>
+
+                         </div> 
+                     </div>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+        <!-- error modal-->
         <div class="btnGroup">  
-            <button  href data-toggle="modal" data-target="#confirm" type='submit' name='btn' value='確認送出' class="btn btn-outline-primary">
+            <button  href data-toggle="modal" :data-target="target" type='submit' name='btn' value='確認送出' class="btn btn-outline-primary">
                 <i class="fa fa-check" aria-hidden="true"></i> 確認訂購
             </button> 
-            <button @click="clrSession"  href data-toggle="modal" data-target="#confirm" type='submit' name='btn' value='確認送出' class="router-link1 btn btn-outline-danger">
+            <button @click="clrSession" type='submit' name='btn' value='確認送出' class="router-link1 btn btn-outline-danger">
                 <i class="fa fa-check" aria-hidden="true"></i> 取消訂購
             </button> 
         </div>  
@@ -218,7 +255,9 @@ export default {
                 foodNum:{"0":"","1":"","2":"","3":""},
                 ticketName:{"0":"","1":""},
                 ticketNum:{"0":"","1":""},
-                price:{"0":190,"1":150},
+                price:{"0":190,"1":150,"2":50,"3":50,"4":40,"5":40},
+                //Price {"0":一般票,"1":愛心票
+                //"2":可樂 大,"3":爆米花 大,"4":可樂 中,"5":爆米花 中}
                 discount: 0.7,
                 total:101,
                 real:1, 
@@ -234,9 +273,10 @@ export default {
                 cadrd1:"1231",
                 cadrd2:"1234",
                 cadrd3:"1234",
-                cadrd4:"1234"
+                cadrd4:"1234",
+                br:1
             },  
-        br:1,
+        target:"",
         chkInputEmpty:1,
         chkInputEmpty2:1,
         chkInputEmpty3:1,
@@ -249,14 +289,14 @@ export default {
         FinishPageData:"" 
         }
     },
-    mounted() {  
+    mounted() {
         if(!(sessionStorage.getItem('ticketsNum'))){
             window.location.replace('./#/order');
             history.go(0);
-        } 
+        }  
         this.getData(); 
         this.detailCheckLogin();
-        this.countMoney(); 
+        this.countMoney();  
     },
     methods:{ 
         checkInput:function(){
@@ -269,7 +309,8 @@ export default {
                 this.chkInputEmpty=0;
                 this.chkInputRight=0; 
                 this.chkInputWrong=1; 
-            }
+            }  
+            this.checkPersonalInfo();
         },
         checkInput2:function(){
             if(
@@ -283,7 +324,8 @@ export default {
                 this.chkInputEmpty2=0;
                 this.chkInputRight2=0; 
                 this.chkInputWrong2=1; 
-            }
+            }  
+            this.checkPersonalInfo();
         },
         checkInput3:function(){
             if(/^09\d{8}$/.test(this.list.phone)){
@@ -294,7 +336,8 @@ export default {
                 this.chkInputEmpty3=0;
                 this.chkInputRight3=0;
                 this.chkInputWrong3=1; 
-            }
+            } 
+            this.checkPersonalInfo();
         }, 
         saveDataToFinishPage:function() { 
             sessionStorage.setItem('FinishPageData',JSON.stringify(this.list))  
@@ -320,51 +363,49 @@ export default {
                 // this.list.buyerBar = 1;  //關掉輸入框 
                 this.list.loginBar = 0; //hide登入鈕
                 this.list.editBar = 1;  //show歡迎光臨  
+                this.target = "#confirm";
             // 非登入狀態 
             }else{
                 this.list.buyerBar = 0; //show輸入框
                 this.list.loginBar = 1; //show登入鈕
                 this.list.editBar = 0;  //hide歡迎光臨
+                this.target = "#error";
             }
         }, 
         checkPersonalInfo:function(){
-            if( this.list.memberName.trim()==""| 
+            if(
+                !(this.list.memberName.trim()==""| 
                 this.list.email.trim()==""|
                 this.list.phone.trim()==""|
                 this.list.cadrd1.trim()==""|
                 this.list.cadrd2.trim()==""|
                 this.list.cadrd3.trim()==""|
-                this.list.cadrd4.trim()==""
-                )
-            return 0;
-            return 1;
+                this.list.cadrd4.trim()=="") 
+            ){//資料無空白
+                if(
+                    this.chkInputRight &&
+                    this.chkInputRight2 &&
+                    this.chkInputRight3 
+                ){//三欄都打勾 
+                    return this.target = "#confirm";
+                }
+            }
+            this.target = "#error";
         },
         ok:function(){ 
             this.saveDataToFinishPage(); 
-            //沒有輸入框時
-            if(this.list.buyerBar)
-                return window.location.href="./#/order/FinishDetail";
-            if(this.checkPersonalInfo()){ 
-                // 資料無空白 
-                if(0
-                    // this.chkInput2 == "x"
-                ) 
-                    return alert("email error"); 
-                if(0
-                    // this.chkInput3 == "x"
-                )
-                    return alert("phone error"); 
-                // if(!(/\d{4}/.test(this.list.card1)))
-                //     return alert("card error"); 
-                return window.location.href="./#/order/FinishDetail";
-            }
-            return alert("資料尚未填完"); 
-        }, 
+            window.location.href="./#/order/FinishDetail";
+        },
         countMoney:function(){
             // var ticketNum ={"0":0,"1":1} ; 
             var ticketNum =JSON.parse(sessionStorage.getItem('ticketsNum')); 
+            var mealsNum =JSON.parse(sessionStorage.getItem('mealsNum')); 
             this.list.total=this.list.price["0"]*(ticketNum["0"] >=1?ticketNum["0"]:0) +
-                            this.list.price["1"]*(ticketNum["1"] >=1?ticketNum["1"]:0);
+                            this.list.price["1"]*(ticketNum["1"] >=1?ticketNum["1"]:0) +
+                            this.list.price["2"]*(mealsNum["0"] >=1?mealsNum["0"]:0) +
+                            this.list.price["3"]*(mealsNum["1"] >=1?mealsNum["1"]:0) +
+                            this.list.price["4"]*(mealsNum["2"] >=1?mealsNum["2"]:0) +
+                            this.list.price["5"]*(mealsNum["3"] >=1?mealsNum["3"]:0) ;
             this.list.real =Math.ceil(this.list.total*this.list.discount);
         },
         memberGetData: function(){ 
@@ -375,6 +416,8 @@ export default {
         },
         getData: function(){
             // var ticketNum ={"0":2,"1":1} ; 
+            var choosedSeat = sessionStorage.getItem('choosedSeat');
+            this.list.seat = choosedSeat;
             var ticketNum =JSON.parse(sessionStorage.getItem('ticketsNum')); 
             if(ticketNum["0"] >=1 ){
                 this.list.ticketName["0"] = "一般票 "; 
@@ -409,9 +452,9 @@ export default {
             } 
             //若上排無食物
             if(!(this.list.foodNum["0"] || this.list.foodNum["1"])){
-                this.br=0;
+                this.list.br=0;
             }else{
-                this.br=1;
+                this.list.br=1;
             } 
             this.list.movieName = sessionStorage.getItem('moviesName');
             this.list.day = sessionStorage.getItem('moviesDay');

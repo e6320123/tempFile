@@ -40,7 +40,7 @@
                         <td>
                             {{list.food["0"]+list.foodNum["0"]}}
                             {{list.food["1"]+list.foodNum["1"]}}
-                            <br>
+                            <br v-if="list.br">
                             {{list.food["2"]+list.foodNum["2"]}}
                             {{list.food["3"]+list.foodNum["3"]}} 
                         </td>
