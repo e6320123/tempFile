@@ -374,13 +374,20 @@ export default {
             var JSONData = JSON.stringify(this.list);
             var foodData   = JSON.stringify(this.list.foodData);
             var ticketData = JSON.stringify(this.list.ticketData);
+            var account = this.list.accout;
             var postData = new FormData(); 
             postData.append('JSONData', JSONData); 
             postData.append('foodData', foodData); 
             postData.append('ticketData', ticketData); 
-            this.axios.post('http://localhost/php/testPDO.php', postData) 
+            postData.append('account', account); 
+            this.axios.post(`${this.$api}/order/saveOrder`, postData) 
+            // this.axios.post('http://localhost/php/testPDO.php', postData) 
             .then(function (response) { 
-                console.log(response.data);
+                console.log(response.data); //desc  show tables 
+                // console.log(response.data["0"].FieldName);  //select
+                // console.log(response.data["0"].members_account);
+                // console.log(response.data["0"].meals_num);
+
             }).catch(function (error) { 
                 console.log(error); 
             }); 
