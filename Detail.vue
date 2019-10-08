@@ -69,9 +69,6 @@
                 <i v-if="chkInputRight['1']" class="tick fa fa-check fa-lg" aria-hidden="true"></i>
                 <i v-if="chkInputWrong['1']" class="cross fa fa-times fa-lg" aria-hidden="true"></i>
             </div>  
-            <!--<span v-if="!list.buyerBar" :class="{'greenColor':green,'redColor':red}">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                    {{chkInput}}
-            </span> -->
             <!--input-->
             <div class="editInputGrounp input-group input-group-sm mb-3"> 
                 <span> 
@@ -86,10 +83,7 @@
                 <i v-if="chkInputEmpty['2']" class="empty fa fa-check fa-lg" aria-hidden="true"></i> 
                 <i v-if="chkInputRight['2']" class="tick fa fa-check fa-lg" aria-hidden="true"></i>
                 <i v-if="chkInputWrong['2']" class="cross fa fa-times fa-lg" aria-hidden="true"></i>
-            </div> 
-            <!--<span v-if="!list.buyerBar" :class="{'greenColor':green2,'redColor':red2}">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                    {{chkInput2}}
-            </span> -->
+            </div>  
             <!--input-->
             <div class="editInputGrounp input-group input-group-sm mb-3"> 
                 <span>
@@ -104,27 +98,7 @@
                 <i v-if="chkInputEmpty['3']" class="empty fa fa-check fa-lg" aria-hidden="true"></i>
                 <i v-if="chkInputRight['3']" class="tick fa fa-check fa-lg" aria-hidden="true"></i>
                 <i v-if="chkInputWrong['3']" class="cross fa fa-times fa-lg" aria-hidden="true"></i>
-            </div> 
-            <!--<span  v-if="!list.buyerBar" :class="{'greenColor':green3,'redColor':red3}">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                    {{chkInput3}}
-            </span> --> 
-            <!--member only-->  <!--
-            <div  v-if="list.buyerBar" class="InfoGrounp input-group input-group-sm mb-1">  
-                <span>
-                    &emsp;真實姓名&ensp;:&ensp;{{list.memberName}} 
-                </span>
-            </div>  
-            <div  v-if="list.buyerBar" class="InfoGrounp input-group input-group-sm mb-1">  
-                <span>
-                    &emsp;電子信箱&ensp;:&ensp;{{list.email}}  
-                </span>
             </div>   
-            <div  v-if="list.buyerBar" class="InfoGrounp input-group input-group-sm mb-3">  
-                <span>
-                    &emsp;手機號碼&ensp;:&ensp;{{list.phone}} 
-                </span>
-            </div>   -->
-
         </div><!--div"tab2"-->
         <button v-if="list.editBar"  type="button" 
             class="cancelHover loginBtn btn btn-outline-info">
@@ -293,35 +267,22 @@ export default {
             this.chkInputWrong[num] = wrong;
          },
         checkInput:function(){ 
-            // if(/^[\u4e00-\u9fa5]{2,4}$/.test(this.list.memberName)){
-            if(/[\u4e00-\u9fa5a-zA-Z]/.test(this.list.memberName))
-                this.chkIcon('1',0,1,0); 
-            if(!(/[\u4e00-\u9fa5a-zA-Z]/.test(this.list.memberName)))
-                this.chkIcon('1',0,0,1); 
-            if(this.list.memberName.trim()=="")
+            //var judge1 = /^[\u4e00-\u9fa5]{2,4}$/.test(this.list.memberName)
+            var judge1 = /[\u4e00-\u9fa5a-zA-Z]/.test(this.list.memberName);
+                this.chkIcon('1',0,judge1,!judge1); 
+            if(this.list.memberName.trim()=="") 
                 this.chkIcon('1',1,0,0);
-            if(/[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.com$/.test(this.list.email) ||
-               /[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.com\.[a-zA-Z0-9_]+$/.test(this.list.email))
-                this.chkIcon('2',0,1,0);
-            if(!(/[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.com$/.test(this.list.email) ||
-               /[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.com\.[a-zA-Z0-9_]+$/.test(this.list.email)))
-                this.chkIcon('2',0,0,1);
+            var judge21 = /[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.com$/.test(this.list.email);
+            var judge22 = /[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.com\.[a-zA-Z0-9_]+$/.test(this.list.email);
+                this.chkIcon('2',0,judge21+judge22,!(judge21+judge22));
             if(this.list.email.trim()=="")
-                this.chkIcon('2',1,0,0);
-            if(/^09[0-9]{8}$/.test(this.list.phone))
-                this.chkIcon('3',0,1,0);
-            if(!(/^09[0-9]{8}$/.test(this.list.phone)))
-                this.chkIcon('3',0,0,1);
+                this.chkIcon('2',1,0,0); 
+            var judge3 = /^09[0-9]{8}$/.test(this.list.phone);
+                this.chkIcon('3',0,judge3,!judge3);
             if(this.list.phone.trim()=="")
-                this.chkIcon('3',1,0,0);
-            this.checkAllForOkButton();
-        },
-        checkAllForOkButton:function(){
-            if(this.chkInputRight['1'] &&  //三欄都打勾
-                this.chkInputRight['2'] &&
-                this.chkInputRight['3'])  
-            return this.target = "#confirm";
-             
+                this.chkIcon('3',1,0,0); 
+            if(this.chkInputRight['1'] && this.chkInputRight['2'] && this.chkInputRight['3'])  
+                return this.target = "#confirm"; 
             this.target = "#error";
         },
         post:function(){ 
