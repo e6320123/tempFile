@@ -288,21 +288,17 @@ export default {
             var JSONData = JSON.stringify(this.list);
             var foodData   = JSON.stringify(this.list.foodData);
             var ticketData = JSON.stringify(this.list.ticketData); 
-            var SQL = 
-            'show'  ;
-            // "desc"  ;
-            // "select";
-            // "save"  ;
             var postData = new FormData(); 
             postData.append('JSONData', JSONData); 
             postData.append('foodData', foodData); 
             postData.append('ticketData', ticketData); 
             postData.append('SQL', SQL); 
-            // var ID ="16";
-            // postData.append('ID', ID); 
-            // https://cy-cinemas.ml    //this.$api
-            // this.axios.post(`${this.$api}/order/saveOrder`, postData) 
-            // this.axios.post(`${this.$api}/order/testSaveOrder`, postData) 
+            // var SQL = 'show'  ;
+            // var SQL = "desc"  ;
+            var SQL = "select"; 
+            var ID ="16"; postData.append('ID', ID);
+            // var SQL = "save"  ;  
+            // this.axios.post(`${this.$api}/order/saveOrder`, postData)   
             this.axios.post('http://localhost/php/testPDO.php', postData) 
             .then(function (response) { 
                 console.log(response.data); //desc  show tables 
@@ -317,9 +313,9 @@ export default {
             this.getOrderNumber();
             sessionStorage.setItem('FinishPageData',JSON.stringify(this.list)) 
             // console.log(JSON.stringify(this.list));
-            this.post();
-            // this.clrSession(); 
-            // window.location.href="./#/order/FinishDetail";
+            // this.post();
+            this.clrSession(); 
+            window.location.href="./#/order/FinishDetail";
         },
         cancel:function(){ 
             this.clrSession(); 
