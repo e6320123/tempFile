@@ -227,8 +227,8 @@ export default {
                 ticketNum:{"0":"","1":""},
                 price:{"0":190,     "1":150,    "2":50,   "3":50,      "4":40,     "5":40},
                 // Price {"0":一般票,"1":愛心票,"2":可樂 大,"3":爆米花 大,"4":可樂 中,"5":爆米花 中}
-                foodData:{"一般票":0,"愛心票":0},
-                ticketData:{"可樂 大":0,"爆米花 大":0,"可樂 中":0,"爆米花 中":0},
+                ticketData:{"一般票":0,"愛心票":0},
+                foodData:{"可樂 大":0,"爆米花 大":0,"可樂 中":0,"爆米花 中":0},
                 discount: 0.7,
                 total:0,
                 real:0, 
@@ -276,7 +276,7 @@ export default {
                 this.chkIcon('2',0,patt21+patt22,!(patt21+patt22));
             if(this.list.email.trim()=="")
                 this.chkIcon('2',1,0,0); 
-            var patt3 = /^09[0-9]{8}$/.test(this.list.phone);
+            var patt3 = /^09\d{8}$/.test(this.list.phone.trim()); 
                 this.chkIcon('3',0,patt3,!patt3);
             if(this.list.phone.trim()=="")
                 this.chkIcon('3',1,0,0); 
@@ -287,19 +287,27 @@ export default {
         post:function(){ 
             var JSONData = JSON.stringify(this.list);
             var foodData   = JSON.stringify(this.list.foodData);
-            var ticketData = JSON.stringify(this.list.ticketData);
-            var account = this.list.accout;
+            var ticketData = JSON.stringify(this.list.ticketData); 
+            var SQL = 
+            'show'  ;
+            // "desc"  ;
+            // "select";
+            // "save"  ;
             var postData = new FormData(); 
             postData.append('JSONData', JSONData); 
             postData.append('foodData', foodData); 
             postData.append('ticketData', ticketData); 
-            postData.append('account', account); 
-            this.axios.post(`${this.$api}/order/saveOrder`, postData) 
-            // this.axios.post('http://localhost/php/testPDO.php', postData) 
+            postData.append('SQL', SQL); 
+            // var ID ="16";
+            // postData.append('ID', ID); 
+            // https://cy-cinemas.ml    //this.$api
+            // this.axios.post(`${this.$api}/order/saveOrder`, postData) 
+            // this.axios.post(`${this.$api}/order/testSaveOrder`, postData) 
+            this.axios.post('http://localhost/php/testPDO.php', postData) 
             .then(function (response) { 
                 console.log(response.data); //desc  show tables 
                 // console.log(response.data["0"].FieldName);  //select
-                // console.log(response.data["0"].members_account);
+                // console.log(response.data["0"].members_account);//
                 // console.log(response.data["0"].meals_num); 
             }).catch(function (error) { 
                 console.log(error); 
