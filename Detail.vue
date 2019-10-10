@@ -268,15 +268,18 @@ export default {
          },
         checkInput:function(){  
             var patt1 = /[\u4e00-\u9fa5a-zA-Z]/.test(this.list.memberName);
+            var patt1 =1;
                 this.chkIcon('1',0,patt1,!patt1); 
             if(this.list.memberName.trim()=="") 
                 this.chkIcon('1',1,0,0);
             var patt21 = /[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.com$/.test(this.list.email);
+            var patt21=1;
             var patt22 = /[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.com\.[a-zA-Z0-9_]+$/.test(this.list.email);
                 this.chkIcon('2',0,patt21+patt22,!(patt21+patt22));
             if(this.list.email.trim()=="")
                 this.chkIcon('2',1,0,0); 
             var patt3 = /^09\d{8}$/.test(this.list.phone.trim()); 
+             var patt3 =1;
                 this.chkIcon('3',0,patt3,!patt3);
             if(this.list.phone.trim()=="")
                 this.chkIcon('3',1,0,0); 
@@ -293,13 +296,15 @@ export default {
             postData.append('foodData', foodData); 
             postData.append('ticketData', ticketData); 
             postData.append('SQL', SQL); 
-            // var SQL = 'show'  ;
+            var SQL = 'show'  ;
             // var SQL = "desc"  ;
-            var SQL = "select"; 
-            var ID ="16"; postData.append('ID', ID);
+            // var SQL = "select"; 
+            // var ID ="16"; postData.append('ID', ID);
             // var SQL = "save"  ;  
+            // this.axios.post(`${this.$api}/orde/sr`, postData)   
             // this.axios.post(`${this.$api}/order/saveOrder`, postData)   
-            this.axios.post('http://localhost/php/testPDO.php', postData) 
+            this.axios.post(`${this.$api}/order/testSaveOrder`, postData)   
+            // this.axios.post('http://localhost/php/testPDO.php', postData) 
             .then(function (response) { 
                 console.log(response.data); //desc  show tables 
                 // console.log(response.data["0"].FieldName);  //select
@@ -313,9 +318,9 @@ export default {
             this.getOrderNumber();
             sessionStorage.setItem('FinishPageData',JSON.stringify(this.list)) 
             // console.log(JSON.stringify(this.list));
-            // this.post();
-            this.clrSession(); 
-            window.location.href="./#/order/FinishDetail";
+            this.post();
+            // this.clrSession(); 
+            // window.location.href="./#/order/FinishDetail";
         },
         cancel:function(){ 
             this.clrSession(); 
@@ -342,10 +347,20 @@ export default {
         checkLoginAndGetData: function(){
             this.foodData   = JSON.parse(sessionStorage.getItem('movie')).mealsNameNum;
             this.ticketData = JSON.parse(sessionStorage.getItem('movie')).ticketsNameNum;
-            // var ticketNum ={"0":2,"1":1} ; 
+             
+            // var choosedSeat = JSON.parse(sessionStorage.getItem('choosedSeat'));
             var choosedSeat = sessionStorage.getItem('choosedSeat');
             this.list.seat = choosedSeat;
+            // var choosedSeat = {"1":0,"h":1,"3":0};
+            // var len = Object.keys(choosedSeat).length;//物件長度
+            // for(let i=0; i < len; i++){ 
+            //     if(choosedSeat[i] == 1){
+            //         this.list.seat+=i;
+            //     }
+            // }
+            // this.list.seat+='i';
             var movie = JSON.parse(sessionStorage.getItem('movie'));
+            // var ticketNum ={"0":2,"1":1} ;
             var ticketNum =JSON.parse(movie.ticketsNum); 
             if(ticketNum["0"]){
                 this.list.ticketName["0"] = "一般票 "; 
