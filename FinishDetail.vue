@@ -6,7 +6,7 @@
     <div class="col-md-12">
         <div class="tab finishDetail">
         <h6>訂購明細</h6> 
-            <div>  
+            <div> 
                <table>
                     <tr>
                         <td>&emsp;訂單標號&ensp;:</td>
@@ -118,8 +118,7 @@ export default {
         }, 
         getData:function(){
             var FinishPageData = JSON.parse(sessionStorage.getItem('FinishPageData'));
-            this.list = FinishPageData;  
-            console.log(this.list);        } 
+            this.list = FinishPageData;        } 
     }
 }
 </script>

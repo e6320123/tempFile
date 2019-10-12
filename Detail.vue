@@ -279,7 +279,7 @@ export default {
             if(this.list.email.trim()=="")
                 this.chkIcon('2',1,0,0); 
             var patt3 = /^09\d{8}$/.test(this.list.phone.trim()); 
-             var patt3 =1;
+            var patt3 =1;
                 this.chkIcon('3',0,patt3,!patt3);
             if(this.list.phone.trim()=="")
                 this.chkIcon('3',1,0,0); 
@@ -318,9 +318,9 @@ export default {
             this.getOrderNumber();
             sessionStorage.setItem('FinishPageData',JSON.stringify(this.list)) 
             // console.log(JSON.stringify(this.list));
-            this.post();
-            // this.clrSession(); 
-            // window.location.href="./#/order/FinishDetail";
+            // this.post();
+            this.clrSession(); 
+            window.location.href="./#/order/FinishDetail";
         },
         cancel:function(){ 
             this.clrSession(); 
@@ -435,6 +435,7 @@ export default {
         clrSession:function(){    
             sessionStorage.removeItem('movie');  
             sessionStorage.removeItem('movieIndex');  
+            sessionStorage.removeItem('choosedSeat');  
         } 
     }  
 } 
@@ -446,8 +447,9 @@ export default {
         font-size:20px; 
         border-bottom:1px solid rgb(222,226,230); 
     } 
-    .col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-12{ 
+    .col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-8,.col-md-10,.col-md-12{ 
         padding:0;  
+        // border-bottom:1px solid red; 
     }
     .padding1{
         padding:0% 1% 0% 0%; 
@@ -490,6 +492,10 @@ export default {
                 }
             } 
         }
+    }
+    //調整左右  手機顯示置中
+    .tab{
+            margin:0 0 0 13px; 
     }
     .empty{
         color:white;
