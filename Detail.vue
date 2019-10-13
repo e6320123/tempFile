@@ -279,7 +279,7 @@ export default {
             if(this.list.email.trim()=="")
                 this.chkIcon('2',1,0,0); 
             var patt3 = /^09\d{8}$/.test(this.list.phone.trim()); 
-            var patt3 =1;
+             var patt3 =1;
                 this.chkIcon('3',0,patt3,!patt3);
             if(this.list.phone.trim()=="")
                 this.chkIcon('3',1,0,0); 
@@ -295,21 +295,18 @@ export default {
             postData.append('JSONData', JSONData); 
             postData.append('foodData', foodData); 
             postData.append('ticketData', ticketData); 
-            postData.append('SQL', SQL); 
-            var SQL = 'show'  ;
+            // var SQL = 'show'  ;
             // var SQL = "desc"  ;
             // var SQL = "select"; 
-            // var ID ="16"; postData.append('ID', ID);
-            // var SQL = "save"  ;  
-            // this.axios.post(`${this.$api}/orde/sr`, postData)   
-            // this.axios.post(`${this.$api}/order/saveOrder`, postData)   
-            this.axios.post(`${this.$api}/order/testSaveOrder`, postData)   
-            // this.axios.post('http://localhost/php/testPDO.php', postData) 
+            // var ID ="2"; postData.append('ID', ID);
+            var SQL = "save"  ;  
+            postData.append('SQL', SQL);   
+            // this.axios.get(`${this.$api}/detail/saveOrder`, postData) 
+            this.axios.post(`${this.$api}/detail/saveOrder`, postData) 
             .then(function (response) { 
+                // console.log(response); //desc  show tables 
                 console.log(response.data); //desc  show tables 
-                // console.log(response.data["0"].FieldName);  //select
-                // console.log(response.data["0"].members_account);//
-                // console.log(response.data["0"].meals_num); 
+                // console.log(response.data["0"]);  //select id n 
             }).catch(function (error) { 
                 console.log(error); 
             }); 
@@ -318,7 +315,7 @@ export default {
             this.getOrderNumber();
             sessionStorage.setItem('FinishPageData',JSON.stringify(this.list)) 
             // console.log(JSON.stringify(this.list));
-            // this.post();
+            this.post();
             this.clrSession(); 
             window.location.href="./#/order/FinishDetail";
         },
@@ -447,9 +444,8 @@ export default {
         font-size:20px; 
         border-bottom:1px solid rgb(222,226,230); 
     } 
-    .col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-8,.col-md-10,.col-md-12{ 
+    .col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-12{ 
         padding:0;  
-        // border-bottom:1px solid red; 
     }
     .padding1{
         padding:0% 1% 0% 0%; 
@@ -492,10 +488,6 @@ export default {
                 }
             } 
         }
-    }
-    //調整左右  手機顯示置中
-    .tab{
-            margin:0 0 0 13px; 
     }
     .empty{
         color:white;

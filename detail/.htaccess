@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^(.*)$ detail.php?url=$1 [QSA,L]
