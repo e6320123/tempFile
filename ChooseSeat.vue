@@ -103,7 +103,7 @@
        <br />
        every seat status: {{seatSelected}}  -->
        <div class="row justify-content-center">
-      <router-link class="btn btn-danger btn-lg mr-3" to="/order">上一頁</router-link>
+      <router-link @click.native="lastPage" class="btn btn-danger btn-lg mr-3" to="/order">上一頁</router-link>
       <router-link @click.native="nextPage"  :to="to" class="btn btn-success btn-lg ml-5">點我去看訂單詳細</router-link>
        </div>
     </div>
@@ -188,16 +188,14 @@ export default {
       aisleImg:imgAisle ,
       initialCheck:0,
       time1:0,
-      screeningID:0
+      screeningID:-1,
+      timer:0,
+      flag:0
     };
   },
-  mounted() { 
-    this.screeningID = sessionStorage.screeningID; 
-    //  var time = new Date();
-    //   while(new Date()-time<5000)
-    this.buildForListData();
-    this.getSellOut(); 
-    // history.go(0);
+  mounted() {  
+    this.screeningID = sessionStorage.screeningID;  
+    this.buildForListData();  
     if(sessionStorage.movie){
       this.movieName = JSON.parse(sessionStorage.movie)['moviesName'];
       this.movieDay = JSON.parse(sessionStorage.movie)['moviesDay'];
@@ -206,21 +204,33 @@ export default {
     this.max =
         JSON.parse(JSON.parse(sessionStorage.movie).ticketsNum)[0]+
         JSON.parse(JSON.parse(sessionStorage.movie).ticketsNum)[1]; 
-    sessionStorage.setItem('max',this.max);  
+    sessionStorage.setItem('max',this.max);   
     },
   methods: {  
-    getSellOut(){
-      // alert("getSellOut");
-      var ID = this.screeningID ;
-      // var time = new Date();
-      // while(new Date()-time<1000)
-      // var ID = 1; 
-      // var ID = "2"; 
-     console.log(ID);
+    fn(){ 
+         this.timer+=100;
+         clearInterval(this.flag);
+        if ( 
+          // !this.screeningID
+          !sessionStorage.screeningID 
+        ) {
+            this.flag = setInterval(this.fn, 100);
+        }else{
+          this.getSellOut();
+          
+    //  console.log("this.screeningID :"+this.screeningID);
+    //  console.log("session screeningID :"+sessionStorage.screeningID);
+        }
+    },
+    lastPage(){
+      sessionStorage.removeItem('screeningID');  
+    },
+    getSellOut(){ 
+      var ID = Number(sessionStorage.screeningID); 
       var postData = new FormData(); 
       postData.append('ID', ID);
       this.axios.post(`${this.$api}/detail/getSellOut`, postData).then(response => { 
-          console.log(response.data[0]);
+          // console.log(response.data[0]);
           var seatDataNumArray =[];
           for (let i = 0; i <response.data.length; i++) {
                   var allSeat = response.data[i].seat;  
@@ -239,7 +249,7 @@ export default {
                   if(i == response.data.length-1)
                       this.time1 =Number(response.data[i].time1) ; 
 
-                      console.log(seatDataNumArray);
+                      // console.log(seatDataNumArray);
           // console.log(response.data[i].time1);
           // console.log(typeof(this.time1));
           }
@@ -272,9 +282,10 @@ export default {
                 theme: "bubble",
                 duration: 3000
               });  
-          }
+          } 
     }, 
-    buildForListData(){
+    buildForListData(){ 
+      this.flag = setInterval(this.fn,100);  
       //list 把走道也算入陣列中 其他data位置數字只計座位數
       var num = 0;
       //i-1只是調整 真正位置數字要看 i 為多少 
