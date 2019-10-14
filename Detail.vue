@@ -294,9 +294,11 @@ export default {
             var foodData   = this.list.foodData;
             var ticketData = this.list.ticketData; 
             var postData = new FormData(); 
+            var screeningID = sessionStorage.getItem('screeningID')
             postData.append('JSONData', JSONData); 
             postData.append('foodData', foodData); 
             postData.append('ticketData', ticketData);  
+            postData.append('screeningID', screeningID);  
             // var SQL = 'show'  ;
             // var SQL = "desc"  ;
             // var SQL = "select"; 
@@ -328,7 +330,7 @@ export default {
         countMoney:function(){
             // var ticketNum ={"0":0,"1":1} ; 
             var ticketNum =JSON.parse(JSON.parse(sessionStorage.getItem('movie')).ticketsNum); 
-            var mealsNum =JSON.parse(JSON.parse(sessionStorage.getItem('movie')).mealsNum); 
+            var mealsNum =JSON.parse(JSON.parse(sessionStorage.getItem('movie')).mealsNum);
             this.list.total=this.list.price["0"]*(ticketNum["0"]?ticketNum["0"]:0) +
                             this.list.price["1"]*(ticketNum["1"]?ticketNum["1"]:0) +
                             this.list.price["2"]*(mealsNum["0"]?mealsNum["0"]:0) +

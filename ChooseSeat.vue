@@ -187,12 +187,17 @@ export default {
       seatImg:imgSeat ,
       aisleImg:imgAisle ,
       initialCheck:0,
-      time1:0
+      time1:0,
+      screeningID:0
     };
   },
   mounted() { 
+    this.screeningID = sessionStorage.screeningID; 
+    //  var time = new Date();
+    //   while(new Date()-time<5000)
     this.buildForListData();
     this.getSellOut(); 
+    // history.go(0);
     if(sessionStorage.movie){
       this.movieName = JSON.parse(sessionStorage.movie)['moviesName'];
       this.movieDay = JSON.parse(sessionStorage.movie)['moviesDay'];
@@ -205,11 +210,17 @@ export default {
     },
   methods: {  
     getSellOut(){
-      var ID = sessionStorage.screeningID; 
+      // alert("getSellOut");
+      var ID = this.screeningID ;
+      // var time = new Date();
+      // while(new Date()-time<1000)
+      // var ID = 1; 
       // var ID = "2"; 
+     console.log(ID);
       var postData = new FormData(); 
       postData.append('ID', ID);
       this.axios.post(`${this.$api}/detail/getSellOut`, postData).then(response => { 
+          console.log(response.data[0]);
           var seatDataNumArray =[];
           for (let i = 0; i <response.data.length; i++) {
                   var allSeat = response.data[i].seat;  
@@ -223,10 +234,12 @@ export default {
                       var seatDataNum = asciiNum*28+Number(strNum); 
                       // console.log(seatDataNum); 
                       seatDataNumArray.push(seatDataNum);
-              }
-              //設定最後一筆訂單的時間戳記
-              if(i == response.data.length-1)
-                  this.time1 =Number(response.data[i].time1) ; 
+                  }
+                  //設定最後一筆訂單的時間戳記
+                  if(i == response.data.length-1)
+                      this.time1 =Number(response.data[i].time1) ; 
+
+                      console.log(seatDataNumArray);
           // console.log(response.data[i].time1);
           // console.log(typeof(this.time1));
           }
