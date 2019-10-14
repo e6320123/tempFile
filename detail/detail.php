@@ -16,6 +16,10 @@ if($url[0]){
         case 'getSellOut':
         getSellOut();
             break;
+
+        case 'tapGetSellOut':
+        tapGetSellOut();
+            break;
  
         default:
             break;
@@ -25,21 +29,55 @@ if($url[0]){
 }
 
 // $conn -> close();
+function tapGetSellOut(){
+    global $conn;
+     // ------------------SELECT-------------------
+     $ID = isset($_POST['ID'])?$_POST['ID']:-1;  
+     $time1 = isset($_POST['time1'])?$_POST['time1']: -1;  
+     if($ID == -1)
+        echo "No  POST ID";  
+     if($time1 == -1)
+        echo "No  POST time1";  
+     $sql = 'SELECT FROM_UNIXTIME(:time1)';  
+     $stmt=$conn->prepare($sql); 
+     $stmt->bindParam(':time1', $time1);  
+     $stmt->execute();
+     $sqlData = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+     $str =(string)$time1;
+    //  echo $str;
+     $time1 = $sqlData[0]["FROM_UNIXTIME('".$str."')"];
+    //  var_dump($sqlData) ;
+    //  echo $time1;
 
+
+
+     $sql = 'SELECT `seat`FROM `order_details` WHERE (`screenings_id`=:id) AND (`datetime`>:time1)'; 
+     $stmt=$conn->prepare($sql); 
+     $stmt->bindParam(':id', $ID);
+     $stmt->bindParam(':time1', $time1);  
+     $stmt->execute();
+     $sqlData = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+
+     echo json_encode($sqlData); 
+     if(!$sqlData) 
+        echo "no data";
+}
 function getSellOut(){
     global $conn;
      // ------------------SELECT-------------------
-    //  $ID = isset($_POST['ID'])?$_POST['ID']:0;    
+     $ID = isset($_POST['ID'])?$_POST['ID']:-1;  
+     if($ID == -1)
+        echo "No  POST ID";  
      $sql = 'SELECT `seat` FROM `order_details`';   
-    //  if($ID) 
-        //  $sql = 'SELECT * FROM `order_details` WHERE `id`=:id'; 
+     if($ID) 
+         $sql = 'SELECT `seat`, UNIX_TIMESTAMP(datetime) `time1` FROM `order_details` WHERE `screenings_id`=:id'; 
      $stmt=$conn->prepare($sql);
-    //  if($ID)
-        //  $stmt->bindParam(':id', $ID);
+     if($ID)
+         $stmt->bindParam(':id', $ID);
      $stmt->execute();
      $sqlData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-     echo json_encode($sqlData); 
-}
+     echo json_encode($sqlData);  
+} 
 // ----------------saveOrderDetail---------------
 function saveOrderDetail(){ 
     global $conn;
@@ -106,7 +144,7 @@ function saveOrderDetail(){
              `phone` ,
              `email` ) 
             VALUES (:a,:b,:c,:d,:e,:f,:g,:m,:h,:i,:j,:k,:l)'; 
-            $a=1;  //screenings_id
+            $a=$_POST['screeningID'];  //screeningID
             $c=1;  //courts_id 
             $tickets_total_num = 5;
             $stmt = $conn->prepare($sql); 
