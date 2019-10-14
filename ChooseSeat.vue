@@ -188,14 +188,14 @@ export default {
       aisleImg:imgAisle ,
       initialCheck:0,
       time1:0,
-      screeningID:-1,
-      timer:0,
+      screeningID:-1, 
       flag:0
     };
   },
   mounted() {  
     this.screeningID = sessionStorage.screeningID;  
     this.buildForListData();  
+    this.getSellOut();
     if(sessionStorage.movie){
       this.movieName = JSON.parse(sessionStorage.movie)['moviesName'];
       this.movieDay = JSON.parse(sessionStorage.movie)['moviesDay'];
@@ -207,14 +207,13 @@ export default {
     sessionStorage.setItem('max',this.max);   
     },
   methods: {  
-    fn(){ 
-         this.timer+=100;
+    fn(){  
          clearInterval(this.flag);
         if ( 
           // !this.screeningID
           !sessionStorage.screeningID 
         ) {
-            this.flag = setInterval(this.fn, 100);
+            this.flag = setInterval(this.fn, 1);
         }else{
           this.getSellOut();
           
@@ -285,7 +284,7 @@ export default {
           } 
     }, 
     buildForListData(){ 
-      this.flag = setInterval(this.fn,100);  
+      this.flag = setInterval(this.fn,1);  
       //list 把走道也算入陣列中 其他data位置數字只計座位數
       var num = 0;
       //i-1只是調整 真正位置數字要看 i 為多少 
