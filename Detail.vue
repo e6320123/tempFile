@@ -196,12 +196,13 @@
           </div>
         </div>  
         <!-- error modal end-->
-        <div class="btnGroup">  
-            <button  href data-toggle="modal" :data-target="target" type='submit' name='btn' value='確認送出' class="btn btn-outline-primary">
-                <i class="fa fa-check" aria-hidden="true"></i> 
+        <div class="btnGroup row"> 
+            <router-link  class="btn btn-outline-danger mr-3 router-link1 align-self-center" to="/order/chooseSeat"><i class="fa fa-undo" aria-hidden="true"></i>上一頁</router-link>
+            <button  href data-toggle="modal" :data-target="target" type='submit' name='btn' value='確認送出' class="btn btn-primary">
+                <i class="fa fa-check" aria-hidden="true"></i>
                 確認訂購
             </button> 
-            <button @click="cancel" type='submit' name='btn' value='確認送出' class="router-link1 btn btn-outline-danger">
+            <button @click="cancel" type='submit' name='btn' value='確認送出' class="router-link1 btn btn-danger">
                 <i class="fa fa-times" aria-hidden="true"></i> 
                 取消訂購
             </button> 
@@ -259,6 +260,7 @@ export default {
             window.location.href="./#/order"; 
         this.checkLoginAndGetData(); 
         this.countMoney();  
+        // console.log(this.list)
     },
     methods:{ 
         chkIcon:function(num,empty,right,wrong){
@@ -267,18 +269,18 @@ export default {
             this.chkInputWrong[num] = wrong;
          },
         checkInput:function(){  
-            var patt1 = /[\u4e00-\u9fa5a-zA-Z]/.test(this.list.memberName);
+            // var patt1 = /[\u4e00-\u9fa5a-zA-Z]/.test(this.list.memberName);
             var patt1 =1;
                 this.chkIcon('1',0,patt1,!patt1); 
             if(this.list.memberName.trim()=="") 
                 this.chkIcon('1',1,0,0);
-            var patt21 = /[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.com$/.test(this.list.email);
+            // var patt21 = /[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.com$/.test(this.list.email);
             var patt21=1;
             var patt22 = /[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.com\.[a-zA-Z0-9_]+$/.test(this.list.email);
                 this.chkIcon('2',0,patt21+patt22,!(patt21+patt22));
             if(this.list.email.trim()=="")
                 this.chkIcon('2',1,0,0); 
-            var patt3 = /^09\d{8}$/.test(this.list.phone.trim()); 
+            // var patt3 = /^09\d{8}$/.test(this.list.phone.trim()); 
              var patt3 =1;
                 this.chkIcon('3',0,patt3,!patt3);
             if(this.list.phone.trim()=="")
@@ -286,15 +288,15 @@ export default {
             if(this.chkInputRight['1'] && this.chkInputRight['2'] && this.chkInputRight['3'])  
                 return this.target = "#confirm"; 
             this.target = "#error";
-        },
+        }, 
         post:function(){ 
             var JSONData = JSON.stringify(this.list);
-            var foodData   = JSON.stringify(this.list.foodData);
-            var ticketData = JSON.stringify(this.list.ticketData); 
+            var foodData   = this.list.foodData;
+            var ticketData = this.list.ticketData; 
             var postData = new FormData(); 
             postData.append('JSONData', JSONData); 
             postData.append('foodData', foodData); 
-            postData.append('ticketData', ticketData); 
+            postData.append('ticketData', ticketData);  
             // var SQL = 'show'  ;
             // var SQL = "desc"  ;
             // var SQL = "select"; 
@@ -342,9 +344,9 @@ export default {
             this.list.phone = sessionStorage.getItem('nowPhone'); 
         },
         checkLoginAndGetData: function(){
-            this.foodData   = JSON.parse(sessionStorage.getItem('movie')).mealsNameNum;
-            this.ticketData = JSON.parse(sessionStorage.getItem('movie')).ticketsNameNum;
-             
+            this.list.foodData   = JSON.parse(sessionStorage.getItem('movie')).mealsNameNum;
+            this.list.ticketData = JSON.parse(sessionStorage.getItem('movie')).ticketsNameNum;
+           
             // var choosedSeat = JSON.parse(sessionStorage.getItem('choosedSeat'));
             var choosedSeat = sessionStorage.getItem('choosedSeat');
             this.list.seat = choosedSeat;
@@ -553,12 +555,12 @@ export default {
         margin:5% 0%;   //上下間隔 
         button{
             margin:0% 1% 0% 0%;  
-            width:49%;
+            width:30%;
             font-size:20px;
         }  
         .router-link1{ 
             margin:0% 0% 0% 1%;  
-            width:49%;
+            width:30%;
             font-size:20px; 
         } 
     }
