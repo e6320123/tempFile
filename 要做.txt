@@ -1,0 +1,5 @@
+select sellout  where screen id =?
+
+tap  改變  售出座位
+
+回上一頁 session選取座位
