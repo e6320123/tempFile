@@ -289,28 +289,26 @@ export default {
                 return this.target = "#confirm"; 
             this.target = "#error";
         }, 
-        post:function(){ 
-            var courtsID = sessionStorage.courtsID;
-            var ticketTotalNum = JSON.parse(JSON.parse(sessionStorage.movie).ticketsNum)[0]+
-                                 JSON.parse(JSON.parse(sessionStorage.movie).ticketsNum)[1]; 
+        post:function(){  
+            var ticketTotalNum = JSON.parse(JSON.parse(sessionStorage.movie).totalTicketsNum);
             var JSONData = JSON.stringify(this.list);
             var foodData   = this.list.foodData;
             var ticketData = this.list.ticketData; 
             var postData = new FormData(); 
-            var screeningID = sessionStorage.getItem('screeningID')
+            var screeningID = sessionStorage.getItem('screeningID');
+            var courts_id = sessionStorage.courtsID;
             postData.append('JSONData', JSONData); 
             postData.append('foodData', foodData); 
             postData.append('ticketData', ticketData);  
             postData.append('screeningID', screeningID);  
-            postData.append('courtsID', courtsID);  
             postData.append('ticketTotalNum', ticketTotalNum);  
+            postData.append('courts_id', courts_id);   
             // var SQL = 'show'  ; 
             // var SQL = "desc"  ;
             // var SQL = "select"; 
             // var ID ="2"; postData.append('ID', ID);
             var SQL = "save"  ;  
-            postData.append('SQL', SQL);   
-            // this.axios.get(`${this.$api}/detail/saveOrder`, postData) 
+            postData.append('SQL', SQL);    
             this.axios.post(`${this.$api}/detail/saveOrder`, postData) 
             .then(function (response) { 
                 // console.log(response); //desc  show tables 
@@ -353,20 +351,9 @@ export default {
         checkLoginAndGetData: function(){
             this.list.foodData   = JSON.parse(sessionStorage.getItem('movie')).mealsNameNum;
             this.list.ticketData = JSON.parse(sessionStorage.getItem('movie')).ticketsNameNum;
-           
-            // var choosedSeat = JSON.parse(sessionStorage.getItem('choosedSeat'));
             var choosedSeat = sessionStorage.getItem('choosedSeat');
-            this.list.seat = choosedSeat;
-            // var choosedSeat = {"1":0,"h":1,"3":0};
-            // var len = Object.keys(choosedSeat).length;//物件長度
-            // for(let i=0; i < len; i++){ 
-            //     if(choosedSeat[i] == 1){
-            //         this.list.seat+=i;
-            //     }
-            // }
-            // this.list.seat+='i';
-            var movie = JSON.parse(sessionStorage.getItem('movie'));
-            // var ticketNum ={"0":2,"1":1} ;
+            this.list.seat = choosedSeat; 
+            var movie = JSON.parse(sessionStorage.getItem('movie')); 
             var ticketNum =JSON.parse(movie.ticketsNum); 
             if(ticketNum["0"]){
                 this.list.ticketName["0"] = "一般票 "; 
@@ -375,9 +362,7 @@ export default {
             if(ticketNum["1"]){
                 this.list.ticketName["1"] = "愛心票 "; 
                 this.list.ticketNum["1"] = "x"+ ticketNum["1"];
-            }  
-            // if(sessionStorage.getItem('mealsNum')){  
-            // var mealsNum ={"0":2,"1":1,"2":1,"3":1} ; 
+            }   
             var mealsNum = JSON.parse(JSON.parse(sessionStorage.getItem('movie')).mealsNum);
                
             if(mealsNum["0"]){
