@@ -103,8 +103,11 @@
        <br />
        every seat status: {{seatSelected}}  -->
        <div class="row justify-content-center">
-      <router-link @click.native="lastPage" class="btn btn-danger btn-lg mr-3" to="/order">上一頁</router-link>
-      <router-link @click.native="nextPage"  :to="to" class="btn btn-success btn-lg ml-5">點我去看訂單詳細</router-link>
+      <router-link class="btn btn-danger btn-lg mr-3" to="/order">上一頁</router-link>
+      <!-- <router-link @click.native="nextPage"  :to="to" class="btn btn-success btn-lg ml-5">點我去看訂單詳細</router-link> -->
+      <button @click="nextPage" class="btn btn-success btn-lg ml-5">
+        點我去看訂單詳細
+      </button>
        </div>
     </div>
   </div><!--col-md-12-->
@@ -188,14 +191,16 @@ export default {
       aisleImg:imgAisle ,
       initialCheck:0,
       time1:0,
-      screeningID:-1, 
-      flag:0
+      screeningID:0,
+      courtsID:0 ,
+      vueSeatDataStrArray:[]
     };
   },
-  mounted() {  
+  mounted() { 
+    this.courtsID = sessionStorage.courtsID;
     this.screeningID = sessionStorage.screeningID;  
-    this.buildForListData();  
-    this.getSellOut();
+    this.buildForListData();
+    this.getSellOut();  
     if(sessionStorage.movie){
       this.movieName = JSON.parse(sessionStorage.movie)['moviesName'];
       this.movieDay = JSON.parse(sessionStorage.movie)['moviesDay'];
@@ -204,28 +209,12 @@ export default {
     this.max =
         JSON.parse(JSON.parse(sessionStorage.movie).ticketsNum)[0]+
         JSON.parse(JSON.parse(sessionStorage.movie).ticketsNum)[1]; 
-    sessionStorage.setItem('max',this.max);   
+    sessionStorage.setItem('max',this.max);  
     },
   methods: {  
-    fn(){  
-         clearInterval(this.flag);
-        if ( 
-          // !this.screeningID
-          !sessionStorage.screeningID 
-        ) {
-            this.flag = setInterval(this.fn, 1);
-        }else{
-          this.getSellOut();
-          
-    //  console.log("this.screeningID :"+this.screeningID);
-    //  console.log("session screeningID :"+sessionStorage.screeningID);
-        }
-    },
-    lastPage(){
-      sessionStorage.removeItem('screeningID');  
-    },
     getSellOut(){ 
-      var ID = Number(sessionStorage.screeningID); 
+      var ID = this.screeningID ; 
+    //  console.log(ID);
       var postData = new FormData(); 
       postData.append('ID', ID);
       this.axios.post(`${this.$api}/detail/getSellOut`, postData).then(response => { 
@@ -276,15 +265,18 @@ export default {
       });  
     },
     nextPage(){ 
-          if(this.to != "/order/Detail"){ 
+      // this.to = "/order/Detail";  
+          // if(this.to != "/order/Detail"){ 
+          if(this.maxCount != this.max){ 
               this.$toasted.error("選完 "+this.max+" 個座位才能去下一頁", {
                 theme: "bubble",
                 duration: 3000
-              });  
+              }); 
+              return;
           } 
+          this.nextPageGetSell();
     }, 
-    buildForListData(){ 
-      this.flag = setInterval(this.fn,1);  
+    buildForListData(){
       //list 把走道也算入陣列中 其他data位置數字只計座位數
       var num = 0;
       //i-1只是調整 真正位置數字要看 i 為多少 
@@ -325,57 +317,99 @@ export default {
       // {eng:"A",seatNum:1,Num:1},
 
     },  
-    tapGetSellOut(){
-      
+    nextPageGetSell(){ 
+      console.log("nextPageGetSell");
       var ID = sessionStorage.screeningID;   
       var postData = new FormData(); 
-      postData.append('ID', ID);
+      postData.append('ID', ID); 
+      this.time1 = 1571110257; 
+      postData.append('time1', this.time1);
+      //所有賣出座位 英文碼
+      var _this = this;
+      this.axios.post(`${this.$api}/detail/tapGetSellOut`, postData).then(response => { 
+        if(response.data != "[]no data"){ 
+        console.log(response.data);
+      var seatDataStrArray = []; 
+          // console.log(response.data);
+              for (let i = 0; i <response.data.length; i++) { 
+                      var allSeat = response.data[i].seat;  
+                      //每筆訂單的所有座位
+                      var array = allSeat.split(",");  
+                      // console.log(array);
+                      for (let k = 0; k <array.length; k++) {
+                          //各筆訂單的單一座位
+                          // console.log("各筆訂單的單一座位 "+array[k]);
+                          seatDataStrArray.push(array[k]);
+                          // var strEng = array[k].substring(0,1);
+                          // var strNum = array[k].substring(1,3);
+                          // // console.log(array[k]);   
+                          // var asciiNum =strEng.charCodeAt()-65;
+                          // var seatDataNum = asciiNum*28+Number(strNum); 
+                          // // console.log(seatDataNum); 
+                          // seatDataNumArray.push(seatDataNum);
+                      }
+              }  
+               //輸出所有新賣出座位英文碼 存入 seatDataStrArray 
+// -------------------------------------------------------------------------------------
+ var selectSeatArray = sessionStorage.getItem('choosedSeat').split(",");
+          console.log(" 撈出已賣座位陣列 ="+seatDataStrArray);
+          //選擇座位長度
+          for(let i =0; i<selectSeatArray.length ; i++){
+           console.log("選的座位 ="+selectSeatArray[i]); 
+           //撈出座位長度
+            for(let k =0; k<seatDataStrArray.length ; k++){
+              console.log("每個撈出已賣座位 ="+seatDataStrArray[k]);
+              if(selectSeatArray[i] == seatDataStrArray[k]){
+                console.log("選的座位==撈出已賣座位" ); 
+                alert(seatDataStrArray[k]+" 已經售出");
+                  // this.$toasted.error(seatDataStrArray[k]+" 已經售出", {
+                  //     theme: "bubble",
+                  //     duration: 3000
+                  // }); 
+                  // return window.location.replace("/#/order/chooseSeat");
+                  return history.go(0);
+              }
+            }
+          }
+          // console.log(this.vueSeatDataStrArray);
+          window.location.replace("/#/order/Detail");
+// -------------------------------------------------------------------------------------
+            } //if(response.data)
+          window.location.replace("/#/order/Detail");
+      });  
+               
+      
+     
+    }, 
+    tapGetSellOut(){  
+      var ID = sessionStorage.screeningID;   
+      var postData = new FormData(); 
+      postData.append('ID', ID); 
       postData.append('time1', this.time1);
       this.axios.post(`${this.$api}/detail/tapGetSellOut`, postData).then(response => { 
           // console.log(response.data);
-          if(response.data[0].seat){
-
-          var seatDataNumArray =[];
-          for (let i = 0; i <response.data.length; i++) {
-                  var allSeat = response.data[i].seat;  
-                  // console.log(allSeat);
-                  var array = allSeat.split(",");  
-                  for (let k = 0; k <array.length; k++) {
-                      var strEng = array[k].substring(0,1);
-                      var strNum = array[k].substring(1,3);
-                      // console.log(array[k]);   
-                      var asciiNum =strEng.charCodeAt()-65;
-                      var seatDataNum = asciiNum*28+Number(strNum); 
-                      // console.log(seatDataNum); 
-                      seatDataNumArray.push(seatDataNum);
-                  }
-              }
-          // }
-          // // console.log(seatDataNumArray); 
-          // //載入售出位置 
-          // for(let i=1; i <=280; i++){
-          //    this.sellOutData[i] = 0;
-          // }   
-          for(let i=0; i < seatDataNumArray.length; i++){ 
-             this.seatSrc[seatDataNumArray[i]] = this.selloutImg;
-             this.seatSelected[i] ="X";
-          }    
-
-          // //設定所有走道
-          // this.seatSrc[0] = this.aisleImg;  
-          // //設定所有座位圖示
-          // for(let i=1; i <=280; i++){
-          //     if(this.sellOutData[i] == 1){ 
-          //       //座位售出
-          //         this.seatSrc[i] = this.selloutImg;
-          //         this.seatSelected[i] ="X";
-          //     }else{
-          //         //座位可選擇
-          //       this.seatSrc[i] = this.seatImg; 
-          //     }
-          // } 
-          }else{
-            console.log("no sellout")
+          if(response.data[0].seat){ 
+              //所有賣出座位 數字碼
+              var seatDataNumArray = []; 
+              for (let i = 0; i <response.data.length; i++) {
+                      var allSeat = response.data[i].seat;  
+                      // console.log(allSeat);
+                      var array = allSeat.split(",");  
+                      for (let k = 0; k <array.length; k++) {
+                          var strEng = array[k].substring(0,1);
+                          var strNum = array[k].substring(1,3);
+                          // console.log(array[k]);   
+                          var asciiNum =strEng.charCodeAt()-65;
+                          var seatDataNum = asciiNum*28+Number(strNum); 
+                          // console.log(seatDataNum); 
+                          seatDataNumArray.push(seatDataNum);
+                      }
+              }  
+              //seatSrc[傳回新賣出座位]換成賣出圖示
+              for(let i=0; i < seatDataNumArray.length; i++){ 
+                 this.seatSrc[seatDataNumArray[i]] = this.selloutImg;
+                 this.seatSelected[i] ="X";
+              }   
           }
       });  
     }, 
@@ -398,8 +432,9 @@ export default {
         case this.seatImg: 
             if(this.maxCount  == this.max)
                 return ;
-            if(this.maxCount +1 == this.max)
-                this.to= "/order/Detail"; 
+            //選完座位產生下一頁連結
+            // if(this.maxCount +1 == this.max)
+            //     this.to= "/order/Detail"; 
             this.maxCount++;
             this.seatSelected[this.onClick] = 1;
             this.seatSrc[this.onClick] = this.selectImg;

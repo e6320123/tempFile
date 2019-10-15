@@ -290,6 +290,9 @@ export default {
             this.target = "#error";
         }, 
         post:function(){ 
+            var courtsID = sessionStorage.courtsID;
+            var ticketTotalNum = JSON.parse(JSON.parse(sessionStorage.movie).ticketsNum)[0]+
+                                 JSON.parse(JSON.parse(sessionStorage.movie).ticketsNum)[1]; 
             var JSONData = JSON.stringify(this.list);
             var foodData   = this.list.foodData;
             var ticketData = this.list.ticketData; 
@@ -299,7 +302,9 @@ export default {
             postData.append('foodData', foodData); 
             postData.append('ticketData', ticketData);  
             postData.append('screeningID', screeningID);  
-            // var SQL = 'show'  ;
+            postData.append('courtsID', courtsID);  
+            postData.append('ticketTotalNum', ticketTotalNum);  
+            // var SQL = 'show'  ; 
             // var SQL = "desc"  ;
             // var SQL = "select"; 
             // var ID ="2"; postData.append('ID', ID);
