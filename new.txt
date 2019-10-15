@@ -1,0 +1,8 @@
+detail 
+
+
+
+
+choose
+
+this.max = ticket total num
