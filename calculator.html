@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>計算機</title>
+    <style>
+    #calcShell{
+        border:2px solid black;
+        width:300px;
+        height:400px;
+    }
+    #showResult{  
+        margin:10px;
+        border:2px solid red;
+        height:15%;   
+    }
+    #buttonArea{
+        margin:10px;
+        border:2px solid greenyellow;
+        height:75%; 
+    }
+    button{
+        font-size: 40px;
+        margin:3px;
+    }
+    #btn0{  
+        width:50%;
+    }
+    #btnAC{ 
+        width:50%;
+    }
+    #bak{
+        width:23%; 
+    } 
+    #up{ 
+        float: left; 
+    }
+    #down{
+        font-size: 50px;  
+        float: right; 
+    }
+    </style>
+</head>
+<body>
+    <div id="calcShell">
+        <div id="showResult">
+            <div id="up"></div>
+            <div id="down">0</div>
+        </div>
+        <div id="buttonArea">
+            
+            <button onclick="AC()" id="btnAC">AC</button>
+            <button>÷</button> 
+            <button onclick="back()" id="bak">↩︎</button> 
+            <br> 
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>x</button>
+            <br>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>-</button>
+            <br>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>+</button>
+            <br>
+            <button id="btn0">0</button> 
+            <button>=</button> 
+            <button>.</button> 
+        </div>
+    </div>
+
+    <script>   
+    var a = 3.3;
+    var b = 3;
+    console.log(a-b);
+    var reNew = 0;
+    function clrShow(){
+        up.innerHTML = "";
+        down.innerHTML = "0";
+    }
+        function chkFirst(char){
+            if(char == 0 ||
+            char == "+" ||
+            char == "-" ||
+            char == "x" ||
+            char == "÷" ||
+            char == "=" 
+            ) return 1; 
+            return 0;
+        }
+        var repeatOP = 0;   //不重複輸入運算子 
+        addEventListener("click",function(e){  
+            if(reNew) up.innerHTML = "";
+            reNew = 0;
+            //輸入是第一個字元時
+            if(up.innerHTML == ""){ 
+                clrShow();
+                //若是不合理字元則跳出
+               if(chkFirst(e.target.innerHTML)) return console.log("不合理字元");
+            } 
+            //不處理 AC 與 back
+            if(e.target.id == "btnAC" || e.target.id == "bak") return;
+            var tag = e.target.tagName;
+            //只處理BUTTON的click
+            if(tag == "BUTTON"){
+                var btnChar = e.target.innerHTML;
+                //非數字BUTTON  且  不是第一個輸入的字元
+                if(isNaN(btnChar*1)){ 
+                    if(repeatOP){
+                        var str = up.innerHTML;
+                        str=str.substring(0,str.length-1);
+                        up.innerHTML = str;
+                    } 
+                    up.innerHTML += btnChar;
+                    console.log(btnChar); 
+                    repeatOP = 1;
+                    if(btnChar == "=") eqaul();
+                }
+                //數字BUTTON
+                if(!(isNaN(btnChar*1))){ 
+                    repeatOP = 0;
+                    up.innerHTML += btnChar*1;
+                    console.log(btnChar*1); 
+                }
+            }  
+        }) 
+        function AC(){
+            clrShow();
+            repeatOP = 0;  
+            lastOP =""; 
+            total = 0;  
+        } 
+        function eqaul(){  
+            var total=0;
+            var array = up.innerHTML.split(""); 
+            var numArray = [];
+            var opArray = [];
+            var numStr="";  
+            for (var i = 0; i < array.length; i++) {
+                //非數字字串
+                if(isNaN(array[i]*1)){
+                    numArray.push(numStr);
+                    opArray.push(array[i]);
+                    numStr="";
+                }else{ 
+                    numStr += array[i];
+                } 
+            }
+            opArray.pop();
+            //沒有按+-*/運算子時
+            if(opArray.length == 0) total =numArray.shift();
+            var op =""; 
+            var num1 =0;
+            var num2 =0; 
+            console.log(numArray);  
+            console.log(opArray);  
+            console.log(opArray.length); 
+            var count = opArray.length
+            for (var i = 0; i < count; i++) {    
+                if(i == 0)total = numArray.shift()*1;
+                num2 = numArray.shift(); 
+                op = opArray.shift(); 
+                console.log("第"+i+"圈:"+total+op+num2);  
+                if(op == "+") total =( (total*10000) + (num2*10000) ) / 10000;
+                if(op == "-") total =( (total*10000) - (num2*10000) ) / 10000;
+                if(op == "x") total =( (total*10000) * (num2*10000) ) / 100000000;
+                if(op == "÷") total =( (total*10000) / (num2*10000) ); 
+            } 
+            console.log("答案是 "+total);
+            down.innerHTML = total;
+            reNew = 1;
+        }
+        function back(){   
+            var str = up.innerHTML;
+            str = str.substring(0,str.length-1);  
+            up.innerHTML = str;
+        }
+    </script>
+</body>
+</html>
