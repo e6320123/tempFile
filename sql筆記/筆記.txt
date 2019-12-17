@@ -1,0 +1,83 @@
+select firstname,lastname,title from employees where title <>'Sales Representative';
+select firstname,lastname  ,region from employees where region is null;
+select firstname,lastname  ,region from employees where region is not null;
+select firstname,lastname,region from employees where lastname >='N' order by lastname;
+
+select orderid ,productid ,unitprice,quantity,discount, unitprice*quantity*(1-discount)  from `order details`;
+select sum(quantity) total from `order details` where productid=3;
+
+select distinct city from employees;
+select count(distinct city) from employees;
+
+---------
+select
+from
+where
+group by
+having
+---------
+
+round(浮點數,取幾位)		//正代表小數點後幾位  負代表小數點前幾位  後面數值都取4捨5入
+
+select firstname ,lastname, date_format(birthdate,'%m') from employees ;
+
+
+MariaDB [northwind]> select companyname,customerid from customers where customerid='ArOUT';
+
+
+select companyname from customers where customerid in(
+     select customerid from orders
+     where year(orderdate)=1997
+     group by customerid);
+
+------------------------------筆記2------------------------------
+select e.employeeid , e.lastname , o.orderid , o.orderdate from employees e
+    -> join orders o on (e.employeeid=o.employeeid) order by o.orderdate;
+
+倒引號 用在 庫名  表名  欄名
+單雙引號 用在 資料字串
+ 
+select o.orderid , e.lastname , c.companyname from orders o join employees e on (e.employeeid =
+    -> o.employeeid) join customers c on (c.customerid = o.customerid);		 
+ 
+
+select o.orderid , e.lastname , c.companyname from orders o join employees e on (e.employeeid =
+    ->      o.employeeid) join customers c on (c.customerid = o.customerid)
+    -> where o.shippeddate > o.requireddate and o.orderdate > '1988-01-01' order by c.companyname;
+
+1997之後訂單數量超過15以上的名單排行榜  多-->少
+select c.companyname,o.orderdate, count(o.orderid) nums from customers c join orders o on(o.customerid = 
+c.customerid) where year(o.orderdate)>='1997' group by c.companyname having nums >=15 order by count(o.orderid) desc;
+
+select d.unitprice*d.quantity*(1-d.discount) total , c.companyname , o.orderid from `order details` d
+    ->  join orders o on(o.orderid = d.orderid)
+    -> join customers c on (o.customerid = c.customerid)
+    -> where d.unitprice*d.quantity*(1-d.discount) >10000	//此行不能用total代替
+    -> order by total desc;
+
+------------------------------筆記3------------------------------
+
+select employeeid , lastname ,  city , country from employees where
+    	row(city,country) in (select city ,country from customers);
+	   
+select distinct od.productid,od.unitprice from `order details` od where od.unitprice =
+     (select max(unitprice) from `order details` od2
+     where od.productid = od2.productid) order by od.unitprice;
+ 
+select count(distinct e.employeeid) numEmployee, count(distinct c.customerid) numCustomer,
+     e.city , c.city from employees e join customers c on (e.city = c.city) group by e.city, c.city;
+ 
+ 
+select e.employeeid , sum(od.unitprice*od.quantity) total
+     from orders o join `order details` od on (o.orderid = od.orderid)
+     join employees e on (o.employeeid = e.employeeid)
+     group by o.employeeid
+     order by total desc;
+  
+-----------------------------------------------------------------------------------------------------------
+select p.productname,s.companyname from products p , suppliers s where p.supplierid = s.supplierid limit 10
+select p.productname,s.companyname from products p join suppliers s on p.supplierid = s.supplierid limit 10
+select p.productname,s.companyname from products p join suppliers s using (supplierid) limit 10;
+-----------------------------------------------------------------------------------------------------------
+
+create view mv as select tb1.id,tb1.c1,tb2.c2 from tb1 join tb2 on tb1.c1 = tb2.tb1c1;

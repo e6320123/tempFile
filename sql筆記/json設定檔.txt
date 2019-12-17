@@ -1,0 +1,25 @@
+,
+
+    //tensflow設定
+    "python.pythonPath": "C:\\Users\\Ben\\Anaconda2\\envs\\tensorflow\\python.exe",
+    "python.autoComplete.extraPaths": [
+        "C:\\Users\\Ben\\Anaconda2\\envs\\tensorflow\\",
+        "C:\\Users\\Ben\\Anaconda2\\envs\\tensorflow\\Lib\\site-packages"
+    ],
+    "workbench.statusBar.visible": true,
+    "python.autoComplete.addBrackets": true,
+    "python.autoComplete.preloadModules": [
+        "tensorflow"
+    ],
+    "python.linting.pep8Enabled": true,
+
+    // //解決中文亂碼
+    // "files.encoding": "shiftjis",
+    // "files.encoding": "eucjp",
+    // "files.encoding": "big5hkscs",
+    // "files.encoding": "GB18030",
+    // "files.encoding": "GBK",
+    // "files.encoding": "GB2312",
+    // "files.encoding": "Big5",
+    "files.encoding": "utf8",
+    "files.autoGuessEncoding": true

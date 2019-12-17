@@ -1,0 +1,39 @@
+create table tb2 (id int,f1 varchar(10))
+     engine = InnoDB
+     character set = utf8;
+create table tb3 (id int,f1 varchar(10)
+       character set big5);
+create table tb4 (id int unsigned primary key auto_increment);
+create table tb5 (f1 varchar(10) not null,f2 varchar(10) null, f3 varchar(10));
+insert into tb7 (f1,f2,f3) values (default,default,default);
+create table tb8(d1 date,d2 datetime,d3 time,d4 timestamp,d5 timestamp not null default '
+    '> 2000-01-01 00:00:00', d6 timestamp not null default current_timestamp);
+create temporary table tb10(id int,f1 varchar(10));
+create table tb1(id int unsigned primary key, twid varchar(10) unique key,email varchar(100) unique key,
+       tel varchar(20));
+create table tb2 (id int unsigned , twid varchar(10),email varchar(100),tel varchar(20),
+       primary key (id),unique key (twid),unique key (email));
+create table tb4 (id int unsigned , twid varchar(10),email varchar(100),tel varchar(20),
+       primary key (id),index (twid,tel));
+create table tb7(id int unique);
+
+create table tb1(addr varchar(50), index (addr(6) desc)  );
+create table tb2(id int, unique (id) using hash  );
+show indexes from tb;
+create table tb3 (id int unsigned,cname varchar(100),twid varchar(10) not null,birthday date,memo text);
+alter table tb3 add primary key (id);
+ alter table tb3 drop primary key ;
+create index idIndex on tb3 (id);
+
+
+create table tb21(id int  unsigned primary key auto_increment ,f1 varchar(10));
+ 
+
+MariaDB [class]> create table tb22(tb21id int ,f1 varchar(10));
+ 
+
+MariaDB [class]> insert into tb21 (f1) values ('aa');
+insert into tb22 values(last_insert_id(),'111'),(last_insert_id(),'222');
+alter  table tb21 auto_increment = 82;
+create table tb24(id int unsigned primary key auto_increment, orderid varchar(10) not null,
+    -> item varchar(10), foreign key (orderid) references tb23 (orderid) );

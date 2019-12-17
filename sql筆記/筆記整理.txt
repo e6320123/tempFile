@@ -1,0 +1,100 @@
+老師郵件brad@brad.tw
+netstat /an
+cd C:\xampp\mysql\bin
+C:\xampp\mysql\bin> mysql -u root -p
+mysql -u root -p < C:\Users\ben\desktop\iii_mysql-master\member.sql
+------------------------------------------------
+show databases;
+show tables;
+use 庫名
+select database();
+desc 表名;
+select * from 表名
+ ---------------------建立---------------------------
+
+MariaDB [(none)]> create database 庫名;
+create table 表名(id int ,cname varchar(100) ,tel varchar(20) ,birthday date );
+create table 表名 (id int primary key auto_increment,f1 varchar(10));
+create table  bk1 select * from students;備份
+--------------------------插入資料欄----------------------
+
+insert into 表名 values (1,'ben','213','1992-01-02');
+insert into 表名(cname,tel,birthday) values ('sam',"143","1902-12-12");
+
+-----------------------改變欄位-------------------------
+
+alter table 表名 modify f1 int;		//改變資料型態
+alter table 表名 add f2 varchar(12);
+alter table 表名 change f1 newf1 varchar(10);
+alter table 表名 drop f2;
+alter table 表名 add score int default 0;
+alter table 表名 add  ch   int unsigned default 0;
+			       unsigned not null ;  	//null先 會不行
+					zerofill ;
+
+-----------------------改變資料-------------------------
+
+update 表名 set  欄位1= , 欄位2= , 欄位n=  where id<22;
+欄位=floor(rand()*101)
+update tb set 欄位4=欄位1+欄位2+欄位3;
+
+----------------------------刪除--------------------------------
+drop database 庫名;
+drop table 表名;
+delete from 表名 where id=2;
+delete from 表名;
+alter table 表名 drop column 欄位名 
+------------------------------------------------------------
+select 10*3;
+select database();
+select rand();
+insert into tb1 (newf1,f2,f3,f4) values (rand()*22,rand()*30,rand()*90,rand()*9);
+select * from tb1\G
+------------------------------查表---------------------------------
+select count(*) from orders;
+select 欄位1 , 欄位2 , 欄位n ,新欄位=欄位1+欄位2+欄位n as 改欄位名稱印出 from tb;	//as可省略
+order by id desc;
+order by csex,id;
+group by csex;
+where csex='f';
+avg()平均值
+max()最大
+min()最小
+min()
+concat(f3,f4)
+format(123456789.123,3)		//數字加逗號
+
+group by year(cbirthday);
+select count(*) ....
+select cid,cname, cbirthday,sum(ch),avg(ch),count(*),csex from tb group by year(cbirthday) having csex='f';
+select ...  limit 3,3;
+select* from tb where ch between 60 and 100;
+select* from tb where ch not between 60 and 90;
+		where ch<60 or ch>90;
+select cname ,ch from tb where ch=33 or ch=93 or ch=10;
+select cname ,ch from tb where ch in(33,93,10);
+select caddr from tb where caddr like "%北路%";
+				like "%建國_路%";
+
+-----------------------------------
+select  cname,          
+     case                    
+     when csex='f' then '小姐'
+     when csex='m' then '先生'
+     [else]  [資料內容]
+     end        [as] [欄位名]             
+     from tb;
+
+ select cname,csex,if(csex='f','小姐','阿北') from tb;
+
+-----------------------------------
+ select cname,ch,
+     case
+     when ch>90 then 'A'
+     when ch>80 then 'B'
+     when ch>70 then 'C'
+     when ch>60 then 'D'
+     else 'E' 
+     end	as level
+     from tb order by level,ch;
+------------------------------------

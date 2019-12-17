@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+
+    <img id="d" style="position: relative;
+    left:0px;" src="dt.PNG" alt="">
+    <img style="position: relative;
+               left:0px; "id="d2" src="dt.PNG" alt="">
+    <img id="d3" src="dt.PNG" alt="">
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script>
+        $("#d").css("position", "relative");
+        $("#d2").css("position", "relative");
+        $("#d3").css("position", "relative");
+        var y;
+        var set;
+        $("body").keydown(function () {
+            var x = event.keyCode;
+            var temp = 0;
+            var loc = 10;
+            
+            temp=$("#d2").css("left")
+            var px = temp.indexOf('p');
+                    temp = temp.substring(0, px)
+                    temp = parseInt(temp, 10);
+                    
+            $("#d").css("left",$("#d2").css("left"));
+            
+            clearInterval(set);
+            console.log(x);
+           
+            if (x == 37) { //左
+                
+                y=x;
+                set = setInterval(function () {
+                    temp = $("#d").css("left");
+                    var px = temp.indexOf('p');
+                    temp = temp.substring(0, px)
+                    temp = parseInt(temp, 10);
+                    loc = parseInt(loc, 10);
+                    temp -= loc
+                    temp = String(temp);
+                    temp += "px";
+                    $("#d").css("left", temp);
+                }, 100)
+                if($("#d").css("left")==$("#d2").css("left")&&
+                $("#d").css("top")==$("#d2").css("top")){
+    $("#d2").remove();
+}
+            }
+            if (x == 38) { //上
+                y=x;
+                set = setInterval(function () {
+                    temp = $("#d").css("top");
+                    var px = temp.indexOf('p');
+                    temp = temp.substring(0, px)
+                    temp = parseInt(temp, 10);
+                    loc = parseInt(loc, 10);
+                    temp -= loc
+                    temp = String(temp);
+                    temp += "px";
+
+                    $("#d").css("top", temp);
+                }, 100)
+                if($("#d").css("left")==$("#d2").css("left")){
+    $("#d2").remove();
+}
+            }
+            if (x == 39) { //右
+                y=x;
+                set = setInterval(function () {
+                    temp = $("#d").css("left");
+                    var px = temp.indexOf('p');
+                    temp = temp.substring(0, px)
+                    temp = parseInt(temp, 10);
+                    loc = parseInt(loc, 10);
+                    temp += loc
+                    temp = String(temp);
+                    temp += "px";
+                    $("#d").css("left", temp);
+                    console.log(set);
+
+                }, 100)
+                if($("#d").css("left")==$("#d2").css("left")){
+    $("#d2").remove();
+}
+            }
+            
+            if (x == 40) { //下
+                y=x;
+                set = setInterval(function () {
+                    direction = "d";
+                    temp = $("#d").css("top");
+                    var px = temp.indexOf('p');
+                    temp = temp.substring(0, px)
+                    temp = parseInt(temp, 10);
+                    loc = parseInt(loc, 10);
+                    temp += loc
+                    temp = String(temp);
+                    temp += "px";
+                    $("#d").css("top", temp);
+                }, 100)
+                if($("#d").css("left")==$("#d2").css("left")){
+    $("#d2").remove();
+}
+            }
+
+        //    if(x==39){clearInterval(set);}
+            //
+        })
+    </script>
+</body>
+
+</html>
