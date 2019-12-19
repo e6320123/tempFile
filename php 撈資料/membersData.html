@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>顯示會員資料</title>
+</head> 
+<script language="javascript" src="./membersData.js"></script>
+<body onload="init();"> 
+    <div id="div_show" name="div_show"></div> 
+    <xmp id="table_head" name="table_head" style="display:none;">
+        <table>
+            <tr>
+                <td>ID</td>
+                <td>username</td>
+                <td>password</td>
+            </tr>
+    </xmp>
+    <xmp id="table_content" name="table_content" style="display:none;">
+        <tr>
+            <td>*ID*</td>
+            <td>*username*</td>
+            <td>*password*</td>
+        </tr>
+    </xmp>
+    <xmp id="table_boot" name="table_boot" style="display:none;">
+        </table>
+    </xmp> 
+    <br> 
+    <button>上一頁</button>
+    <button>下一頁</button>
+    <select name="" id="sel" onchange="change()">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+
+    </select>
+    <div id="state"></div>
+    <div id="pages"></div>
+</body>
+</html>
