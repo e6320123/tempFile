@@ -1,3 +1,4 @@
+https://www.opencli.com/linux/shell-script-connect-ftp-upload-download-files
 記錄現在位於樓層  var nowFloor;
 
 按下 上下 發亮 通知抵達樓層 與 要上樓或下樓
