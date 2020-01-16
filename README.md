@@ -4,40 +4,40 @@ https://kknews.cc/zh-tw/code/k6yoanb.html
 
 https://www.opencli.com/linux/shell-script-connect-ftp-upload-download-files
 
-記錄現在位於樓層  var nowFloor;
+ 
+expand-region
 
-按下 上下 發亮 通知抵達樓層 與 要上樓或下樓
+fira code
 
-按電梯按鈕 發亮通知抵達樓層
+Code Spell Checker
 
-記錄電梯是往上 還是往下
+Colonize
 
-往上時
-遇到第一個要往上的就停
-遇到最後一個要往下的才停
+bookmarks
 
-往下時
-遇到第一個要往下的就停
-遇到最後一個要往上的才停
 
-停下後就取消該層亮光 light(可輸入陣列嗎?) 
-[“to”,”up”,”down”]
-[  1   ,  0   ,     1   ]
 
-parseTypeLayer(id) -> 回傳 樓層 與 動作
+{
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true, 
+    "workbench.colorCustomizations": {
+        "editor.selectionBackground": "#FFFF96",    //選取字色 'you can set other color'
+        
+        "editor.findMatchBackground": "#FFFF96",  //搜索選取字色 'you can set other color'
+        
+        "editor.selectionHighlightBackground": "#00000000", //選取字改透明色  'required important'
+        
+        "editor.findMatchHighlightBackground": "#00000000", //搜索選取字改透明色 'required important'
+        
+        "editor.wordHighlightBackground": "#00000000",  //全文相同選取字改透明色 'required important'
+        
+        "editorBracketMatch.border": "#ff0000",   //括號的框線色 'you can set other color'
+        
+        "editorBracketMatch.background": "#0052cc" , //括號的背景色 'you can set other color'
+        "editor.foreground": "#ffffffdd" 
+        },
 
-Var upStairArray =[1,0,0,0,0,0,1,1,0];
-
-Var downStairArray =[1,0,0,0,0,0,1,1,0];
-
-Var toArray =[1,0,0,0,0,0,1,1,0];
-
-Function moveUp(){
-	遇到to就要停
-
+    "editor.tokenColorCustomizations": { 
+        "comments": "#b3b3b3b3"
+    }
 }
-Function moveDown(){
-	遇到to就要停
-
-}
-分離css 與 js 檔
