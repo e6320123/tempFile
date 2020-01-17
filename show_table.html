@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<!-- <html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="../../style/control/control_main.css" type="text/css">
+	<script type="text/javascript" src="./table_show/show_table.js"></script>
+
+</head>
+<!doctype html>
+<html> -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>home</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous">
+	<script type="text/javascript" src="/func/table_show/show_table.js?<?php echo $rand ?>"></script>
+</head>
+<body onload="init();">
+	<div class="container">
+		<div class="row">
+			<!--呈现资料视窗--> 
+			 
+			<div id="show_mainL" style="float:left;width:45%;"></div>
+		
+			<!--呈现资料视窗--> 
+			 
+			<div id="show_mainR" style="float:right;width:45%;"></div> 
+		</div>
+	</div>
+	<!-- Body table end -->
+
+	
+	<!-- Footer table start -->
+	<div class="main_footer css_table">
+		<div class="css_tr">
+		</div>
+	</div>
+	<!-- Footer table end -->
+	 
+
+	<!--资料呈现框架Header-->
+	<xmp id="xmp_header" style="display:none">
+			<table width="" class="table-striped table-bordered " cellspacing="0" cellpadding="0">
+				<tr class="t_list_th">
+					<td width="30">桌次(name)</td>
+					<td width="60">桌子開關(enable)</td>
+					<td width="60">桌子顯示(display)</td>
+					<td width="60">強制開關(admin)</td>
+					<td width="60">safe_sw</td>
+					<td width="60">wate_sw</td>
+					<td width="60">exclusive_sw</td>
+					<td width="60">vip_sw</td>
+					<td width="60"><input type="button" value="送出修改" id="editeBTN" class="btn-danger"></td>
+				</tr>
+		</xmp>
+
+		<!--资料呈现框架Body-->
+		<xmp id="xmp_content" style="display:none">
+			<tr class="tr_nomal">
+				<td class="f_center">*NAME*</td> 
+				*TD*
+				<td id="*ONAME*_btn" type="BUTTON"  name="single_edit" class="btn-success">修改</td>
+				<!-- <td id="*NAME*_note">*NOTE*</td> -->
+			</tr>
+		</xmp>
+
+		<!--單一格下拉單td-->
+		<xmp id="xmp_td" style="display:none">
+			<td>
+				<select class ="form-control" id="*ONAME*" name="*TYPE*">
+					*OPTION*
+				</select>
+			</td>
+		</xmp>
+		<!--單一選項option-->
+		<xmp id="xmp_opt" style="display:none">
+			<option value="*char*" *SELECTED*char**>*char*</option>
+		</xmp>
+
+		<!--资料呈现框架Foot-->
+		<xmp id="xmp_footer" style="display:none">
+			</table>
+		</xmp>
+</body>
+
+</html>
