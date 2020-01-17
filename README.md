@@ -16,6 +16,13 @@ Colonize
 
 bookmarks
 
+Auto Close Tag
+
+Auto Rename Tag
+
+Highlight Matching Tag
+
+
 
 
 {
