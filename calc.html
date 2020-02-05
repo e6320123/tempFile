@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./www/js/lib/Util.js"></script>
+    <script src="./www/js/lib/ListenEvent.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="left" style="display:inline-block">
+        <button id="addField">增加輸入欄位</button> 
+        <button id="subField">減少輸入欄位</button> 
+        <div id="showList"></div>
+        ------------&ensp;
+        <button id="equal">等於</button><button id="clear">清除</button><br>
+        <div id="showTotal">&ensp;</div>
+        <div id="inputArea"></div>
+    </div>
+
+    <div id="right" style="display:inline-block;">
+         
+    </div>
+
+    <xmp id="list_proto" style="display:none;">
+        <span id="l*" name="list"></span><br>
+    </xmp>   
+    <xmp id="input_proto" style="display:none;">
+        <input type="text" name="input" id="i*" value=""><br>
+    </xmp>    
+    <xmp id="save_proto" style="display:none;">
+        <button id="save_*">存入*</button> 
+        <button id="load_*">載入*</button><br>
+    </xmp>    
+
+    <script src="./calc.js"></script>
+</body>
+</html>
