@@ -12,28 +12,39 @@
     <div id="left" style="display:inline-block">
         <button id="addField">增加輸入欄位</button> 
         <button id="subField">減少輸入欄位</button> 
-        <div id="showList"></div>
-        ------------&ensp;
-        <button id="equal">等於</button><button id="clear">清除</button><br>
+        <span id="saveTitle"></span>
+        <div><table id="showList"></table></div>
+        <hr> 
         <div id="showTotal">&ensp;</div>
+        <br><br>
         <div id="inputArea"></div>
+        <button id="equal">等於</button><button id="clear">清除</button><br>
     </div>
 
-    <div id="right" style="display:inline-block;">
+    <div id="right" style="position:absolute;top:0;left:30%;">
          
+    </div>
+    <div style="position:absolute;top:20%;left:40%;">
+        &emsp;&emsp;&emsp;<button id="saveLocal">存入localStorage</button>
     </div>
 
     <xmp id="list_proto" style="display:none;">
-        <span id="l*" name="list"></span><br>
+        <tr>    
+            <td id="l*" name="list"></td>
+            <td>
+                &emsp;&emsp;&emsp;&emsp;<input id="it*" name="inputTitle" type="text" size="15" style="border:0;">
+            </td>
+            <td id="t*"></td>
+        </tr>   
     </xmp>   
     <xmp id="input_proto" style="display:none;">
-        <input type="text" name="input" id="i*" value=""><br>
+        <input type="text" name="input" id="i*"><br>
     </xmp>    
     <xmp id="save_proto" style="display:none;">
         <button id="save_*">存入*</button> 
         <button id="load_*">載入*</button><br>
     </xmp>    
 
-    <script src="./calc.js"></script>
+    <script src="calc.js"></script>
 </body>
 </html>
