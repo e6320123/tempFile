@@ -1,3 +1,5 @@
+https://kknews.cc/zh-tw/tech/q4me3bo.html
+
 https://fireflybug.pixnet.net/blog/post/51054344
 
 https://kknews.cc/zh-tw/code/k6yoanb.html
