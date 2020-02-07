@@ -1,3 +1,5 @@
+https://yu-jack.github.io/2018/07/22/promise/
+
 https://milo0922.pixnet.net/blog/post/32275985-%E3%80%90%E4%B8%8B%E8%BC%89%E3%80%91%E5%82%99%E4%BB%BD%E9%82%84%E5%8E%9F%E9%9B%BB%E8%85%A6%E7%9A%84%E5%BF%85%E5%82%99%E5%B7%A5%E5%85%B7-onekey-ghost--
 
 https://kknews.cc/zh-tw/tech/q4me3bo.html
