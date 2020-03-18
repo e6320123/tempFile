@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Robots" contect="none">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<title>Document</title>
+		<link href="../../style/reset.css?<?php echo IMAGES_VER; ?>" rel="stylesheet" type="text/css">
+		<link href="../../style/GameCF.css?<?php echo IMAGES_VER; ?>" rel="stylesheet" type="text/css">
+		
+		<script type="text/javascript" src="../../js/game/GameCF.js?<?php echo VERSION; ?>"></script>
+		<script type="text/javascript" src="../../js/lib/marquee.js?<?php echo VERSION; ?>"></script>
+		<!-- <script type="text/javascript" src="../../js/game/GameCF_roadView.js?<?php echo VERSION; ?>"></script> -->
+	</head>
+	<body class="TW" onload="init();">
+		<main> 
+			<aside>
+				<button name="clickEvt" id="back_lobby" class="_common_button">*ART_GameCF_backlobby*</button>
+				<button name="clickEvt" id="plug_history" data-folder="history" data-file="ck_history_view" class="_common_button">*ART_GameCF_record*</button>
+				<button name="clickEvt" id="plug_rule"    data-folder="rule"    data-file="rule" class="_common_button">*ART_GameCF_rule*</button>
+				<button class="_common_button">*ART_GameCF_chg_pswd*</button>
+			</aside>
+			<div class="content">
+				<header class="pc_header">
+					<div class="user_info">
+						<div class="re_user_name">
+							*ART_GameCF_welcome*:
+							<span id="username">Aweiwei</span>
+						</div>
+						<div class="amount">
+							*ART_GameCF_point*:
+							<span id="userpoint">2120507.6</span>
+							<span id="currency">RMB</span>
+						</div>
+					</div>
+					<div class="re_ann">
+						<marquee scrollamount="4">
+						<span>尊貴的客戶!!本公司網站將於 香港時間 11月15日 - 早上9:00 至 11:00 暫時停止服務以進行系統的安全性維護升級, 如有不便之處, 敬請見諒!!!</span>
+						</marquee>
+					</div>
+					<div class="re_btn_box">
+						<!-- <button name="clickEvt" id="full_screen" class="zoom_btn">全螢幕</button> -->
+						<button name="clickEvt" id="zoom_In" class="zoom_btn">*ART_GameCF_zoom_In*</button>
+						<button name="clickEvt" id="logout_btn" class="logout_btn">*ART_GameCF_logout*</button>
+					</div>
+				</header>
+				<header class="ph_header">
+					<div class="nav">
+						<button name="clickEvt" id="ph_back_lobby" class="previous_btn"></button>
+						<button name="clickEvt" id="change_table_btn" class="change_table_btn">
+						<span id="ph_tb_title"></span>	
+							<i></i></button>
+						<button name="clickEvt" id="menu_btn" class="menu_btn"><i></i></button>
+						<div id="menu_list" class="menu_list">
+							<ul>
+								<li id="ph_user_id" class="user_id">Aweiwei</li>
+								<li class="user_balance">
+									<span id="ph_currency">RMB</span>	
+									<span id="ph_point">2120507.6</span></li>
+								<li name="clickEvt" id="plug_mem_childPH" data-folder="mem" data-file="ck_mem_view">*ART_GameCF_mem_data*</li>
+								<li name="clickEvt" id="plug_his_childPH" data-folder="history" data-file="ck_history_view">*ART_GameCF_record*</li>
+								<li name="clickEvt" id="plug_rule_childPH" data-folder="rule" data-file="rule">*ART_GameCF_rule*</li>
+								<li name="clickEvt" id="ph_logout">*ART_GameCF_logout*</li>
+							</ul>
+						</div>
+					</div>
+					<div class="re_ann">
+						<marquee scrollamount="4">
+						<span>尊貴的客戶!!本公司網站將於 香港時間 11月15日 - 早上9:00 至 11:00 暫時停止服務以進行系統的安全性維護升級, 如有不便之處, 敬請見諒!!!</span>
+						</marquee>
+					</div>
+				</header>
+				<div class="info_container">
+					<div class="current_info_container">
+						<div class="flex_box">
+							<!-- 視訊區 -->
+							<div class="video_box">
+								<div class="table_info">
+									<span id="vid_tbName" class="table_number">B</span>
+									<span id="vid_tbWid" class="table_name">FC1</span>
+								</div>
+								<iframe id="iVideo" src="" frameborder="0" width="100%" height="100%"></iframe>
+								<i class="live_icon"></i>
+								<!-- 手機版*ART_GameCF_ten_title* -->
+								<div class="latest_bet_box">
+									<button name="clickEvt" id="latest_btn" class="latest_btn"></button>
+									<div class="latest_info">
+										<ul id="ph_bet_list">
+											<li class="no_data">*ART_GameCF_none_text*</li>
+											<li style="display: none;">
+												<div>
+													<span class="bet_num">21960</span>
+													<span class="">
+														<tt>2101</tt>桌
+														<tt>1</tt>靴
+														<tt>5</tt>局
+													</span>
+												</div>
+												<div>
+													<span class="_meron_color">
+														*ART_GameCF_dragon*
+														<tt class="_white_txt">1000</tt>
+													</span>
+													<span class="_win_color">
+														*ART_GameCF_win_gold*
+														<tt>1000</tt>
+													</span>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<!-- 手機版更多賽事 -->
+								<button name="clickEvt" id="game_schedule_btn" class="game_schedule_btn">*ART_GameCF_more_game*</button>
+								<div class="game_schedule_box">
+									<div class="re_schedeule_title">
+										*ART_GameCF_more_game*
+										<button name="clickEvt" id="close_btn" class="close_btn"></button>
+									</div>
+									<div id="ph_moreGame_list" class="re_schedule_content">
+										
+									</div>
+								</div>
+								<span id="video_time" class="display_time">00:00:00</span>
+								<div id="msg_txt" class="sys_msg" style="display: none;">下注成功！</div>
+							</div>
+							<!-- 換桌區 -->
+							<div id="change_table_box" class="change_table_box">
+								<div class="change_title">
+									<span>*ART_GameCF_now_tb*:
+										<span id="now_tbName">B</span>
+									</span>
+									<span>*ART_GameCF_ch_tb*
+										<i class="arrow_move"></i>
+									</span>
+									<span class="total_table">10/50
+									</span>
+								</div>
+								<div id="table_cnt" class="change_content">
+									
+								</div>
+							</div>
+						</div>
+						<!-- 下注區 -->
+						<div class="bet_box">
+							<div class="battle_info_box">
+								<div class="meron_title">*ART_GameCF_dragon*</div>
+								<div class="wala_title">*ART_GameCF_phoenix*</div>
+								<div class="re_meron_box">
+									<img id="big_img1" class="meron_img" src="../../images/meron_pic_test.png">
+									<span id="big_weight1" class="weight_txt" data-name="*ART_GameCF_dragon*">1887.00g</span>
+								</div>
+								<div class="re_wala_box">
+									<span id="big_weight2" class="weight_txt" data-name="*ART_GameCF_phoenix*">1790.00g</span>
+									<img id="big_img2" class="wala_img" src="../../images/meron_pic_test.png">
+								</div>
+								<div class="name_box">
+									<div class="meron_side">
+										<span id="big_name1" class="meron_name">中文名稱限制要有十二個字</span>
+									</div>
+									<div class="wala_side">
+										<span id="big_name2" class="wala_name">中文名稱限制要有十二個字</span>
+									</div>
+								</div>
+							</div>
+							<div id="close_bet_box" class="close_bet_box">
+								<div class="top_area _meron_bg">
+									<div id="betRate_MH" class="odds_txt">x</div>
+									<div class="side_txt">*ART_GameCF_dragon*</div>
+									<div id="bet_dragon" class="total_bet">0</div>
+								</div>
+								<div class="top_area _wala_bg">
+									<div id="betRate_MC" class="odds_txt">x</div>
+									<div class="side_txt">*ART_GameCF_phoenix*</div>
+									<div id="bet_phoenix" class="total_bet">0</div>
+								</div>
+								<div class="bot_area _tie_bg">
+									<div id="betRate_MN" class="odds_txt">x</div>
+									<div class="side_txt">*ART_GameCF_peace*</div>
+									<div id="bet_ho" class="total_bet">0</div>
+								</div>
+								<!-- 目前無大和 -->
+								<!-- <div class="bot_area _tie_bg">
+										<div class="odds_txt">1:88</div>
+										<div class="side_txt">大和</div>
+										<div class="total_bet">500</div>
+								</div> -->
+							</div>
+							<div class="open_bet_box">
+								<div id="odds_box" class="odds_box">
+									<div class="odds_title">
+										<span class="meron_style">*ART_GameCF_dragon*</span>
+										<span class="bdd_style">*ART_GameCF_peace*</span>
+										<!-- 目前無大和 -->
+										<!-- <span class="ftd_style">大和</span> -->
+										<span class="wala_style">*ART_GameCF_phoenix*</span>
+									</div>
+									<div class="odds_content">
+										<div name="clickEvt" id="bet_MH" class="meron_style">
+											<span>0</span>
+											<img style="display:none;" src="../../../www_html5/images/coin.png" alt="">
+										</div>
+										<div name="clickEvt" id="bet_MN" class="bdd_style">
+											<span>0</span>
+											<img style="display:none;" src="../../../www_html5/images/coin.png" alt="">
+										</div>
+										<!-- 目前無大和 -->
+										<!-- <div class="ftd_style">
+											<span>100000</span>
+										</div> -->
+										<div name="clickEvt" id="bet_MC" class="wala_style">
+											<span>0</span>
+											<img style="display:none;" src="../../../www_html5/images/coin.png" alt="">
+										</div>
+									</div>
+								</div>
+								<div class="coin_box">
+									<div class="hide_box">
+										<div name="chip" id="chip_1" class="chip_1"></div>
+										<div name="chip" id="chip_2" class="chip_2"></div>
+										<div name="chip" id="chip_3" class="chip_3"></div>
+										<div name="chip" id="chip_4" class="chip_4"></div>
+										<div name="chip" id="chip_5" class="chip_5"></div>
+									</div>
+								</div>
+								<div class="confirm_box">
+									<div class="bet_detail_box">
+										<div class="bet_detail">
+											<span>
+												<tt id="g_name" class="_dark_tie_color word_bold">BT1</tt>
+											</span>
+											<span id="p_type">
+												&ensp;
+												<!-- <tt class="_meron_color word_bold">$200</tt>
+												@
+												<tt class="_dark_tie_color">0.8</tt> -->
+											</span>
+											<span>
+												<tt class="_meron_color">*ART_GameCF_dragon*</tt>
+												VS
+												<tt class="_wala_color">*ART_GameCF_phoenix*</tt>
+											</span>
+										</div>
+										<div id="bet_detail_num" class="bet_total _meron_color word_bold">
+											$ <tt>0</tt>
+										</div>
+									</div>
+									<div class="confirm_btn_box">
+										<button name="clickEvt" id="bet_ok" class="_common_button">*ART_GameCF_submit*</button>
+										<button name="clickEvt" id="bet_cancel" class="_common_button">*ART_GameCF_cancel*</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 路紙區 -->
+						<div class="road_box">
+							<div class="side_box">
+								<div class="re_statistic_box">
+									<div id="rbead" class="_meron_pseudo_bg">0</div>
+									<div id="gbead" class="_tie_pseudo_bg">0</div>
+									<div id="bbead" class="_wala_pseudo_bg">0</div>
+								</div>
+								<div class="re_btn_box">
+									<button name="clickEvt" id="big_road" class="road_btn active">*ART_GameCF_big_small*</button>
+									<button name="clickEvt" id="bead_panel" class="road_btn">*ART_GameCF_bead_panel*</button>
+								</div>	
+							</div>
+							<div class="img_box">
+								<!-- <img id="road_pic" src="../../images/road_table_pic.png"> -->
+								<div class="road_table">
+									<i class="road_table_pic" id="road_loading" style="display: none;"></i>
+									<img id="road_img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABNIAAADQCAYAAADCiEzLAAATc0lEQVR4Xu3YMREAAAjEMPBvGglUQJh/yjF1xxEgQIAAAQIECBAgQIAAAQIECBAg8ArsuzAgQIAAAQIECBAgQIAAAQIECBAgQGCENE9AgAABAgQIECBAgAABAgQIECBAIAgIaQHJhAABAgQIECBAgAABAgQIECBAgICQ5gcIECBAgAABAgQIECBAgAABAgQIBAEhLSCZECBAgAABAgQIECBAgAABAgQIEBDS/AABAgQIECBAgAABAgQIECBAgACBICCkBSQTAgQIECBAgAABAgQIECBAgAABAkKaHyBAgAABAgQIECBAgAABAgQIECAQBIS0gGRCgAABAgQIECBAgAABAgQIECBAQEjzAwQIECBAgAABAgQIECBAgAABAgSCgJAWkEwIECBAgAABAgQIECBAgAABAgQICGl+gAABAgQIECBAgAABAgQIECBAgEAQENICkgkBAgQIECBAgAABAgQIECBAgAABIc0PECBAgAABAgQIECBAgAABAgQIEAgCQlpAMiFAgAABAgQIECBAgAABAgQIECAgpPkBAgQIECBAgAABAgQIECBAgAABAkFASAtIJgQIECBAgAABAgQIECBAgAABAgSEND9AgAABAgQIECBAgAABAgQIECBAIAgIaQHJhAABAgQIECBAgAABAgQIECBAgICQ5gcIECBAgAABAgQIECBAgAABAgQIBAEhLSCZECBAgAABAgQIECBAgAABAgQIEBDS/AABAgQIECBAgAABAgQIECBAgACBICCkBSQTAgQIECBAgAABAgQIECBAgAABAkKaHyBAgAABAgQIECBAgAABAgQIECAQBIS0gGRCgAABAgQIECBAgAABAgQIECBAQEjzAwQIECBAgAABAgQIECBAgAABAgSCgJAWkEwIECBAgAABAgQIECBAgAABAgQICGl+gAABAgQIECBAgAABAgQIECBAgEAQENICkgkBAgQIECBAgAABAgQIECBAgAABIc0PECBAgAABAgQIECBAgAABAgQIEAgCQlpAMiFAgAABAgQIECBAgAABAgQIECAgpPkBAgQIECBAgAABAgQIECBAgAABAkFASAtIJgQIECBAgAABAgQIECBAgAABAgSEND9AgAABAgQIECBAgAABAgQIECBAIAgIaQHJhAABAgQIECBAgAABAgQIECBAgICQ5gcIECBAgAABAgQIECBAgAABAgQIBAEhLSCZECBAgAABAgQIECBAgAABAgQIEBDS/AABAgQIECBAgAABAgQIECBAgACBICCkBSQTAgQIECBAgAABAgQIECBAgAABAkKaHyBAgAABAgQIECBAgAABAgQIECAQBIS0gGRCgAABAgQIECBAgAABAgQIECBAQEjzAwQIECBAgAABAgQIECBAgAABAgSCgJAWkEwIECBAgAABAgQIECBAgAABAgQICGl+gAABAgQIECBAgAABAgQIECBAgEAQENICkgkBAgQIECBAgAABAgQIECBAgAABIc0PECBAgAABAgQIECBAgAABAgQIEAgCQlpAMiFAgAABAgQIECBAgAABAgQIECAgpPkBAgQIECBAgAABAgQIECBAgAABAkFASAtIJgQIECBAgAABAgQIECBAgAABAgSEND9AgAABAgQIECBAgAABAgQIECBAIAgIaQHJhAABAgQIECBAgAABAgQIECBAgICQ5gcIECBAgAABAgQIECBAgAABAgQIBAEhLSCZECBAgAABAgQIECBAgAABAgQIEBDS/AABAgQIECBAgAABAgQIECBAgACBICCkBSQTAgQIECBAgAABAgQIECBAgAABAkKaHyBAgAABAgQIECBAgAABAgQIECAQBIS0gGRCgAABAgQIECBAgAABAgQIECBAQEjzAwQIECBAgAABAgQIECBAgAABAgSCgJAWkEwIECBAgAABAgQIECBAgAABAgQICGl+gAABAgQIECBAgAABAgQIECBAgEAQENICkgkBAgQIECBAgAABAgQIECBAgAABIc0PECBAgAABAgQIECBAgAABAgQIEAgCQlpAMiFAgAABAgQIECBAgAABAgQIECAgpPkBAgQIECBAgAABAgQIECBAgAABAkFASAtIJgQIECBAgAABAgQIECBAgAABAgSEND9AgAABAgQIECBAgAABAgQIECBAIAgIaQHJhAABAgQIECBAgAABAgQIECBAgICQ5gcIECBAgAABAgQIECBAgAABAgQIBAEhLSCZECBAgAABAgQIECBAgAABAgQIEBDS/AABAgQIECBAgAABAgQIECBAgACBICCkBSQTAgQIECBAgAABAgQIECBAgAABAkKaHyBAgAABAgQIECBAgAABAgQIECAQBIS0gGRCgAABAgQIECBAgAABAgQIECBAQEjzAwQIECBAgAABAgQIECBAgAABAgSCgJAWkEwIECBAgAABAgQIECBAgAABAgQICGl+gAABAgQIECBAgAABAgQIECBAgEAQENICkgkBAgQIECBAgAABAgQIECBAgAABIc0PECBAgAABAgQIECBAgAABAgQIEAgCQlpAMiFAgAABAgQIECBAgAABAgQIECAgpPkBAgQIECBAgAABAgQIECBAgAABAkFASAtIJgQIECBAgAABAgQIECBAgAABAgSEND9AgAABAgQIECBAgAABAgQIECBAIAgIaQHJhAABAgQIECBAgAABAgQIECBAgICQ5gcIECBAgAABAgQIECBAgAABAgQIBAEhLSCZECBAgAABAgQIECBAgAABAgQIEBDS/AABAgQIECBAgAABAgQIECBAgACBICCkBSQTAgQIECBAgAABAgQIECBAgAABAkKaHyBAgAABAgQIECBAgAABAgQIECAQBIS0gGRCgAABAgQIECBAgAABAgQIECBAQEjzAwQIECBAgAABAgQIECBAgAABAgSCgJAWkEwIECBAgAABAgQIECBAgAABAgQICGl+gAABAgQIECBAgAABAgQIECBAgEAQENICkgkBAgQIECBAgAABAgQIECBAgAABIc0PECBAgAABAgQIECBAgAABAgQIEAgCQlpAMiFAgAABAgQIECBAgAABAgQIECAgpPkBAgQIECBAgAABAgQIECBAgAABAkFASAtIJgQIECBAgAABAgQIECBAgAABAgSEND9AgAABAgQIECBAgAABAgQIECBAIAgIaQHJhAABAgQIECBAgAABAgQIECBAgICQ5gcIECBAgAABAgQIECBAgAABAgQIBAEhLSCZECBAgAABAgQIECBAgAABAgQIEBDS/AABAgQIECBAgAABAgQIECBAgACBICCkBSQTAgQIECBAgAABAgQIECBAgAABAkKaHyBAgAABAgQIECBAgAABAgQIECAQBIS0gGRCgAABAgQIECBAgAABAgQIECBAQEjzAwQIECBAgAABAgQIECBAgAABAgSCgJAWkEwIECBAgAABAgQIECBAgAABAgQICGl+gAABAgQIECBAgAABAgQIECBAgEAQENICkgkBAgQIECBAgAABAgQIECBAgAABIc0PECBAgAABAgQIECBAgAABAgQIEAgCQlpAMiFAgAABAgQIECBAgAABAgQIECAgpPkBAgQIECBAgAABAgQIECBAgAABAkFASAtIJgQIECBAgAABAgQIECBAgAABAgSEND9AgAABAgQIECBAgAABAgQIECBAIAgIaQHJhAABAgQIECBAgAABAgQIECBAgICQ5gcIECBAgAABAgQIECBAgAABAgQIBAEhLSCZECBAgAABAgQIECBAgAABAgQIEBDS/AABAgQIECBAgAABAgQIECBAgACBICCkBSQTAgQIECBAgAABAgQIECBAgAABAkKaHyBAgAABAgQIECBAgAABAgQIECAQBIS0gGRCgAABAgQIECBAgAABAgQIECBAQEjzAwQIECBAgAABAgQIECBAgAABAgSCgJAWkEwIECBAgAABAgQIECBAgAABAgQICGl+gAABAgQIECBAgAABAgQIECBAgEAQENICkgkBAgQIECBAgAABAgQIECBAgAABIc0PECBAgAABAgQIECBAgAABAgQIEAgCQlpAMiFAgAABAgQIECBAgAABAgQIECAgpPkBAgQIECBAgAABAgQIECBAgAABAkFASAtIJgQIECBAgAABAgQIECBAgAABAgSEND9AgAABAgQIECBAgAABAgQIECBAIAgIaQHJhAABAgQIECBAgAABAgQIECBAgICQ5gcIECBAgAABAgQIECBAgAABAgQIBAEhLSCZECBAgAABAgQIECBAgAABAgQIEBDS/AABAgQIECBAgAABAgQIECBAgACBICCkBSQTAgQIECBAgAABAgQIECBAgAABAkKaHyBAgAABAgQIECBAgAABAgQIECAQBIS0gGRCgAABAgQIECBAgAABAgQIECBAQEjzAwQIECBAgAABAgQIECBAgAABAgSCgJAWkEwIECBAgAABAgQIECBAgAABAgQICGl+gAABAgQIECBAgAABAgQIECBAgEAQENICkgkBAgQIECBAgAABAgQIECBAgAABIc0PECBAgAABAgQIECBAgAABAgQIEAgCQlpAMiFAgAABAgQIECBAgAABAgQIECAgpPkBAgQIECBAgAABAgQIECBAgAABAkFASAtIJgQIECBAgAABAgQIECBAgAABAgSEND9AgAABAgQIECBAgAABAgQIECBAIAgIaQHJhAABAgQIECBAgAABAgQIECBAgICQ5gcIECBAgAABAgQIECBAgAABAgQIBAEhLSCZECBAgAABAgQIECBAgAABAgQIEBDS/AABAgQIECBAgAABAgQIECBAgACBICCkBSQTAgQIECBAgAABAgQIECBAgAABAkKaHyBAgAABAgQIECBAgAABAgQIECAQBIS0gGRCgAABAgQIECBAgAABAgQIECBAQEjzAwQIECBAgAABAgQIECBAgAABAgSCgJAWkEwIECBAgAABAgQIECBAgAABAgQICGl+gAABAgQIECBAgAABAgQIECBAgEAQENICkgkBAgQIECBAgAABAgQIECBAgAABIc0PECBAgAABAgQIECBAgAABAgQIEAgCQlpAMiFAgAABAgQIECBAgAABAgQIECAgpPkBAgQIECBAgAABAgQIECBAgAABAkFASAtIJgQIECBAgAABAgQIECBAgAABAgSEND9AgAABAgQIECBAgAABAgQIECBAIAgIaQHJhAABAgQIECBAgAABAgQIECBAgICQ5gcIECBAgAABAgQIECBAgAABAgQIBAEhLSCZECBAgAABAgQIECBAgAABAgQIEBDS/AABAgQIECBAgAABAgQIECBAgACBICCkBSQTAgQIECBAgAABAgQIECBAgAABAkKaHyBAgAABAgQIECBAgAABAgQIECAQBIS0gGRCgAABAgQIECBAgAABAgQIECBAQEjzAwQIECBAgAABAgQIECBAgAABAgSCgJAWkEwIECBAgAABAgQIECBAgAABAgQICGl+gAABAgQIECBAgAABAgQIECBAgEAQENICkgkBAgQIECBAgAABAgQIECBAgAABIc0PECBAgAABAgQIECBAgAABAgQIEAgCQlpAMiFAgAABAgQIECBAgAABAgQIECAgpPkBAgQIECBAgAABAgQIECBAgAABAkFASAtIJgQIECBAgAABAgQIECBAgAABAgSEND9AgAABAgQIECBAgAABAgQIECBAIAgIaQHJhAABAgQIECBAgAABAgQIECBAgICQ5gcIECBAgAABAgQIECBAgAABAgQIBAEhLSCZECBAgAABAgQIECBAgAABAgQIEBDS/AABAgQIECBAgAABAgQIECBAgACBICCkBSQTAgQIECBAgAABAgQIECBAgAABAkKaHyBAgAABAgQIECBAgAABAgQIECAQBIS0gGRCgAABAgQIECBAgAABAgQIECBAQEjzAwQIECBAgAABAgQIECBAgAABAgSCgJAWkEwIECBAgAABAgQIECBAgAABAgQICGl+gAABAgQIECBAgAABAgQIECBAgEAQENICkgkBAgQIECBAgAABAgQIECBAgAABIc0PECBAgAABAgQIECBAgAABAgQIEAgCQlpAMiFAgAABAgQIECBAgAABAgQIECAgpPkBAgQIECBAgAABAgQIECBAgAABAkFASAtIJgQIECBAgAABAgQIECBAgAABAgSEND9AgAABAgQIECBAgAABAgQIECBAIAgIaQHJhAABAgQIECBAgAABAgQIECBAgICQ5gcIECBAgAABAgQIECBAgAABAgQIBAEhLSCZECBAgAABAgQIECBAgAABAgQIEBDS/AABAgQIECBAgAABAgQIECBAgACBICCkBSQTAgQIECBAgAABAgQIECBAgAABAkKaHyBAgAABAgQIECBAgAABAgQIECAQBIS0gGRCgAABAgQIECBAgAABAgQIECBAQEjzAwQIECBAgAABAgQIECBAgAABAgSCgJAWkEwIECBAgAABAgQIECBAgAABAgQICGl+gAABAgQIECBAgAABAgQIECBAgEAQENICkgkBAgQIECBAgAABAgQIECBAgAABIc0PECBAgAABAgQIECBAgAABAgQIEAgCQlpAMiFAgAABAgQIECBAgAABAgQIECBwelMA0f/o/UsAAAAASUVORK5CYII=">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="other_info_container">
+						<!-- 更多賽事 -->
+						<div class="more_game_container">
+							<div class="re_schedeule_title">
+								*ART_GameCF_more_game*
+								<button class="settings_btn"></button>
+							</div>
+							<div id="more_game_list" class="re_schedule_content">
+								
+							</div>
+						</div>
+						<div id="bet_info_box" class="bet_info_box">
+							<button name="clickEvt" id="latest_bet" class="_common_button latest_bet_btn">*ART_GameCF_ten_title*</button>
+							<button name="clickEvt" id="bet_statistic" class="_common_button bet_statistic_btn">*ART_GameCF_bet_cnt*</button>
+							<div class="latest_box">
+								<div class="latest_bet_list">
+									<ul id="bet_list">
+										
+									</ul>
+								</div>
+							</div>
+							<div class="re_statistic_box">
+								<ul>
+									<li class="stat_title">
+										<span>*ART_GameCF_conf_bet*</span>
+									</li>
+									<li>
+										<span class="_meron_color">*ART_GameCF_dragon*</span>
+										<span id="cnt_dra">0</span>
+									</li>
+									<li>
+										<span class="_wala_color">*ART_GameCF_phoenix*</span>
+										<span id="cnt_phin">0</span>
+									</li>
+									<li>
+										<span class="_light_tie_color">*ART_GameCF_peace*</span>
+										<span id="cnt_ho">0</span>
+									</li>
+									<!-- 目前無大和 -->
+									<!-- <li>
+											<span class="_light_tie_color">大和</span>
+											<span>0</span>
+									</li> -->
+								</ul>
+								<!-- <ul>
+										<li class="stat_title">
+												<span>待確認*ART_GameCF_bet_cnt*</span>
+										</li>
+										<li class="stat_meron">
+												<span class="_meron_color">*ART_GameCF_dragon*</span>
+												<span>0</span>
+										</li>
+										<li class="stat_wala">
+												<span class="_wala_color">*ART_GameCF_phoenix*</span>
+												<span>0</span>
+										</li>
+										<li class="stat_bdd">
+												<span class="_light_tie_color">和</span>
+												<span>0</span>
+										</li>
+										<li class="stat_ftd">
+												<span class="_light_tie_color">大和</span>
+												<span>0</span>
+										</li>
+								</ul> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<div class="re_user_name">
+				*ART_GameCF_account*:
+				<span id="his_account">AWEI</span>
+			</div>
+			<div class="balance">
+				*ART_GameCF_now_gold*:
+				<span id="his_money">100000</span>
+				<span id="his_currency">RMB</span>
+			</div>
+			<div class="unsettled_amount">
+				*ART_GameCF_tmp_gold*:
+				<span id="his_amount">0</span>
+			</div>
+			<div class="win_amount">
+				*ART_GameCF_game_win*:
+				<span id="his_winAmount">0</span>
+			</div>
+			<button name="clickEvt" id="limit_amount" class="active"><i></i></button>
+		</footer>
+		<div style="display: none;">
+			<xmp id="ph_moreGame_proto">
+				<div name="ph_moreGame" id="phMoreGame_*gid*" class="re_more_game_border">
+					<div class="re_more_game_box">
+						<div class="re_more_game_title">
+							<div class="game_number">
+								<span>*gid*</span>
+							</div>
+							<div class="subtitle_box">
+								<div class="game_name">
+									<span>*title*</span>
+								</div>
+								<div name="pcd" id="pcd_*gid*" class="game_time">
+									<span>*time*</span>
+								</div>
+							</div>
+						</div>
+						<div class="re_more_game_content">
+							<div class="re_meron_box _meron_bg">
+								<img src="*img1*">
+								<div class="game_weight_txt">
+									<span>
+										*weight1*.00g
+									</span>
+								</div>
+								<div class="game_name_txt">
+									<span>
+										*name1*
+									</span>
+								</div>
+							</div>
+							<div class="re_wala_box _wala_bg">
+								<img src="*img2*">
+								<div class="game_weight_txt">
+									<span>
+										*weight2*.00g
+									</span>
+								</div>
+								<div class="game_name_txt">
+									<span>
+										*name2*
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</xmp>
+			<xmp id="more_game_proto">
+				<div name="moreGame" id="moreGame_*gid*" class="re_more_game_border">
+					<div class="re_more_game_box">
+						<div class="re_more_game_title">
+							<div class="game_number">
+								<span>*gid*</span>
+							</div>
+							<div class="subtitle_box">
+								<div class="game_name">
+									<span>*title*</span>
+								</div>
+								<div name="cd" id="cd_*gid*" class="game_time">
+									<span>*time*</span>
+								</div>
+							</div>
+						</div>
+						<div class="re_more_game_content">
+							<div class="re_meron_box _meron_bg">
+								<img src="*img1*">
+								<div class="game_weight_txt">
+									<span>
+										*weight1*.00g
+									</span>
+								</div>
+								<div class="game_name_txt">
+									<span>
+										*name1*
+									</span>
+								</div>
+							</div>
+							<div class="re_wala_box _wala_bg">
+								<img src="*img2*">
+								<div class="game_weight_txt">
+									<span>
+										*weight2*.00g
+									</span>
+								</div>
+								<div class="game_name_txt">
+									<span>
+										*name2*
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</xmp>
+			<xmp id="table_proto">
+				<div name="ch_table" id=*tbid* class="table_out">
+					<span>*A*</span>
+				</div>
+			</xmp>
+			<xmp id="bet_list_proto">
+				<li name="betData">
+					<div>
+						<span class="bet_num">*betNo*</span>
+						<span class="">
+							*bet_title*
+							<!-- <tt>*ART_GameCF_dragon*</tt>
+							<tt>VS</tt>
+							<tt>*ART_GameCF_phoenix*</tt> -->
+						</span>
+					</div>
+					<div>
+						<span class="_*betColor*_color fz_16">
+							*betWhat*
+							<tt class="_white_txt">*betNum*</tt>
+						</span>
+						<span id="*piColor*" class="*piColorClass*">
+							<tt style="*display*;">*ART_GameCF_win_gold*</tt>	
+							<tt id="*piNum*" style="*display*;">*piGold*</tt>
+						</span>
+					</div>
+				</li>
+			</xmp>  
+			<xmp id="noData_proto">
+				<li id="noData" class="no_data">*ART_GameCF_none_text*
+				</li>
+			</xmp>
+
+		</div>
+		<!-- 替換語系 -->
+		<script type="text/javascript" src="../../tpljson/GameCF.json"></script>
+		<script>parent.load_art(document, artjson, parent.langx);</script>
+	</body>
+</html>
