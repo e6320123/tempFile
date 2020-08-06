@@ -6,30 +6,20 @@ https://kknews.cc/zh-tw/code/k6yoanb.html
 
 https://www.opencli.com/linux/shell-script-connect-ftp-upload-download-files
 
-TabNine
- 
-expand-region
-
-fira code
-
-Code Spell Checker
-
+Active File In StatusBar
+Bookmarks
+Chinese (Traditional) Language Pack for Visual Studio Code
 Colonize
-
-bookmarks
-
-Auto Close Tag
-
-Auto Rename Tag
-
-Highlight Matching Tag
-
-
+expand-region
+highlight-icemode
+One Dark Pro 3.8.5
+TabNine
 
 
 {
     "editor.fontFamily": "Fira Code", 
     "editor.fontLigatures": true, 
+    // "editor.fontSize": 14,s
     "window.zoomLevel": 3,
     "liveServer.settings.donotShowInfoMsg": true,
     "files.autoSave": "off",
@@ -51,5 +41,6 @@ Highlight Matching Tag
     "editor.tokenColorCustomizations": {
         "comments": "#b3b3b3b3"     //這個顏色
     },
-    "workbench.iconTheme": "material-icon-theme"
+    "workbench.iconTheme": "material-icon-theme",
+    "tabnine.experimentalAutoImports": true
 }
