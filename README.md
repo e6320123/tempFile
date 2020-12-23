@@ -1,8 +1,10 @@
-https://medium.com/i-am-mike/%E4%BB%80%E9%BA%BC%E6%98%AFwebpack-%E4%BD%A0%E9%9C%80%E8%A6%81webpack%E5%97%8E-2d8f9658241d
 
-https://progressbar.tw/posts/276
+https://drnugt86837.github.io/Portfolio/
+drnugt86837.github.io (https://drnugt86837.github.io/Portfolio/)
+Portfolio
 
-https://tony915.gitbooks.io/laravel4/content/begining/laravel_mvc.html
+PHP動態網站系統開發與Laravel框架運用
+https://www.books.com.tw/products/0010866796
 
 https://yu-jack.github.io/2018/07/22/promise/
 
