@@ -3,7 +3,7 @@ https://drnugt86837.github.io/Portfolio/
 drnugt86837.github.io (https://drnugt86837.github.io/Portfolio/)  
 Portfolio
 
-PHP動態網站系統開發與Laravel框架運用
+PHP動態網站系統開發與Laravel框架運用  
 https://www.books.com.tw/products/0010866796
 
 https://yu-jack.github.io/2018/07/22/promise/
