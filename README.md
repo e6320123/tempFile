@@ -1,4 +1,7 @@
-許多線上教學  
+Laravel道場教學投影片  
+https://www.laravel-dojo.com/workshops/201507-ntpc#chapter9
+
+許多線上書本教學  
 https://xueyuanjun.com/books
 
 https://drnugt86837.github.io/Portfolio/  
