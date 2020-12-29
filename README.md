@@ -1,3 +1,6 @@
+airbnb風格  
+https://github.com/jigsawye/javascript#whitespace
+
 用SourceTree建立專案  
 https://ithelp.ithome.com.tw/articles/10233691
 
