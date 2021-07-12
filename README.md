@@ -29,12 +29,4 @@ https://kknews.cc/zh-tw/code/k6yoanb.html
 
 https://www.opencli.com/linux/shell-script-connect-ftp-upload-download-files
 
-Active File In StatusBar
-Bookmarks
-Chinese (Traditional) Language Pack for Visual Studio Code
-Colonize
-expand-region
-highlight-icemode
-One Dark Pro 3.8.5
-TabNine
 
