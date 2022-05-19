@@ -66,11 +66,6 @@ return
     sendInput {enter}
   }
 return
- 
- 
-^-::  
-  send --------------------
-return
 
 
 ;標點符號快捷
@@ -94,7 +89,9 @@ return
 !9::sendInput ()
 ![::sendInput [] 
 
-
+^-::  
+  send --------------------
+return
 ; 補償沒有--
 !-::
   sendInput --
@@ -438,6 +435,12 @@ auto_search(innn)
 ; git 分支
 ; 學習 Git 版本控管：新手上路篇 (命令列操作)
 ; https://www.youtube.com/watch?app=desktop&v=WxFSad6II34
+; Git 新手上路 AMA (Ask Me Anything)
+; https://www.facebook.com/will.fans/videos/1806894692673000/
+; 30 天精通 Git 版本控管
+; https://github.com/doggy8088/Learn-Git-in-30-days/blob/master/zh-tw/README.md
+; Git 新手上路 AMA 實作練習腳本
+; https://gist.github.com/doggy8088/e39cfa2f28cd6da43fcf1689cee3f5ff
 
 ; 鳥哥Linux教學
 ; https://linux.vbird.org/linux_basic/centos7/
