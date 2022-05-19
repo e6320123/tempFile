@@ -1,33 +1,33 @@
 
-#1:: 
+:*?:w1:: 
   WinGetActiveTitle, Title 
   sleep 100
   UniqueID := WinActive(Title)
   sleep 100
   windows1 = %UniqueID%
 return 
-#2:: 
+:*?:w2:: 
   WinGetActiveTitle, Title 
   sleep 100
   UniqueID := WinActive(Title)
   sleep 100
   windows2 = %UniqueID%
 return 
-#3:: 
+:*?:w3:: 
   WinGetActiveTitle, Title 
   sleep 100
   UniqueID := WinActive(Title)
   sleep 100
   windows3 = %UniqueID%
 return 
-#4:: 
+:*?:w4:: 
   WinGetActiveTitle, Title 
   sleep 100
   UniqueID := WinActive(Title)
   sleep 100
   windows4 = %UniqueID%
 return
-#5:: 
+:*?:w5:: 
   WinGetActiveTitle, Title 
   sleep 100
   UniqueID := WinActive(Title)
@@ -36,7 +36,7 @@ return
 return 
 
  
-:*?:w1::
+#1::
   WinGetActiveTitle, Title 
   UniqueID := WinActive(Title)
   if (UniqueID = windows1 )
@@ -52,7 +52,7 @@ return
     WinMaximize, A
   }
 return 
-:*?:w2::
+#2::
   WinGetActiveTitle, Title 
   UniqueID := WinActive(Title)
   if (UniqueID = windows2 )
@@ -68,7 +68,7 @@ return
     WinMaximize, A
   }
 return 
-:*?:w3::
+#3::
   WinGetActiveTitle, Title 
   UniqueID := WinActive(Title)
   if (UniqueID = windows3 )
@@ -84,7 +84,7 @@ return
     WinMaximize, A
   }
 return 
-:*?:w4::
+#4::
   WinGetActiveTitle, Title 
   UniqueID := WinActive(Title)
   if (UniqueID = windows4 )
@@ -96,11 +96,11 @@ return
     sleep 50
     WinActivate, ahk_id %windows4% 
     sleep 50 
-    WinMove, A, ,0, 0, 2568, 1383 
-    WinMaximize, A
+    ; WinMove, A, ,0, 0, 2568, 1383 
+    ; WinMaximize, A
   }
 return 
-:*?:w5::
+#5::
   WinGetActiveTitle, Title 
   UniqueID := WinActive(Title)
   if (UniqueID = windows5 )
@@ -112,7 +112,7 @@ return
     sleep 50
     WinActivate, ahk_id %windows5% 
     sleep 50 
-    WinMove, A, ,0, 0, 2568, 1383 
-    WinMaximize, A
+  ;   WinMove, A, ,0, 0, 2568, 1383 
+  ;   WinMaximize, A
   }
 return 

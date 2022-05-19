@@ -27,38 +27,7 @@ chrome := "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 stop_xampp := "%A_ScriptDir%\vbs\stop_xampp.vbs"
 
 ;------------------------------------檔案路徑變數區----------------------------
-;------------------------------------Youtube----------------------------
-; 橫幅廣告
-blbX:= -960 ; 左 大廣告
-blbY:= 930 ; 左 大廣告
-blsX:=0 ;左 小廣告
-blsY:=0 ;左 小廣告
-brbX := 1246 ; 右 大廣告
-brbY := 940 ; 右 大廣告
-brsX := 1226 ; 右 小廣告
-brsY := 938 ; 右 小廣告
-
-; 影片廣告
-vlfX := -60 * 0.8 ; 左 全螢幕 
-vlfY := 1475 * 0.8 ; 左 全螢幕 
-vlX := -1047 * 0.8 ; 左 網頁 
-vlY := 1221 * 0.8 ; 左 網頁 
-vrfX := 2450 ; 右 全螢幕 
-vrfY := 1231 ; 右 全螢幕  
-vrX = 1475 ; 右 網頁 
-vrY := 938 ; 右 網頁 
-  
-; 空白鍵快捷
-slbX:= -477 * 0.8 ; 左 大廣告
-slbY:= 1379 * 0.8 ; 左 大廣告
-slsX:= -1044 * 0.8 ;左 小廣告
-slsY:= 1440 * 0.8 ;左 小廣告
-srbX := 2003 ; 右 大廣告
-srbY := 1147 ; 右 大廣告
-srsX := 1736 ; 右 小廣告
-srsY := 1208 ; 右 小廣告 
-
-;------------------------------------Youtube----------------------------
+; 
 
 :*?:+xx::
   pause
@@ -76,33 +45,11 @@ return
 
 #c::Run calc
 #n::Run Notepad
-
-; :*?:+nt::
-;   WinGetActiveTitle, oTitle
-
-;   loop,20{      ;chk 200ms
-;     sleep 10
-;     WinActivate, ahk_exe notion.exe
-;     WinGetActiveTitle, Title
-;     if(oTitle != Title){    ; notion視窗已喚出
-;       return
-;     }
-;   } 
-
-;   run C:\Users\Ben\AppData\Local\Programs\Notion\Notion.exe
-;   loop,50{      ;wait 5000ms
-;     sleep 100
-;     WinGetActiveTitle, Title
-;     if(oTitle != Title){    ; notion視窗已開啟
-;       WinMaximize, A
-;       return
-;     }
-;   } 
-; return
  
-; :*?:+sn::
-;   run E:\21h1\SnipastePortable64\Snipaste.exe
-; return
+
+:*?:+sn::
+  run C:\Users\Administrator\Desktop\Snipaste-1.16.2-x64\Snipaste.exe
+return
 
 ; :*?:-sn::
 ;   run E:\21h1\ahk\vbs\kill_sni.vbs
@@ -169,6 +116,7 @@ return
     sendInput --
   }
 return
+
 
 :*b0?:4-:: 
   SetFormat, Integer, H ; format 67699721 into 0x4090409
@@ -239,10 +187,10 @@ return
 
 
 :*?:+wg::
-  sleep 200
-  run %A_ScriptDir%\vbs\kill_wg.vbs
-  sleep 2000
-  run "C:\Program Files (x86)\WGestures\WGestures.exe"
+  ; sleep 200
+  ; run %A_ScriptDir%\vbs\kill_wg.vbs
+  ; sleep 2000
+  ; run "C:\Program Files (x86)\WGestures\WGestures.exe"
 return
 
 
@@ -503,96 +451,22 @@ if Title contains YouTube
       click, %blbX%, %blbY%   ;橫幅大廣告
     } 
   }
-return 
-:*?:gs::
-  CoordMode, Mouse , Screen
-  MouseGetPos, OutputVarX, OutputVarY
-  msgbox, %OutputVarX%, %OutputVarY%  
-  Clipboard = click, %OutputVarX%, %OutputVarY% 
 return  
-:*?:gw::
-  CoordMode, Mouse , Window
-  MouseGetPos, OutputVarX, OutputVarY
-  msgbox, %OutputVarX%, %OutputVarY%  
-  Clipboard = click, %OutputVarX%, %OutputVarY% 
-return    
-:*?:vv::
-WinGetActiveTitle, Title
-if Title contains YouTube
-  {  
-    CoordMode, Mouse , Screen
-    MouseGetPos, OutputVarX, OutputVarY
-    if (OutputVarX > 0){
-      CoordMode, Mouse , Window
-        sleep 3000
-        click %vrfX%, %vrfY%   ;yt full 略過廣告 
-        sleep 100
-        click %vrX%, %vrY%   ;yt  略過廣告 
-        sleep 100 
-        sendInput {space}  
-
-        sleep 1800
-        click %vrfX%, %vrfY%   ;yt full 略過廣告 
-        sleep 100
-        click %vrX%, %vrY%   ;yt  略過廣告 
-        sleep 100 
-        sendInput {space}  
-    }else{
-      sleep 5000  
-      click, %vlfX%, %vlfY%   ;yt full 略過廣告 
-      sleep 100  
-      click, %vlX%, %vlY%   ;yt small 略過廣告 
-      sleep 100
-      sendInput {space}
-    }
-  }
-return 
-
-:*Zb0?:  ::
-WinGetActiveTitle, Title
-if Title contains YouTube
-  { 
-    CoordMode, Mouse , Screen
-    MouseGetPos, OutputVarX, OutputVarY
-    if (OutputVarX > 0){
-      CoordMode, Mouse , Window
-      click %srbX%, %srbY%   ;橫幅大廣告
-      sleep 100
-      click %srsX%, %srsY%   ;橫幅小廣告
-      sleep 100
-      sendInput {space}
-    }else{  
-      click, %slbX%, %slbY%   ;橫幅大廣告
-      sleep 100    
-      click, %slsX%, %slsY%   ;橫幅小廣告
-      sleep 100    
-      sendInput {space}
-      sleep 100  
-    }
-  }
-return   
- 
-
-~!WheelDown:: 
-    WinGetClass, class, A
-  if class not contains illustrator
-  {
-     sendInput  {WheelDown 6}
-  }
-return
-~!WheelUp:: 
-  WinGetClass, class, A
-  if class not contains illustrator
-  {
-     sendInput  {WheelUp 6}
-  }
-return
-  
   
 
-#Include, %A_ScriptDir%\click.ahk 
+;#Include, %A_ScriptDir%\click.ahk 
 #Include, %A_ScriptDir%\lara.ahk
-; #Include, %A_ScriptDir%\win_ctl.ahk
+#Include, %A_ScriptDir%\win_ctl.ahk
 ; #Include, %A_ScriptDir%\sa.ahk
 ; #Include, %A_ScriptDir%\br.ahk
 ; #Include, %A_ScriptDir%\keyword_hotkey.ahk
+
+; Neil Liu
+; 帳號 e6320123
+;密碼 25652565
+; ben780618@gmail.com
+
+
+; git 分支
+; lara.ahk切換中英
+; sql檔案下載處

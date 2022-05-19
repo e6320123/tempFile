@@ -27,61 +27,61 @@ return
 
 
 
-:*?:\ftp::
-  sendInput benliu.site
-  sleep 200
-  sendInput {tab}
-  sleep 200
-  sendInput ph11433690445
-  sleep 200
-  sendInput {tab}
-  sleep 200
-  sendInput 14741474ftp
-  sleep 200
-  sendInput {tab}
-  sleep 200
-  sendInput 21
-  sleep 250
-  sendInput {tab}
-  sleep 250
-  sendInput {enter}
-return
-:*?:\sq1::
-  sendInput cd c:\xampp\mysql\bin
-  sleep 100
-  sendInput {enter}
-  sleep 100
-  sendInput mysql -u root
-  sleep 100
-  sendInput {enter}
-  sleep 100
-  sendInput use test;
-  sleep 100
-  sendInput {enter}
-  sleep 100
-  sendRaw show tables;
-  sleep 100
-  sendInput {enter}
-  sleep 100
-return
-:*?:\sq2::
-  sendInput cd c:\xampp\mysql\bin
-  sleep 300
-  sendInput {enter}
-  sleep 300
-  sendInput mysql -h sg2nlmysql39plsk.secureserver.net -u benliu -p
-  sleep 300
-  sendInput {enter}
-  sleep 300
-  sendInput 14741474sql
-  sleep 300
-  sendInput {enter}
-  sleep 300
-  sendInput use ph11433690445_;
-  sleep 300
-  sendInput {enter}
-  sleep 300
-return 
+; :*?:\ftp::
+;   sendInput benliu.site
+;   sleep 200
+;   sendInput {tab}
+;   sleep 200
+;   sendInput ph11433690445
+;   sleep 200
+;   sendInput {tab}
+;   sleep 200
+;   sendInput 14741474ftp
+;   sleep 200
+;   sendInput {tab}
+;   sleep 200
+;   sendInput 21
+;   sleep 250
+;   sendInput {tab}
+;   sleep 250
+;   sendInput {enter}
+; return
+; :*?:\sq1::
+;   sendInput cd c:\xampp\mysql\bin
+;   sleep 100
+;   sendInput {enter}
+;   sleep 100
+;   sendInput mysql -u root
+;   sleep 100
+;   sendInput {enter}
+;   sleep 100
+;   sendInput use test;
+;   sleep 100
+;   sendInput {enter}
+;   sleep 100
+;   sendRaw show tables;
+;   sleep 100
+;   sendInput {enter}
+;   sleep 100
+; return
+; :*?:\sq2::
+;   sendInput cd c:\xampp\mysql\bin
+;   sleep 300
+;   sendInput {enter}
+;   sleep 300
+;   sendInput mysql -h sg2nlmysql39plsk.secureserver.net -u benliu -p
+;   sleep 300
+;   sendInput {enter}
+;   sleep 300
+;   sendInput 14741474sql
+;   sleep 300
+;   sendInput {enter}
+;   sleep 300
+;   sendInput use ph11433690445_;
+;   sleep 300
+;   sendInput {enter}
+;   sleep 300
+; return 
 
 
 :*?:\dex::
