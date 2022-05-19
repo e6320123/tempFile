@@ -222,13 +222,8 @@ return
     sendInput ^{end}
   if Title contains Edge
     sendInput {end}
-    ; msgbox edge
 return
-
-+WheelUp::send {Volume_Up}
-+WheelDown::send {Volume_Down}
-^Numpad0::send {Volume_Mute}
-
+ 
 
 :*?:w..::www
 
@@ -345,14 +340,7 @@ return
 return 
 :O:\hk::
   run %A_ScriptDir% 
-return 
-:O:\ad::
-  sendInput admin
-  sleep 100
-  sendInput {tab}
-  sleep 100
-  sendInput admin  
-return 
+return  
    
 :*?:sese::
   sleep 200
@@ -430,43 +418,26 @@ auto_search(innn)
 
 
 
-; --------------------------易經----------------------------------
- 
-:*?:bb::
-WinGetActiveTitle, Title
-if Title contains YouTube
-  { 
-    CoordMode, Mouse , Screen
-    MouseGetPos, OutputVarX, OutputVarY
-    if (OutputVarX > 0){
-      CoordMode, Mouse , Window
-      click %brbX% , %brbY%    ;橫幅大廣告
-      sleep 100 
-      click %brsX% , %brsY%    ;橫幅小廣告
-      sleep 100
-      sendInput {space}
-    }else{ 
-      blbX := blbX * 0.8
-      blbY := blbY * 0.8
-      click, %blbX%, %blbY%   ;橫幅大廣告
-    } 
-  }
-return  
+  
   
 
 ;#Include, %A_ScriptDir%\click.ahk 
 #Include, %A_ScriptDir%\lara.ahk
 #Include, %A_ScriptDir%\win_ctl.ahk
-; #Include, %A_ScriptDir%\sa.ahk
-; #Include, %A_ScriptDir%\br.ahk
 ; #Include, %A_ScriptDir%\keyword_hotkey.ahk
 
 ; Neil Liu
 ; 帳號 e6320123
-;密碼 25652565
+; 密碼 25652565
 ; ben780618@gmail.com
 
 
+; 參考
+; admin/page/excel.php
+
 ; git 分支
-; lara.ahk切換中英
-; sql檔案下載處
+; 學習 Git 版本控管：新手上路篇 (命令列操作)
+; https://www.youtube.com/watch?app=desktop&v=WxFSad6II34
+
+; 鳥哥Linux教學
+; https://linux.vbird.org/linux_basic/centos7/
