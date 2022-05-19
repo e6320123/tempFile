@@ -444,3 +444,6 @@ auto_search(innn)
 
 ; 鳥哥Linux教學
 ; https://linux.vbird.org/linux_basic/centos7/
+
+
+; Active File In StatusBar 
