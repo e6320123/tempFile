@@ -421,7 +421,7 @@ auto_search(innn)
 ;#Include, %A_ScriptDir%\click.ahk 
 #Include, %A_ScriptDir%\lara.ahk
 #Include, %A_ScriptDir%\win_ctl.ahk
-; #Include, %A_ScriptDir%\keyword_hotkey.ahk
+#Include, %A_ScriptDir%\keyword_php.ahk
 
 ; Neil Liu
 ; 帳號 e6320123
@@ -445,5 +445,3 @@ auto_search(innn)
 ; 鳥哥Linux教學
 ; https://linux.vbird.org/linux_basic/centos7/
 
-
-; Active File In StatusBar 
