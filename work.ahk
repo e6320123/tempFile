@@ -455,3 +455,4 @@ auto_search(innn)
 ; GoodNotes
 ; 自我工作安排
 ; 工作進度管理
+; 了解公司網站 程式架構
