@@ -445,5 +445,11 @@ auto_search(innn)
 ; https://linux.vbird.org/linux_basic/centos7/
 
 
+; 練習linux
+
+; Copy.sh
+; https://copy.sh/v86/?profile=linux26
+
 
 ; dark reader
+; GoodNotes
