@@ -55,7 +55,6 @@ return
 ;   run E:\21h1\ahk\vbs\kill_sni.vbs
 ; return
 
-
 ~F1::
   WinGetActiveTitle, Title
   if Title contains Visual Studio Code
@@ -445,3 +444,6 @@ auto_search(innn)
 ; 鳥哥Linux教學
 ; https://linux.vbird.org/linux_basic/centos7/
 
+
+
+; dark reader

@@ -15,7 +15,7 @@
 :O:gc::git commit -m '
 :O:gh::git push
  
-:O:gt::git status
+:O:gst::git status
 
 
 

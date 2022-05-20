@@ -15,18 +15,56 @@
 
 --------------------前台--------------------
 1確認購物車
-sample_v1\_pages\order\cart.php
+_pages\order\cart.php
 
 2付款與運送方式
-sample_v1\_pages\order\02.php
+_pages\order\02.php
 
 3資料填寫
-sample_v1\_pages\order\03.php
+_pages\order\03.php
+
+
+_pages\order\order_save.php
+
 
 交易結果
-sample_v1\_pages\order\04.php
+_pages\order\04.php
+
+
+1確認購物車->2付款與運送方式->3資料填寫->交易結果
+                                 ->綠界支付
+
+cart.php ->  02.php    -> 03.php -> order_save.php ->04.php
 
 
 --------------------後台--------------------
 訂單管理->訂單查詢
-sample_v1/admin/order/index.php
+admin/order/index.php
+db table-> pro_order
+
+
+訂單管理->訂單查詢->詳細
+訂單管理->訂單查詢->編輯出貨狀態
+admin/order/reg.php
+
+
+--------------------問題--------------------
+訂單管理->訂單查詢->出貨詳細
+後台出貨詳細 href="#" 沒連網址
+
+
+
+
+--------------------契約客戶 ftp帳號 申請表--------------------
+
+契客名稱
+ftp帳號
+連絡電話
+連線主機ip
+聯絡資料
+申請ftp用途
+測試日期
+上線日期
+
+--------------------ftp 資料交換說明--------------------
+

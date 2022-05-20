@@ -22,26 +22,4 @@
   sendInput {tab}
 return
  
-; :O?:ec::
-;   sendInput echo
-;   sleep 100
-;   sendInput {space}
-; return
-
-; :O?:es::
-;   sendInput echo
-;   sleep 100
-;   sendInput {space}
-;   sleep 100
-;   sendInput "
-;   sleep 100 
-; return
-
-:O?:vd::
-  sendInput var_dump`(`)
-  sleep 100
-  sendInput {left}
-return
-
- 
  
