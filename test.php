@@ -2,20 +2,20 @@
 <?php
 
 
-
 function show_arr($arr){
-    $k_color = "<span style=\"color:#fc9e4f;\">";
+    $k_color1 = "<span style=\"color:blue;\">";
+    $k_color2 = "<span style=\"color:#fc9e4f;\">";
     $v_color = "<span style=\"color:#21897e;\">";
     $span_end = "</span>";
-    $i = 0;
     foreach ($arr as $key => $value) {
-        $key_out = $k_color.$key.$span_end;
+        $key_out = $k_color1.$key.$span_end;
         if(is_array($value)){
             echo  $key_out . ' => [';
             echo "<br>"; 
             echo "&emsp;";
+            $i = 0;
             foreach ($value as $key2 => $value2) {
-                $key_out = $k_color.$key2.$span_end;
+                $key_out = $k_color2.$key2.$span_end;
                 $i++;
                 echo "&emsp;";
                 echo $key_out .' => ' . $v_color.$value2.$span_end;
@@ -34,6 +34,7 @@ function show_arr($arr){
         }
     }
 }
+ 
 
 $arr = ['123', '345', '678'];
 

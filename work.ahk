@@ -453,3 +453,5 @@ auto_search(innn)
 
 ; dark reader
 ; GoodNotes
+; 自我工作安排
+; 工作進度管理
