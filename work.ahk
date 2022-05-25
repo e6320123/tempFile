@@ -413,8 +413,41 @@ auto_search(innn)
 }
 
 
-
+^1::
+  sendInput ^d
+  sleep 100
+  sendInput ^c
+  sleep 100
+  Clipboard = $%Clipboard%
   
+return
+; ^1::
+;   sendInput ^v
+;   sleep 100
+;   sendInput {tab}
+;   sleep 100
+;   sendInput ^v
+;   sleep 100
+;   sendInput {tab}
+;   sleep 100
+;   sendInput A001
+;   sleep 100
+;   sendInput {tab}
+  
+; return
+
+; !1::
+;   click 250,575  
+;   sleep 100
+;   click 306,741  
+;   sleep 100
+;   click 523,572  
+;   sleep 100
+;   click 582,743  
+;   sleep 100
+;   click 702,556  
+
+; return  
   
 
 ;#Include, %A_ScriptDir%\click.ahk 
@@ -457,4 +490,12 @@ auto_search(innn)
 ; 工作進度管理
 ; 了解公司網站 程式架構
 
-; 調整抗藍光
+
+; [請益] 如何有效率的看code ?
+; https://www.ptt.cc/bbs/Tech_Job/M.1594460785.A.66D.html
+
+; 推 Dracarys: Debugger + editor的跳轉定義功能 07/11 20:33
+; → TS01923141: 跑unit test看看回傳什麼
+
+; vscode debugging
+; https://code.visualstudio.com/docs/editor/debugging
