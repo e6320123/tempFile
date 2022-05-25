@@ -17,6 +17,19 @@
  
 :O:gst::git status
 
+:O:gpu::
+  sendInput git add .
+  sleep 200
+  sendInput {enter}
+  sleep 1000
+  sendInput git commit -m '123'
+  sleep 200
+  sendInput {enter}
+  sleep 1000
+  sendInput git push
+  sleep 200
+  sendInput {enter}
+return
 
 
 ~shift::
