@@ -499,3 +499,7 @@ return
 
 ; vscode debugging
 ; https://code.visualstudio.com/docs/editor/debugging
+
+
+; php debug 教學
+; https://dotblogs.com.tw/ianchiu28/2017/06/15/180900
