@@ -421,6 +421,12 @@ auto_search(innn)
   Clipboard = $%Clipboard%
   
 return
+
+
+; +WheelUp::SendInput !+PgUp 
+
+; +WheelDown::!PgDn 
+
 ; ^1::
 ;   sendInput ^v
 ;   sleep 100
@@ -503,3 +509,11 @@ return
 
 ; php debug 教學
 ; https://dotblogs.com.tw/ianchiu28/2017/06/15/180900
+
+
+
+; PHP Intelephense
+; PHP Debug
+
+
+; excel 匯出 轉中文 只上git 未上主機
