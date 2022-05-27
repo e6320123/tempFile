@@ -41,24 +41,28 @@ return
 
 
  
-; :*?:\sq1::
-;   sendInput cd c:\xampp\mysql\bin
-;   sleep 100
-;   sendInput {enter}
-;   sleep 100
-;   sendInput mysql -u root
-;   sleep 100
-;   sendInput {enter}
-;   sleep 100
-;   sendInput use test;
-;   sleep 100
-;   sendInput {enter}
-;   sleep 100
-;   sendRaw show tables;
-;   sleep 100
-;   sendInput {enter}
-;   sleep 100
-; return
+:O:\sq::
+  sendInput cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+  sleep 200
+  sendInput {enter}
+  sleep 200
+  sendInput mysql -u root -p
+  sleep 200
+  sendInput {enter}
+  sleep 1000
+  sendInput 2565
+  sleep 500
+  sendInput {enter}
+  sleep 200
+  ; sendInput use test;
+  ; sleep 200
+  ; sendInput {enter}
+  ; sleep 200
+  ; sendRaw show tables;
+  ; sleep 200
+  ; sendInput {enter}
+  ; sleep 200
+return
 ; :*?:\sq2::
 ;   sendInput cd c:\xampp\mysql\bin
 ;   sleep 300

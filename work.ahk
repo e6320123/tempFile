@@ -461,6 +461,7 @@ return
 #Include, %A_ScriptDir%\win_ctl.ahk
 #Include, %A_ScriptDir%\keyword_php.ahk
 
+; git帳密
 ; Neil Liu
 ; 帳號 e6320123
 ; 密碼 25652565
@@ -516,4 +517,5 @@ return
 ; PHP Debug
 
 
-; excel 匯出 轉中文 只上git 未上主機
+; 工作難點
+; 學習看懂英文，可以google國外資源比較容易 解決程式問題
