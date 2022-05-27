@@ -21,11 +21,11 @@
   sendInput git add .
   sleep 200
   sendInput {enter}
-  sleep 3000
+  sleep 1500
   sendInput git commit -m '123'
   sleep 200
   sendInput {enter}
-  sleep 3000
+  sleep 2000
   sendInput git push
   sleep 200
   sendInput {enter}
