@@ -519,3 +519,5 @@ return
 
 ; 工作難點
 ; 學習看懂英文，可以google國外資源比較容易 解決程式問題
+; 用不同版本的xampp 來寫php
+; 不安裝xampp的mysql，下載連接原版mysql
