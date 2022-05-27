@@ -46,7 +46,6 @@ return
 #c::Run calc
 #n::Run Notepad
  
-
 :*?:+sn::
   run C:\Users\Administrator\Desktop\Snipaste-1.16.2-x64\Snipaste.exe
 return
@@ -538,3 +537,5 @@ return
 
 
 ; sss 快捷鍵 設定其他app 不刪減sss 字元
+
+; 要會善用工具，好工具可省下許多時間  EX PHP Intelephense 直接幫你找錯
