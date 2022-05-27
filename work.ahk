@@ -209,9 +209,9 @@ SetDefaultKeyboard(LocaleID) {
   if Title contains Visual Studio Code, Edge
   {
     if Title contains Visual Studio Code
-      MsgBox, Visual Studio Code
+      sendInput ^{home}
     if Title contains Edge
-      MsgBox, Edge
+      sendInput {home}
   }
   else
   {
@@ -221,10 +221,17 @@ SetDefaultKeyboard(LocaleID) {
 return
 :*?:sss::
   WinGetActiveTitle, Title
-  if Title contains Visual Studio Code
-    sendInput ^{end}
-  if Title contains Edge
-    sendInput {end}
+  if Title contains Visual Studio Code, Edge
+  {
+    if Title contains Visual Studio Code
+      sendInput ^{end}
+    if Title contains Edge
+      sendInput {end}
+  }
+  else
+  {
+    sendInput sss
+  }
 return
  
 
@@ -539,3 +546,8 @@ return
 ; sss 快捷鍵 設定其他app 不刪減sss 字元
 
 ; 要會善用工具，好工具可省下許多時間  EX PHP Intelephense 直接幫你找錯
+
+
+
+; 鳥哥Linux教學 看到~
+; https://linux.vbird.org/linux_basic/centos7/0340bashshell-scripts.php#script
