@@ -207,10 +207,18 @@ SetDefaultKeyboard(LocaleID) {
  
 :*?:www::
   WinGetActiveTitle, Title
-  if Title contains Visual Studio Code
-    sendInput ^{home}
-  if Title contains Edge
-    sendInput {home}
+  if Title contains Visual Studio Code, Edge
+  {
+    if Title contains Visual Studio Code
+      MsgBox, Visual Studio Code
+    if Title contains Edge
+      MsgBox, Edge
+  }
+  else
+  {
+    sendInput www
+  }
+
 return
 :*?:sss::
   WinGetActiveTitle, Title
@@ -527,3 +535,6 @@ return
 ; 用過去直覺想問題會出錯，換了環境就要重新想說怎麼做
 ; 面試要記得核對公司使用工具與環境 如果換了就不會用  ex: SSMS安裝兩天也開不了
 ; 工作自己不知道要做甚麼
+
+
+; sss 快捷鍵 設定其他app 不刪減sss 字元
